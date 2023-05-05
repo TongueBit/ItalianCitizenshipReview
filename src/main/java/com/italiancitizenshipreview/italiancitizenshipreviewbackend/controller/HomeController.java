@@ -5,14 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class HomeController {
 
-    @GetMapping()
-    public String home() {
-        return "Hello World";
+    @GetMapping("/home")
+    public String homePage() {
+        return "home";
     }
 
+    /**
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user")
     public String user() {
@@ -24,5 +25,5 @@ public class HomeController {
     public String admin() {
         return "Hello Admin";
     }
-
+    **/
 }
