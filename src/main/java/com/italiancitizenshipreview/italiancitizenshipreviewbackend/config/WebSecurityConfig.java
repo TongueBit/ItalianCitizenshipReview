@@ -1,4 +1,4 @@
-package com.italiancitizenshipreview.italiancitizenshipreviewbackend;
+package com.italiancitizenshipreview.italiancitizenshipreviewbackend.config;
 
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.JpaUserDetailsService;
 import org.springframework.context.annotation.Bean;
@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,13 +32,15 @@ public class WebSecurityConfig {
         return http
 
                 .authorizeRequests(auth -> auth
-                        .requestMatchers("/home", "/register", "/login", "/logout").permitAll()
+                        //.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                        .requestMatchers("/home","/", "/register", "/login", "/logout").permitAll()
                         .anyRequest().authenticated())
                 .userDetailsService(jpaUserDetailsService)
                 .headers(headers -> headers.frameOptions().sameOrigin())
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
+
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

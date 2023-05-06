@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Italian Citizenship Reviews</title>
-    <link rel="stylesheet" href="src/main/resources/static/css">
+    <link rel="stylesheet" href="src/main/resources/static/css/home.css">
 </head>
 <body>
 <header>
@@ -49,46 +49,13 @@
                     <option value="5">5</option>
                 </select>
                 <button type="submit" onclick="createReview()">Update Review</button>
+                <script src="/js/home.js"></script>
             </form>
         </div>
         <div th:unless="${#vars.request.isUserInRole('ROLE_ADMIN')}">
             <b>Login to leave a review!</b>
         </div>
-            <script type="text/javascript">
-                function createReview() {
-                    var serviceProviderId = document.getElementById("serviceProviderId").value;
-                    var title = document.getElementById('title').value;
-                    var content = document.getElementById('content').value;
-                    var userId = document.getElementById('userId').value;
-                    var rating = document.getElementById('rating').value;
 
-                    var review = {
-                        title: title,
-                        content: content,
-                        userId: userId,
-                        serviceProviderId: { serviceProviderId: serviceProviderId },
-                        rating: rating
-                    };
-
-                    // Fetch request
-                    fetch('/review', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(review)
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            // Handle response data
-                            console.log(data);
-                        })
-                        .catch(error => {
-                            // Handle error
-                            console.error(error);
-                        });
-                }
-            </script>
         </div>
     </div>
 </div>
