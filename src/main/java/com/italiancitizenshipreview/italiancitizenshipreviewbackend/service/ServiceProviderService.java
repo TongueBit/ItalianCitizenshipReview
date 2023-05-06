@@ -27,8 +27,12 @@ public class ServiceProviderService {
     }
 
     public List<ServiceProvider> getAllServiceProviders() {
-        Iterable<ServiceProvider> serviceProviders = serviceProviderRepository.findAll();
+        Iterable<ServiceProvider> serviceProviders = serviceProviderRepository.findAllServiceProvidersWithReviews();
         return (List<ServiceProvider>) serviceProviders;
 
+    }
+
+    public void printReviews(ServiceProvider serviceProvider){
+        System.out.println(serviceProvider.getReviews());
     }
 }

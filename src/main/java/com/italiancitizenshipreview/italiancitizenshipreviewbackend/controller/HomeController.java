@@ -2,6 +2,7 @@ package com.italiancitizenshipreview.italiancitizenshipreviewbackend.controller;
 
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.ServiceProvider;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ServiceProviderService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -22,9 +23,11 @@ public class HomeController {
         return "redirect:/home";
     }
     @GetMapping("/home")
-    public String homePage(Model map) {
+    public String homePage(Model model, HttpServletRequest request) {
         List<ServiceProvider> serviceProviders = serviceProviderService.getAllServiceProviders();
-        map.addAttribute("serviceProviders", serviceProviders);
+        model.addAttribute("serviceProviders", serviceProviders);
+        model.addAttribute("request", request);
+
         return "home";
     }
 

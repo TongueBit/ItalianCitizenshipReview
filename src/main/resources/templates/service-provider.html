@@ -5,8 +5,9 @@
     <title>Add a new Service Provider</title>
 </head>
 <body>
-<h1>Add Service Provider</h1>
+
 <div th:if="${serviceProvider == null}">
+    <h1>Add a Service Provider</h1>
     <form th:action="@{/service-provider}" method="post">
         <label for="name">Name:</label><br><br>
         <input type="text" id="name" name="name" required/><br><br>
@@ -17,6 +18,7 @@
 </div>
 
 <div th:if="${serviceProvider != null}">
+    <h1>Edit a Service Provider</h1>
     <form th:action="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}" method="post">
         <label for="edit-name"><b>Edit Name: </b><span th:text="${serviceProvider.name}"></span></label><br><br>
         <input type="text" id="edit-name" name="name" th:value="${serviceProvider.name}" required/><br><br>
