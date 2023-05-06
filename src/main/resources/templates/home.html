@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Italian Citizenship Reviews</title>
+    <link rel="stylesheet" href="/static.css/style.css">
 </head>
 <body>
-<h1> Home</h1>
+<header>
+    <h1>Welcome to Italian Citizenship Reviews</h1>
+</header>
+<h2>Service Provider Reviews</h2>
+<form action="/service-provider" method="get">
+    <button type="submit">Add a service provider</button>
+</form>
 
+
+<div th:each="serviceProvider : ${serviceProviders}">
+    <h3 th:text="${serviceProvider.name}"></h3>
+    <h4 th:text="${serviceProvider.rating}"></h4>
+    <h3 th:text="${serviceProvider.description}"></h3>
+    <p>Rating: <span th:text="${review.rating}"></span></p>
+    <p th:text="${review.reviewText}"></p>
+</div>
 
 </body>
 </html>
