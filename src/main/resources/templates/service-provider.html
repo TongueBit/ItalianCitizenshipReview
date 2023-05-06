@@ -2,16 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add a new Service Provider</title>
 </head>
 <body>
 <h1>Add Service Provider</h1>
-<form th:action="@{/service-provider}" method="post">
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name" required/><br><br>
-  <label for="description">Description:</label>
-  <input type="text" id="description" name="description" required/><br><br>
-  <button type="submit">Add Service Provider</button>
-</form>
+<div th:if="${serviceProvider == null}">
+    <form th:action="@{/service-provider}" method="post">
+        <label for="name">Name:</label><br><br>
+        <input type="text" id="name" name="name" required/><br><br>
+        <label for="description">Description:</label><br><br>
+        <input type="text" id="description" name="description" required/><br><br>
+        <button type="submit">Add Service Provider</button>
+    </form>
+</div>
+
+<div th:if="${serviceProvider != null}">
+    <form th:action="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}" method="post">
+        <label for="edit-name"><b>Edit Name: </b><span th:text="${serviceProvider.name}"></span></label><br><br>
+        <input type="text" id="edit-name" name="name" th:value="${serviceProvider.name}" required/><br><br>
+        <label for="edit-description"><b>Edit Description: </b><span th:text="${serviceProvider.description}"></span></label><br><br>
+        <textarea id="edit-description"  name="description" required style="font-family: Arial, sans-serif;">[[${serviceProvider.description}]]</textarea><br><br>
+        <button type="submit">Update Service Provider</button>
+    </form>
+</div>
+
 </body>
 </html>

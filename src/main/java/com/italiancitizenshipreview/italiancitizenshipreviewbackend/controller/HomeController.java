@@ -1,20 +1,30 @@
 package com.italiancitizenshipreview.italiancitizenshipreviewbackend.controller;
 
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.ServiceProvider;
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ServiceProviderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
 
-
+    @Autowired
+    private ServiceProviderService serviceProviderService;
     @GetMapping("/")
     public String homePageRedirect() {
-        return "home";
+        return "redirect:/home";
     }
     @GetMapping("/home")
-    public String homePage() {
+    public String homePage(Model map) {
+        List<ServiceProvider> serviceProviders = serviceProviderService.getAllServiceProviders();
+        map.addAttribute("serviceProviders", serviceProviders);
         return "home";
     }
 
