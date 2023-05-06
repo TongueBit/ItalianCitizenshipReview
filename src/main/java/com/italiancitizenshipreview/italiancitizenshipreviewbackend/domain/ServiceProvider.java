@@ -1,16 +1,13 @@
 package com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class ServiceProvider {
     private String name;
+    @Column(columnDefinition = "TEXT")
     private String description;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long serviceProviderId;
@@ -24,6 +21,14 @@ public class ServiceProvider {
 
     public ServiceProvider() {
 
+    }
+
+    public Long getServiceProviderId() {
+        return serviceProviderId;
+    }
+
+    public void setServiceProviderId(Long serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
     }
 
     public String getName() {

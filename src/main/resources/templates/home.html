@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Italian Citizenship Reviews</title>
-    <link rel="stylesheet" href="/static.css/style.css">
+    <link rel="stylesheet" href="src/main/resources/static/css">
 </head>
 <body>
 <header>
@@ -16,12 +16,11 @@
 
 
 <div th:each="serviceProvider : ${serviceProviders}">
-    <h3 th:text="${serviceProvider.name}"></h3>
-    <h4 th:text="${serviceProvider.rating}"></h4>
-    <h3 th:text="${serviceProvider.description}"></h3>
-    <p>Rating: <span th:text="${review.rating}"></span></p>
-    <p th:text="${review.reviewText}"></p>
-</div>
+    <div class="service-provider">
+        <h2 th:text="${serviceProvider.name}"></h2>
+        <p th:text="${serviceProvider.description}"></p>
 
+    </div>
+</div>
 </body>
 </html>
