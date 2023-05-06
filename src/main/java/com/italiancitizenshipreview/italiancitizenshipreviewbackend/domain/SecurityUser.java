@@ -11,9 +11,11 @@ public class SecurityUser implements UserDetails {
 
     private User user;
 
+
     public SecurityUser(User user){
         this.user = user;
     }
+
 
     @Override
     public String getUsername() {
@@ -52,5 +54,10 @@ public class SecurityUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    // Add a method to get the userId
+    public Long getUserId() {
+        return user.getUserId();
     }
 }

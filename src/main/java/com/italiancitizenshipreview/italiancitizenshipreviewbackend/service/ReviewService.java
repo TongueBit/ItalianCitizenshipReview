@@ -1,13 +1,23 @@
 package com.italiancitizenshipreview.italiancitizenshipreviewbackend.service;
 
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.Review;
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.SecurityUser;
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.User;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.repository.ReviewRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReviewService {
@@ -34,5 +44,13 @@ public class ReviewService {
         return review;
     }
 
+    public Long retrieveCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        SecurityUser user = (SecurityUser) authentication.getPrincipal();
+        return user.getUserId();
+    }
 
+    public Review createReview(Review review) {
+        return reviewRepository.save(review);
+    }
 }

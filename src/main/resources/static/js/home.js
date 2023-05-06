@@ -1,19 +1,19 @@
-function createReview() {
+function createReview(userId) {
+    var userId =  userId;
     var serviceProviderId = document.getElementById("serviceProviderId").value;
     var title = document.getElementById('title').value;
     var content = document.getElementById('content').value;
-    var userId = document.getElementById('userId').value;
     var rating = document.getElementById('rating').value;
 
     var review = {
         title: title,
         content: content,
         userId: userId,
-        serviceProviderId: {serviceProviderId: serviceProviderId},
+        serviceProviderId: serviceProviderId,
         rating: rating
     };
 
-// Fetch request
+    // Fetch request to create the review
     fetch('/review', {
         method: 'POST',
         headers: {
@@ -23,44 +23,39 @@ function createReview() {
     })
         .then(response => response.json())
         .then(data => {
-// Handle response data
+            // Handle response data
             console.log(data);
         })
         .catch(error => {
-// Handle error
+            // Handle error
             console.error(error);
         });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     // Code to execute when the page is fully loaded
-    var reviewDiv = document.getElementById('reviewForm');
+    var reviewForm = document.getElementById('reviewForm');
 
-    reviewDiv.addEventListener('click', function() {
-        // Code to execute when the review div is clicked
-        fetchUserId();
-    });
-    let userIdRequestMade = false;
+    reviewForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
 
-    function fetchUserId() {
-        if (!userIdRequestMade) {
-            // Make a fetch request to retrieve the userId
-            fetch('/review', {
-                method: 'GET',
-                credentials: 'include' // Include cookies in the request
+        // Fetch request to retrieve the userId
+        fetch('/review', {
+            method: 'GET',
+            credentials: 'include' // Include cookies in the request
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Response data:', data);
+                var userId = data.userId;
+                // Do something with the userId
+                console.log('User ID:', userId);
+
+                // Call the createReview function to submit the review with userId
+                createReview(userId);
             })
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                    var userId = data.userId;
-                    // Do something with the userId
-                    console.log('User ID:', userId);
-                })
-                .catch(function (error) {
-                    console.error('Error:', error);
-                });
-            userIdRequestMade = true;
-        }
-    }
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
 });

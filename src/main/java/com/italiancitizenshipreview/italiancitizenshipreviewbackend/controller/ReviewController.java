@@ -1,15 +1,14 @@
 package com.italiancitizenshipreview.italiancitizenshipreviewbackend.controller;
 
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.Review;
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.User;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ReviewService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ReviewController {
@@ -18,26 +17,14 @@ public class ReviewController {
     private ReviewService reviewService;
 
     @PostMapping("/review")
-    public void createReview(@RequestParam("title") String title,
-                             @RequestParam("content") String content,
-                             @RequestParam("userId") Long userId,
-                             @RequestParam("serviceProviderId") Long serviceProviderId,
-                             @RequestParam("rating") int rating) {
-        Review review = reviewService.createReview(title, content, userId, serviceProviderId, rating);
+    public void createReview(@RequestBody Review review) {
+        review = reviewService.createReview(review);
     }
 
     @GetMapping("/review")
-    public String getUserId(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("JSESSIONID")) {
-                String jsessionid = cookie.getValue();
-                System.out.println(jsessionid);
-                break;
-            }
-
-
-        }
-        return "home";
+    public Long getUserId(HttpServletRequest request) {
+        Long userId = reviewService.retrieveCurrentUser();
+        System.out.println(userId);
+        return userId;
     }
 }

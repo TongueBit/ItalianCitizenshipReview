@@ -38,6 +38,7 @@ public class WebSecurityConfig {
                 .userDetailsService(jpaUserDetailsService)
                 .headers(headers -> headers.frameOptions().sameOrigin())
                 .httpBasic(Customizer.withDefaults())
+                .csrf().disable()
                 .build();
     }
 
