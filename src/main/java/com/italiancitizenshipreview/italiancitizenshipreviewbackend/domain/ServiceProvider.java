@@ -2,6 +2,8 @@ package com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain;
 
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class ServiceProvider {
 
 
     @OneToMany(mappedBy = "serviceProvider")
+    @Fetch(FetchMode.JOIN)
     private List<Review> reviews;
 
     @Id

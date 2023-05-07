@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Italian Citizenship Reviews</title>
     <link rel="stylesheet" href="src/main/resources/static/css/home.css">
+
 </head>
 <body>
 <header>
@@ -12,7 +13,7 @@
 <h2>Service Provider Reviews</h2>
 <h4>Can't find your Italian Citizenship Service Provider? Add it <a href="/service-provider">here </a></h4>
 
-<div th:each="serviceProvider : ${serviceProviders}">
+<div th:each="serviceProvider, stat : ${serviceProviders}" th:id="'serviceProvider-' + ${stat.index}">
     <div style="border-style: solid">
     <div class="service-provider" >
         <input type="hidden" id="serviceProviderId" th:value="${serviceProvider.serviceProviderId}" />
@@ -20,8 +21,8 @@
         <p th:text="${serviceProvider.description}"></p>
         <h3>Reviews</h3>
     </div>
-        <div th:if="${serviceProvider.reviews.size() != 0}">
-            <ul>
+        <div th:if="${serviceProvider.reviews.size() != 0}" id="reviewList">
+            <ul th:id="'reviewList-' + ${serviceProvider.serviceProviderId}">
                 <li th:each="review : ${serviceProvider.reviews}">
                     <p><b><span th:text="${review.title}"></span></b></p>
                     <p><span th:text="${review.content}"></span></p>
@@ -32,7 +33,6 @@
             <p><b><em>No reviews available.</em></b></p>
         </div>
 
-
         <!- this will need to be changed! -->
         <div th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}">
             <form id="reviewForm">
@@ -42,7 +42,7 @@
                 <textarea id="content" name="content"></textarea><br><br>
                 <label for="rating">Rating:</label>
                 <select id="rating" name="rating">
-                    <option value="1">1</option>
+                    <option value="1">1</option>å
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
@@ -53,7 +53,7 @@
             </form>
         </div>
         <div th:unless="${#vars.request.isUserInRole('ROLE_ADMIN')}">
-            <b>Login to leave a review!</b>
+            <b><a href="/login">Login</a> to leave a review!</b>
         </div>
 
         </div>

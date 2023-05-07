@@ -1,5 +1,6 @@
 package com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -79,7 +80,6 @@ public class Review {
     public void setReviewId(Long reviewId) {
         this.reviewId = reviewId;
     }
-
 
     @Override
     public String toString() {

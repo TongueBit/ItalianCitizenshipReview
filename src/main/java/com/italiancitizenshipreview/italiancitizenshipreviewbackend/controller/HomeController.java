@@ -1,11 +1,15 @@
 package com.italiancitizenshipreview.italiancitizenshipreviewbackend.controller;
 
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.Review;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.ServiceProvider;
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.dto.ReviewRequest;
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ReviewService;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ServiceProviderService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.MediaType;
 
@@ -34,7 +40,7 @@ public class HomeController {
                 .body(resource);
     }
 
-    @GetMapping("/css/home.css")
+    @GetMapping("/src/main/resources/static/css/home.css")
     public ResponseEntity<Resource> getHomeCss() {
         // Load and return the "home.js" file as a resource
         Resource resource = new ClassPathResource("static/css/home.css");
@@ -54,6 +60,9 @@ public class HomeController {
 
         return "home";
     }
+
+
+
 
     /**
     @PreAuthorize("hasRole('ROLE_USER')")

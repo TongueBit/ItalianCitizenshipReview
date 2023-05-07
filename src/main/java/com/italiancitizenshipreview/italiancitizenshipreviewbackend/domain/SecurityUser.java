@@ -56,8 +56,8 @@ public class SecurityUser implements UserDetails {
         return true;
     }
 
-    // Add a method to get the userId
-    public Long getUserId() {
-        return user.getUserId();
+
+    public void setUserId(Long userId) {
+        user.setUserId(userId);
     }
 }

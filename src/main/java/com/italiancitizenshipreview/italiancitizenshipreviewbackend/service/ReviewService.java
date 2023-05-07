@@ -44,12 +44,6 @@ public class ReviewService {
         return review;
     }
 
-    public Long retrieveCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        SecurityUser user = (SecurityUser) authentication.getPrincipal();
-        return user.getUserId();
-    }
-
     public Review createReview(Review review) {
         return reviewRepository.save(review);
     }

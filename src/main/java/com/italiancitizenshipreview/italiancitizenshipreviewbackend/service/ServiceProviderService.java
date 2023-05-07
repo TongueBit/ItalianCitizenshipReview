@@ -22,6 +22,10 @@ public class ServiceProviderService {
         return serviceProviderRepository.findById(serviceProviderId).orElseThrow();
     }
 
+    public ServiceProvider getOneServiceProviderWithReviews(Long serviceProviderId) {
+        return serviceProviderRepository.findOneWithReviews(serviceProviderId);
+    }
+
     public void updateServiceProvider(ServiceProvider serviceProvider) {
         serviceProviderRepository.save(serviceProvider);
     }
