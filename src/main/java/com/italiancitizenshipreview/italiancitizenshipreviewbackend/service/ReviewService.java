@@ -47,4 +47,8 @@ public class ReviewService {
     public Review createReview(Review review) {
         return reviewRepository.save(review);
     }
+
+    public void deleteById(Long reviewId) {
+        reviewRepository.deleteById(reviewId);
+    }
 }

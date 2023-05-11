@@ -16,6 +16,7 @@
                 <input type="password" id="password" name="password" required><br><br>
             </div>
             <button type="submit">Login</button>
+            <button action="/logout" >Logout </button>
         </form>
     <h2>Registration Form</h2>
         <form th:action="@{/register}" method="post">
@@ -25,10 +26,10 @@
             </div>
             <script>
                 const input = document.getElementById('register-username');
-
                 input.addEventListener('blur', function() {
                     const username = input.value;
 
+                    if(input.value != '') {
                     // Make a request to the server to check if the username exists
                     fetch('rest/user/exists/' + username)
                         .then(response => response.json())
@@ -44,7 +45,9 @@
                         .catch(error => {
                             console.error('Error checking username:', error);
                         });
+                    }
                 });
+
             </script>
             <div>
                 <label for="password">Password:</label>
