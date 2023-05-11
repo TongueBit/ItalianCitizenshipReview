@@ -13,16 +13,16 @@
 <h2>Service Provider Reviews</h2>
 <h4>Can't find your Italian Citizenship Service Provider? Add it <a href="/service-provider">here </a></h4>
 
-<div th:each="serviceProvider, stat : ${serviceProviders}" th:id="'serviceProvider-' + ${stat.index}">
+<div th:each="serviceProvider, stat : ${serviceProviders}" th:id="${stat.index}">
     <div style="border-style: solid">
     <div class="service-provider" >
-        <input type="hidden" id="serviceProviderId" th:value="${serviceProvider.serviceProviderId}" />
+        <input type="hidden" th:id="'serviceProvider-' + ${stat.index}" th:value="${serviceProvider.serviceProviderId}" />
         <h2 th:text="${serviceProvider.name}"></h2>
         <p th:text="${serviceProvider.description}"></p>
         <h3>Reviews</h3>
     </div>
         <div th:if="${serviceProvider.reviews.size() != 0}" id="reviewList">
-            <ul th:id="'reviewList-' + ${serviceProvider.serviceProviderId}">
+            <ul>
                 <li th:each="review : ${serviceProvider.reviews}">
                     <p><b><span th:text="${review.title}"></span></b></p>
                     <p><span th:text="${review.content}"></span></p>
@@ -32,26 +32,26 @@
         <div th:unless="${serviceProvider.reviews.size() > 0}">
             <p><b><em>No reviews available.</em></b></p>
         </div>
-
         <!- this will need to be changed! -->
         <div th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}">
             <form id="reviewForm">
-                <label for="title">Title:</label>
-                <input type="text" id="title" name="title" value="Give a brief title of your experience"><br><br>
-                <label for="content">Review</label>
-                <textarea id="content" name="content"></textarea><br><br>
-                <label for="rating">Rating:</label>
-                <select id="rating" name="rating">
+                <label>Title:</label>
+                <input type="text" th:id="'title-' + ${stat.index}" name="title" value="Give a brief title of your experience"><br><br>
+                <label >Review</label>
+                <textarea th:id="'content-' + ${stat.index}" name="content"></textarea><br><br>
+                <label>Rating:</label>
+                <select th:id="'rating-' + ${stat.index}" name="rating">
                     <option value="1">1</option>å
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-                <button type="submit" onclick="createReview()">Update Review</button>
-                <script src="/js/home.js"></script>
+                <button type="submit" onclick="createReview(event)" th:data-index="${stat.index}">Update Review</button>
+
             </form>
         </div>
+
         <div th:unless="${#vars.request.isUserInRole('ROLE_ADMIN')}">
             <b><a href="/login">Login</a> to leave a review!</b>
         </div>
@@ -63,5 +63,6 @@
 <form action="/service-provider" method="get" id="add-service-provider">
     <button type="submit">Add a service provider</button>
 </form>
+<script src="/js/home.js"></script>
 </body>
 </html>

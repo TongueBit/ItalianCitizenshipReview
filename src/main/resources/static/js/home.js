@@ -1,8 +1,10 @@
-function createReview() {
-    var serviceProviderId = document.getElementById('serviceProviderId').value;
-    var title = document.getElementById('title').value;
-    var content = document.getElementById('content').value;
-    var rating = document.getElementById('rating').value;
+function createReview(event) {
+    event.preventDefault();
+    var index = event.target.getAttribute('data-index');
+    var serviceProviderId = document.getElementById('serviceProvider-' + index).value;
+    var title = document.getElementById('title-' + index).value;
+    var content = document.getElementById('content-' + index).value;
+    var rating = document.getElementById('rating-' + index).value;
     var cookies = document.cookie.split(';');
     var userId = null;
 
@@ -32,7 +34,7 @@ function createReview() {
         .then(response => {
             if (response.ok) {
                 setTimeout(() => {
-                    location.reload();
+                    //location.reload();
                 }, 1000);
             } else {
                 throw new Error('Error creating review');

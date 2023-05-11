@@ -40,6 +40,8 @@ public class RestController {
         // Save the review using the reviewService
         Review createdReview = reviewService.createReview(review);
 
+        /** I want to eventually return the review object but the persitant bag thing has it all messed up. **/
+
         // Return the created review in the response body with a status of 201 (Created)
         return ResponseEntity.ok().build();
     }
