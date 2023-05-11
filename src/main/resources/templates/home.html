@@ -1,26 +1,68 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Italian Citizenship Reviews</title>
-    <link rel="stylesheet" href="src/main/resources/static/css">
+    <link rel="stylesheet" href="src/main/resources/static/css/home.css">
+
 </head>
 <body>
 <header>
     <h1>Welcome to Italian Citizenship Reviews</h1>
 </header>
 <h2>Service Provider Reviews</h2>
-<form action="/service-provider" method="get">
-    <button type="submit">Add a service provider</button>
-</form>
+<h4>Can't find your Italian Citizenship Service Provider? Add it <a href="/service-provider">here </a></h4>
 
-
-<div th:each="serviceProvider : ${serviceProviders}">
-    <div class="service-provider">
+<div th:each="serviceProvider, stat : ${serviceProviders}" th:id="${stat.index}">
+    <div style="border-style: solid">
+    <div class="service-provider" >
+        <input type="hidden" th:id="'serviceProvider-' + ${stat.index}" th:value="${serviceProvider.serviceProviderId}" />
         <h2 th:text="${serviceProvider.name}"></h2>
         <p th:text="${serviceProvider.description}"></p>
+        <h3>Reviews</h3>
+    </div>
+        <div th:if="${serviceProvider.reviews.size() != 0}" id="reviewList">
+            <ul>
+                <li th:each="review : ${serviceProvider.reviews}">
+                    <p><b><span th:text="${review.title}"></span></b></p>
+                    <p><span th:text="${review.content}"></span></p>
+                </li>
+            </ul>
+        </div>
+        <div th:unless="${serviceProvider.reviews.size() > 0}">
+            <p><b><em>No reviews available.</em></b></p>
+        </div>
+        <!- this will need to be changed! -->
+        <div th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}">
+            <form id="reviewForm">
+                <label>Title:</label>
+                <input type="text" th:id="'title-' + ${stat.index}" name="title" value="Give a brief title of your experience"><br><br>
+                <label >Review</label>
+                <textarea th:id="'content-' + ${stat.index}" name="content"></textarea><br><br>
+                <label>Rating:</label>
+                <select th:id="'rating-' + ${stat.index}" name="rating">
+                    <option value="1">1</option>å
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <button type="submit" onclick="createReview(event)" th:data-index="${stat.index}">Update Review</button>
 
+            </form>
+        </div>
+
+        <div th:unless="${#vars.request.isUserInRole('ROLE_ADMIN')}">
+            <b><a href="/login">Login</a> to leave a review!</b>
+        </div>
+
+        </div>
     </div>
 </div>
+
+<form action="/service-provider" method="get" id="add-service-provider">
+    <button type="submit">Add a service provider</button>
+</form>
+<script src="/js/home.js"></script>
 </body>
 </html>

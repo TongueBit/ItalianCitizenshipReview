@@ -11,9 +11,11 @@ public class SecurityUser implements UserDetails {
 
     private User user;
 
+
     public SecurityUser(User user){
         this.user = user;
     }
+
 
     @Override
     public String getUsername() {
@@ -24,6 +26,7 @@ public class SecurityUser implements UserDetails {
     public String getPassword() {
         return user.getPassword();
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.stream(user
@@ -51,5 +54,10 @@ public class SecurityUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+
+    public void setUserId(Long userId) {
+        user.setUserId(userId);
     }
 }

@@ -22,13 +22,21 @@ public class ServiceProviderService {
         return serviceProviderRepository.findById(serviceProviderId).orElseThrow();
     }
 
+    public ServiceProvider getOneServiceProviderWithReviews(Long serviceProviderId) {
+        return serviceProviderRepository.findOneWithReviews(serviceProviderId);
+    }
+
     public void updateServiceProvider(ServiceProvider serviceProvider) {
         serviceProviderRepository.save(serviceProvider);
     }
 
     public List<ServiceProvider> getAllServiceProviders() {
-        Iterable<ServiceProvider> serviceProviders = serviceProviderRepository.findAll();
+        Iterable<ServiceProvider> serviceProviders = serviceProviderRepository.findAllServiceProvidersWithReviews();
         return (List<ServiceProvider>) serviceProviders;
 
+    }
+
+    public void printReviews(ServiceProvider serviceProvider){
+        System.out.println(serviceProvider.getReviews());
     }
 }

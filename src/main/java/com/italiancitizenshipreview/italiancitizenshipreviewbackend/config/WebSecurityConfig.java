@@ -1,11 +1,13 @@
-package com.italiancitizenshipreview.italiancitizenshipreviewbackend;
+package com.italiancitizenshipreview.italiancitizenshipreviewbackend.config;
 
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.JpaUserDetailsService;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,17 +33,31 @@ public class WebSecurityConfig {
         return http
 
                 .authorizeRequests(auth -> auth
-                        .requestMatchers("/home", "/register", "/login", "/logout").permitAll()
+                        .requestMatchers("/src/main/resources/static/css/home.css","/home","/", "/register", "/login", "/logout", "/error", "/js/**").permitAll()
                         .anyRequest().authenticated())
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/home")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
+                .permitAll()
+                .and()
                 .userDetailsService(jpaUserDetailsService)
                 .headers(headers -> headers.frameOptions().sameOrigin())
-                .httpBasic(Customizer.withDefaults())
+                .httpBasic()
+                .and()
+                .csrf().disable()
                 .build();
     }
+
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
 
 }
