@@ -5,6 +5,8 @@ import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.Servi
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.dto.ReviewRequest;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ReviewService;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ServiceProviderService;
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,18 +16,17 @@ import org.springframework.web.bind.annotation.*;
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping("rest")
 public class RestController {
-
+    @Autowired
+    private UserService userService;
     @Autowired
     private ServiceProviderService serviceProviderService;
+    @Autowired
+    private ReviewService reviewService;
     @GetMapping("/service-provider/{serviceProviderId}")
     public ServiceProvider getServiceProvider(@PathVariable Long serviceProviderId) {
         ServiceProvider sp = serviceProviderService.getOneServiceProviderWithReviews(serviceProviderId);
         return sp;
     }
-
-    @Autowired
-    private ReviewService reviewService;
-
     @PostMapping("/review")
     public ResponseEntity<Review> createReview(@RequestBody ReviewRequest reviewRequest) {
 
@@ -45,8 +46,9 @@ public class RestController {
         // Return the created review in the response body with a status of 201 (Created)
         return ResponseEntity.ok().build();
     }
-
-
-
+    @GetMapping("user/exists/{username}")
+    public boolean userExists(@PathVariable String username) {
+        return userService.existsByUsername(username);
+    }
 }
 

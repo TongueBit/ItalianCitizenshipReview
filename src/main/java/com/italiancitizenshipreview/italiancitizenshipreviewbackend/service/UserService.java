@@ -19,11 +19,12 @@ public class UserService {
         user.setUsername(username);
         user.setPassword(passwordEncoderService.encode(password));
         user.setRoles(role);
-        System.out.println(user.getPassword());
         userRepository.save(user);
         return user;
+    }
 
-
+    public Boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
     }
 
 }

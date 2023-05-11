@@ -33,7 +33,7 @@ public class WebSecurityConfig {
         return http
 
                 .authorizeRequests(auth -> auth
-                        .requestMatchers("/src/main/resources/static/css/home.css","/home","/", "/register", "/login", "/logout", "/error", "/js/**").permitAll()
+                        .requestMatchers("/src/main/resources/static/css/home.css","/home","/", "/register", "/login", "/logout", "/error", "/js/**", "/rest/user/exists/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin()
                 .loginPage("/login")
@@ -47,8 +47,6 @@ public class WebSecurityConfig {
                 .and()
                 .userDetailsService(jpaUserDetailsService)
                 .headers(headers -> headers.frameOptions().sameOrigin())
-                .httpBasic()
-                .and()
                 .csrf().disable()
                 .build();
     }

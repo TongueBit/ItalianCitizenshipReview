@@ -4,19 +4,61 @@
     <title>Login</title>
 </head>
 <body>
-<h2>Login</h2>
-<form action="/login" method="post">
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    <div>
-        <button type="submit">Login</button>
-    </div>
-</form>
+    <h2>Login</h2>
+        <form action="/login" method="post">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br><br>
+            </div>
+
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br><br>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    <h2>Registration Form</h2>
+        <form th:action="@{/register}" method="post">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="register-username" name="username" required/><br><br>
+            </div>
+            <script>
+                const input = document.getElementById('register-username');
+
+                input.addEventListener('blur', function() {
+                    const username = input.value;
+
+                    // Make a request to the server to check if the username exists
+                    fetch('rest/user/exists/' + username)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data) {
+                                // Username exists
+                                alert('Username already exists');
+                            } else {
+                                // Username does not exist
+                                console.log('Username is available');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error checking username:', error);
+                        });
+                });
+            </script>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="register-password" name="password" required/><br><br>
+            </div>
+            <div>
+                <label>Role:</label>
+                <input type="radio" id="user" name="role" value="ROLE_USER" checked>
+                <label for="user">User</label>
+                <input type="radio" id="admin" name="role" value="ROLE_ADMIN">
+                <label for="admin">Admin</label>
+                <br><br>
+            </div>
+            <button type="submit">Register</button>
+        </form>
 </body>
 </html>
