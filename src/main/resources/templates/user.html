@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <header>User Dashboard</header>
+</head>
+<body>
+
+    <title>User Dashboard</title>
+    <h3>Welcome to the user dashboard. Here you can edit your reviews, delete your account or add a service provider. </h3>
+    <p th:text="${user.username}"> Welcome [[${user.username}]]</p>
+    <ul th:each="review: ${reviews}">
+        <li style="list-style: none;"><b>[[${review.serviceProvider.name}]] </b> </li>
+        <li th:text="${review.title}"></li>
+    </ul>
+</body>

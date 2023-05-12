@@ -51,4 +51,8 @@ public class ReviewService {
     public void deleteById(Long reviewId) {
         reviewRepository.deleteById(reviewId);
     }
+
+    public List<Review> findAllReviewsByUserId(Long userId) {
+        return reviewRepository.findAllByUserId(userId);
+    }
 }
