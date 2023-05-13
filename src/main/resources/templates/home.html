@@ -28,6 +28,7 @@
             <input type="hidden" th:id="'serviceProvider-' + ${stat.index}" th:value="${serviceProvider.serviceProviderId}" />
             <h2 th:text="${serviceProvider.name}"></h2>
             <p th:text="${serviceProvider.description}"></p>
+            <p th:text="${serviceProvider.avgRating}"></p>
             <h3>Reviews</h3>
         </div>
             <div th:if="${serviceProvider.reviews.size() != 0}" id="reviewList">
