@@ -2,6 +2,12 @@
 <html>
 <head>
     <title>Login</title>
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/user/dashboard">User Dashboard</a></li>
+        </ul>
+    </nav>
 </head>
 <body>
     <h2>Login</h2>
@@ -17,8 +23,9 @@
             </div>
             <button type="submit">Login</button>
             <button action="/logout" >Logout </button>
+
         </form>
-    <h2>Registration Form</h2>
+    <h2>Register</h2>
         <form th:action="@{/register}" method="post">
             <div>
                 <label for="username">Username:</label>
@@ -63,5 +70,7 @@
             </div>
             <button type="submit">Register</button>
         </form>
+    <h2> You should write something like about why you should sign up as well as what there is to offer if you sign-up.</h2>
+
 </body>
 </html>

@@ -9,10 +9,14 @@
 <body>
 <header>
     <h1>Welcome to Italian Citizenship Reviews</h1><br>
-    <hr>
-
-
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/user/dashboard/">User Dashboard</a></li>
+        </ul>
+    </nav>
 </header>
+
 <div>
     <h3>"Welcome to Italian Citizenship Reviews, the go-to platform for reviews and insights on Italian citizenship recognition services.
         Our community-driven platform offers valuable information, ratings, and reviews from individuals who have gone through the process of
@@ -26,15 +30,16 @@
         <div style="border-style: solid">
         <div class="service-provider" >
             <input type="hidden" th:id="'serviceProvider-' + ${stat.index}" th:value="${serviceProvider.serviceProviderId}" />
-            <h2 th:text="${serviceProvider.name}"></h2>
+            <h2><a th:href="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}">[[${serviceProvider.name}]]</a></h2>
             <p th:text="${serviceProvider.description}"></p>
             <h3>Reviews</h3>
         </div>
-            <div th:if="${serviceProvider.reviews.size() != 0}" id="reviewList">
+            <div th:if="${serviceProvider.reviews.size() != 0}" id="reviewList" style="border-style: solid ">
                 <ul>
                     <li th:each="review : ${serviceProvider.reviews}">
                         <p><b><span th:text="${review.title}"></span></b></p>
                         <p><span th:text="${review.content}"></span></p>
+                        <p th:text="${review.rating}"><b></b></p>
                         <form th:action="@{'/review/' + ${review.reviewId}}" method="post">
                             <button th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" type="submit">Delete review</button>
                         </form>
@@ -48,10 +53,11 @@
             <!- this will need to be changed! -->
             <div th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">
                 <form id="reviewForm">
+                    <br>
                     <label>Title:</label>
-                    <input type="text" th:id="'title-' + ${stat.index}" name="title" value="Give a brief title of your experience"><br><br>
+                    <input type="text" th:id="'title-' + ${stat.index}" name="title" value="Give a brief title of your experience"><br>
                     <label >Review</label>
-                    <textarea th:id="'content-' + ${stat.index}" name="content"></textarea><br><br>
+                    <textarea th:id="'content-' + ${stat.index}" name="content"></textarea><br>
                     <label>Rating:</label>
                     <select th:id="'rating-' + ${stat.index}" name="rating">
                         <option value="1">1</option>å
@@ -63,7 +69,7 @@
 
                         <button type="submit" onclick="createReview(event)" th:data-index="${stat.index}">Update Review</button>
                 </form>
-                <br><br>
+                <br>
             </div>
 
             <div th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">
