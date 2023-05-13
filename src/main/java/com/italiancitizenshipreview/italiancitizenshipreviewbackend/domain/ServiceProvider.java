@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -22,6 +23,16 @@ public class ServiceProvider {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long serviceProviderId;
 
+    public BigDecimal getAvgRating() {
+        return avgRating;
+    }
+
+    public void setAvgRating(BigDecimal avgRating) {
+        this.avgRating = avgRating;
+    }
+
+    @Column(name = "avg_rating", columnDefinition = "DECIMAL(2,1)")
+    private BigDecimal avgRating;
 
     public ServiceProvider(String name, String description ) {
         this.name = name;

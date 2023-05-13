@@ -32,6 +32,7 @@
             <input type="hidden" th:id="'serviceProvider-' + ${stat.index}" th:value="${serviceProvider.serviceProviderId}" />
             <h2><a th:href="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}">[[${serviceProvider.name}]]</a></h2>
             <p th:text="${serviceProvider.description}"></p>
+            <p th:text="${serviceProvider.avgRating}"></p>
             <h3>Reviews</h3>
         </div>
             <div th:if="${serviceProvider.reviews.size() != 0}" id="reviewList" style="border-style: solid ">
