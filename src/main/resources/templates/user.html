@@ -1,15 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <header>User Dashboard</header>
+    <header>User Dashboard
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/user/dashboard/">User Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
 </head>
 <body>
 
     <title>User Dashboard</title>
+    <h2 th:text="'Welcome ' + ${user.username}"> </h2>
     <h3>Welcome to the user dashboard. Here you can edit your reviews, delete your account or add a service provider. </h3>
-    <p th:text="${user.username}"> Welcome [[${user.username}]]</p>
-    <ul th:each="review: ${reviews}">
-        <li style="list-style: none;"><b>[[${review.serviceProvider.name}]] </b> </li>
-        <li th:text="${review.title}"></li>
-    </ul>
+    <div>
+        <div style="border-style: solid">
+            <h4>Your reviews</h4>
+            <ul th:each="review, stat: ${reviews}" th:id="${stat.index}">
+                <form id="reviewForm">
+                    <br>
+                    <h4 th:text="'For Service Provider: ' + ${review.serviceProvider.name}"></h4>
+                    <label>Title:</label>
+                    <input type="text" th:id="'title-' + ${stat.index}" name="title" th:value="${review.title}"><br>
+                    <label >Review: </label>
+                    <textarea rows="5" cols="25" th:id="'content-' + ${stat.index}" name="content" >[[${review.content}]]</textarea><br>
+                    <label>Rating: [[${review.rating}]]</label><br>
+                    <select th:id="'rating-' + ${stat.index}" name="rating">
+                        <option value="1">1</option>å
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select><br>
+                    <button type="submit"  href="">Update Review</button>
+                </form>
+            </ul>
+        </div>
+    </div>
+    <div th:if="${serviceProvider == null}">
+        <h4>Add a Service Provider</h4>
+        <form th:action="@{/service-provider}" method="post">
+            <label for="name">Name:</label><br><br>
+            <input type="text" id="name" name="name" required/><br>
+            <label for="description">Description:</label><br><br>
+            <input type="text" id="description" name="description" required/><br>
+            <button type="submit">Add Service Provider</button>
+        </form>
+    </div>
 </body>

@@ -9,10 +9,14 @@
 <body>
 <header>
     <h1>Welcome to Italian Citizenship Reviews</h1><br>
-    <hr>
-
-
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/user/dashboard/">User Dashboard</a></li>
+        </ul>
+    </nav>
 </header>
+
 <div>
     <h3>"Welcome to Italian Citizenship Reviews, the go-to platform for reviews and insights on Italian citizenship recognition services.
         Our community-driven platform offers valuable information, ratings, and reviews from individuals who have gone through the process of
@@ -26,7 +30,7 @@
         <div style="border-style: solid">
         <div class="service-provider" >
             <input type="hidden" th:id="'serviceProvider-' + ${stat.index}" th:value="${serviceProvider.serviceProviderId}" />
-            <h2 th:text="${serviceProvider.name}"></h2>
+            <h2><a th:href="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}">[[${serviceProvider.name}]]</a></h2>
             <p th:text="${serviceProvider.description}"></p>
             <h3>Reviews</h3>
         </div>
