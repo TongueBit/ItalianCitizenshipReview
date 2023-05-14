@@ -13,7 +13,7 @@
     </nav>
 </head>
 <body>
-    <div th:if="${serviceProvider != null}">
+    <div th:if="${serviceProvider.name != null}">
         <h1>Edit a Service Provider</h1>
         <form th:action="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}" method="post">
             <label for="edit-name"><b>Edit Name: </b><span th:text="${serviceProvider.name}"></span></label><br><br>
@@ -23,9 +23,9 @@
             <button type="submit">Update Service Provider</button>
         </form>
     </div>
-    <div th:if="${serviceProvider == null}">
-        <h1>Edit a Service Provider</h1>
-        <form th:action="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}" method="post">
+    <div th:if="${serviceProvider.name == null}">
+        <h1>Add a Service Provider</h1>
+        <form action="/service-provider" method="post">
             <label for="edit-name">Name: </label><br><br>
             <input type="text"  name="name" required/><br><br>
             <label for="edit-description">Description: </span></label><br><br>

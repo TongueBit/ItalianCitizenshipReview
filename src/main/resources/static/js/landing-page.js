@@ -4,8 +4,9 @@ var startIndex = 0;
 // the number of service providers to show at a time
 var pageSize = 8;
 
-// get the service providers container
-var serviceProvidersContainer = document.getElementById("service-providers");
+// get the service providers containers
+var serviceProvidersContainer1 = document.getElementById("service-providers");
+var serviceProvidersContainer2 = document.getElementById("service-providers2");
 
 document.addEventListener("DOMContentLoaded", function() {
     fetch('/rest/service-provider')
@@ -22,14 +23,20 @@ document.addEventListener("DOMContentLoaded", function() {
 // function to load the first page of service providers
 function loadFirstServiceProviders(serviceProviders) {
     // hide all the service providers
-    console.log(serviceProvidersContainer)
-    for (var i = 0; i < serviceProvidersContainer.children.length; i++) {
-        serviceProvidersContainer.children[i].style.display = "none";
+    for (var i = 0; i < serviceProvidersContainer1.children.length; i++) {
+        serviceProvidersContainer1.children[i].style.display = "none";
+    }
+    for (var i = 0; i < serviceProvidersContainer2.children.length; i++) {
+        serviceProvidersContainer2.children[i].style.display = "none";
     }
 
     // show the first page of service providers
     for (var i = 0; i < pageSize; i++) {
-        showServiceProvider(startIndex + i, serviceProviders);
+        if (i < 4) {
+            showServiceProvider(startIndex + i, serviceProviders, serviceProvidersContainer1);
+        } else {
+            showServiceProvider(startIndex + i, serviceProviders, serviceProvidersContainer2);
+        }
     }
 }
 
@@ -37,7 +44,11 @@ function loadFirstServiceProviders(serviceProviders) {
 function showNextServiceProviders(serviceProviders) {
     // hide the current page of service providers
     for (var i = 0; i < pageSize; i++) {
-        hideServiceProvider(startIndex + i, serviceProviders);
+        if (startIndex + i < 4) {
+            hideServiceProvider(startIndex + i, serviceProvidersContainer1);
+        } else {
+            hideServiceProvider(startIndex + i - 4, serviceProvidersContainer2);
+        }
     }
 
     // update the start index
@@ -45,17 +56,26 @@ function showNextServiceProviders(serviceProviders) {
 
     // show the next page of service providers
     for (var i = 0; i < pageSize; i++) {
-        showServiceProvider(startIndex + i, serviceProviders);
+        if (startIndex + i < 4) {
+            showServiceProvider(startIndex + i, serviceProviders, serviceProvidersContainer1);
+        } else {
+            showServiceProvider(startIndex + i - 4, serviceProviders, serviceProvidersContainer2);
+        }
     }
 }
 
 // function to show a service provider
-function showServiceProvider(index, serviceProviders) {
+function showServiceProvider(index, serviceProviders, serviceProvidersContainer1) {
     if (index < serviceProviders.length) {
         var serviceProvider = serviceProviders[index];
-        var serviceProviderDiv = serviceProvidersContainer.children[index];
-        var containerDiv = serviceProviderDiv.children[0];
-        var cardDiv = containerDiv.children[0];
+        var serviceProviderDiv, containerDiv, cardDiv;
+        if (index < serviceProvidersContainer1.children.length) {
+            serviceProviderDiv = serviceProvidersContainer1.children[index];
+        } else {
+            serviceProviderDiv = serviceProvidersContainer2.children[index - serviceProvidersContainer1.children.length];
+        }
+        containerDiv = serviceProviderDiv.children[0];
+        cardDiv = containerDiv.children[0];
         cardDiv.children[0].innerHTML = serviceProvider.name;
         cardDiv.children[1].innerHTML = serviceProvider.description;
         if(serviceProvider.rating!= null)
@@ -64,12 +84,11 @@ function showServiceProvider(index, serviceProviders) {
     }
 }
 
+
 // function to hide a service provider
-function hideServiceProvider(index, serviceProviders) {
-    if (index < serviceProviders.length) {
+function hideServiceProvider(index, serviceProvidersContainer) {
+    if (index < serviceProvidersContainer.children.length) {
         var serviceProviderDiv = serviceProvidersContainer.children[index];
         serviceProviderDiv.style.display = "none";
     }
 }
-
-
