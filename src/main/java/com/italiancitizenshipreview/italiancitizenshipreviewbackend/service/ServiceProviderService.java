@@ -39,4 +39,8 @@ public class ServiceProviderService {
     public void printReviews(ServiceProvider serviceProvider){
         System.out.println(serviceProvider.getReviews());
     }
+
+    public List<ServiceProvider> getAllServiceProviderswithoutReviews() {
+        return serviceProviderRepository.findAllServiceProviders();
+    }
 }
