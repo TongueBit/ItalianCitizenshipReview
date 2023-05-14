@@ -23,16 +23,12 @@ public class ServiceProvider {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long serviceProviderId;
 
+    @Column(columnDefinition = "DECIMAL(2,1)")
+    private BigDecimal avgRating;
+
     public BigDecimal getAvgRating() {
         return avgRating;
     }
-
-    public void setAvgRating(BigDecimal avgRating) {
-        this.avgRating = avgRating;
-    }
-
-    @Column(name = "avg_rating", columnDefinition = "DECIMAL(2,1)")
-    private BigDecimal avgRating;
 
     public ServiceProvider(String name, String description ) {
         this.name = name;

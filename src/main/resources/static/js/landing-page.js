@@ -59,7 +59,7 @@ function showServiceProvider(index, serviceProviders) {
         cardDiv.children[0].innerHTML = serviceProvider.name;
         cardDiv.children[1].innerHTML = serviceProvider.description;
         if(serviceProvider.rating!= null)
-            cardDiv.children[2].innerHTML = serviceProvider.description;
+            cardDiv.children[2].innerHTML = serviceProvider.rating;
         serviceProviderDiv.style.display = "block";
     }
 }
