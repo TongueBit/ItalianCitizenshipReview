@@ -8,16 +8,23 @@ var pageSize = 8;
 var serviceProvidersContainer1 = document.getElementById("service-providers");
 var serviceProvidersContainer2 = document.getElementById("service-providers2");
 
+var nextButton = document.getElementById("next-button");
+
+let serviceProviders = [];
 document.addEventListener("DOMContentLoaded", function() {
     fetch('/rest/service-provider')
         .then(response => response.json())
         .then(data => {
-            var serviceProviders = data;
+            serviceProviders = data;
             // here you can use the data to populate your serviceProviders array
             console.log(data); // for example, you can log the data to the console
             loadFirstServiceProviders(serviceProviders);
         })
         .catch(error => console.error(error));
+});
+
+nextButton.addEventListener("click", function() {
+    showNextServiceProviders();
 });
 
 // function to load the first page of service providers
@@ -33,18 +40,19 @@ function loadFirstServiceProviders(serviceProviders) {
     // show the first page of service providers
     for (var i = 0; i < pageSize; i++) {
         if (i < 4) {
-            showServiceProvider(startIndex + i, serviceProviders, serviceProvidersContainer1);
+            showServiceProvider(startIndex + i, serviceProvidersContainer1);
         } else {
-            showServiceProvider(startIndex + i, serviceProviders, serviceProvidersContainer2);
+            showServiceProvider(startIndex + i, serviceProvidersContainer2);
         }
     }
 }
 
 // function to show the next page of service providers
-function showNextServiceProviders(serviceProviders) {
+function showNextServiceProviders() {
+
     // hide the current page of service providers
     for (var i = 0; i < pageSize; i++) {
-        if (startIndex + i < 4) {
+        if (startIndex + i <  4) {
             hideServiceProvider(startIndex + i, serviceProvidersContainer1);
         } else {
             hideServiceProvider(startIndex + i - 4, serviceProvidersContainer2);
@@ -53,19 +61,19 @@ function showNextServiceProviders(serviceProviders) {
 
     // update the start index
     startIndex += pageSize;
-
+    var temp = startIndex;
     // show the next page of service providers
     for (var i = 0; i < pageSize; i++) {
-        if (startIndex + i < 4) {
-            showServiceProvider(startIndex + i, serviceProviders, serviceProvidersContainer1);
+        if (startIndex + i < temp + 4) {
+            showServiceProvider(startIndex + i, serviceProvidersContainer1);
         } else {
-            showServiceProvider(startIndex + i - 4, serviceProviders, serviceProvidersContainer2);
+            showServiceProvider(startIndex + i - 4, serviceProvidersContainer2);
         }
     }
 }
 
 // function to show a service provider
-function showServiceProvider(index, serviceProviders, serviceProvidersContainer1) {
+function showServiceProvider(index, serviceProvidersContainer1) {
     if (index < serviceProviders.length) {
         var serviceProvider = serviceProviders[index];
         var serviceProviderDiv, containerDiv, cardDiv;
