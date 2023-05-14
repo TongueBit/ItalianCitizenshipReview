@@ -16,4 +16,7 @@ public interface ServiceProviderRepository extends CrudRepository<ServiceProvide
     @Query("SELECT sp, r FROM ServiceProvider sp LEFT JOIN sp.reviews r WHERE sp.serviceProviderId = :serviceProviderId")
     ServiceProvider findOneWithReviews(@Param("serviceProviderId") Long serviceProviderId);
 
+    @Query("SELECT sp FROM ServiceProvider sp")
+    List<ServiceProvider> findAllServiceProviders();
+
 }
