@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${serviceProvider.name}"></title>
+    <div th:if="${serviceProvider != null}" >
+        <title th:text="${serviceProvider.name}"></title>
+    </div>
     <nav>
         <ul>
             <li><a href="/home">Home</a></li>
@@ -11,13 +13,23 @@
     </nav>
 </head>
 <body>
-    <div>
+    <div th:if="${serviceProvider != null}">
         <h1>Edit a Service Provider</h1>
         <form th:action="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}" method="post">
             <label for="edit-name"><b>Edit Name: </b><span th:text="${serviceProvider.name}"></span></label><br><br>
             <input type="text" id="edit-name" name="name" th:value="${serviceProvider.name}" required/><br><br>
             <label for="edit-description"><b>Edit Description: </b><span th:text="${serviceProvider.description}"></span></label><br><br>
             <textarea id="edit-description"  name="description" required style="font-family: Arial, sans-serif;">[[${serviceProvider.description}]]</textarea><br><br>
+            <button type="submit">Update Service Provider</button>
+        </form>
+    </div>
+    <div th:if="${serviceProvider == null}">
+        <h1>Edit a Service Provider</h1>
+        <form th:action="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}" method="post">
+            <label for="edit-name">Name: </label><br><br>
+            <input type="text"  name="name" required/><br><br>
+            <label for="edit-description">Description: </span></label><br><br>
+            <textarea name="description" required style="font-family: Arial, sans-serif;"></textarea><br><br>
             <button type="submit">Update Service Provider</button>
         </form>
     </div>

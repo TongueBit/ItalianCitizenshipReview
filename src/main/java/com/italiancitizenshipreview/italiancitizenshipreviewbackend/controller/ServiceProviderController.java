@@ -7,6 +7,7 @@ import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.User
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,9 @@ public class ServiceProviderController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
     @GetMapping("/service-provider")
-    public String getAddServiceProviderForm(){
+    public String getAddServiceProviderForm(Model map){
+        map.addAttribute("serviceProvider", new ServiceProvider());
+        map.addAttribute("user", new User());
         return "service-provider";
     }
 
