@@ -1,43 +1,86 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html>
 <head>
-    <header>User Dashboard
-        <nav>
-            <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/user/dashboard/">User Dashboard</a></li>
-            </ul>
-        </nav>
-    </header>
 
+    <title>Italian Citizenship Reviews</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+    <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+        .w3-bar-block .w3-bar-item {padding:20px}
+        form, #reviewForm {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        label {
+            width: 100px;
+            display: inline-block;
+            text-align: right;
+            padding-right: 10px;
+        }
+        input[type="text"],
+        textarea {
+            width: 300px;
+        }
+    </style>
 </head>
 <body>
 
-    <title>User Dashboard</title>
-    <h2 th:text="'Welcome ' + ${user.username}"> </h2>
-    <h3>Welcome to the user dashboard. Here you can edit your reviews, delete your account or add a service provider. </h3>
-    <div>
-        <div style="border-style: solid">
-            <h4>Your reviews</h4>
-            <ul th:each="review, stat: ${reviews}" th:id="${stat.index}">
-                <form id="reviewForm">
-                    <br>
-                    <h4 th:text="'For Service Provider: ' + ${review.serviceProvider.name}"></h4>
-                    <label>Title:</label>
-                    <input type="text" th:id="'title-' + ${stat.index}" name="title" th:value="${review.title}"><br>
-                    <label >Review: </label>
-                    <textarea rows="5" cols="25" th:id="'content-' + ${stat.index}" name="content" >[[${review.content}]]</textarea><br>
-                    <label>Rating: [[${review.rating}]]</label><br>
-                    <select th:id="'rating-' + ${stat.index}" name="rating">
-                        <option value="1">1</option>å
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select><br>
-                    <button type="submit"  href="">Update Review</button>
-                </form>
-            </ul>
+<!-- Sidebar (hidden by default) -->
+<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()"
+       class="w3-bar-item w3-button">Close Menu</a>
+    <a href="/login" onclick="w3_close()" class="w3-bar-item w3-button">Login</a>
+    <a href="/user/dashboard/" onclick="w3_close()" class="w3-bar-item w3-button">Dashboard</a>
+    <a href="/home" onclick="w3_close()" class="w3-bar-item w3-button">View all Service Providers </a>
+
+</nav>
+
+<!-- Top menu -->
+<div class="w3-top">
+    <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+        <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+        <div class="w3-right w3-padding-16" style="margin-right: 10px">Contact</div>
+        <div class="w3-center w3-padding-16">Italian Citizenship Review</div>
+    </div>
+</div>
+    <div style="margin-top: 100px">
+        <title style="margin-top: 100px">User Dashboard</title>
+        <h2 th:text="'Welcome ' + ${user.username}"> </h2>
+        <h3>Welcome to the user dashboard. Here you can edit your reviews, delete your account or add a service provider. </h3>
+        <div>
+            <div style="border-style: solid">
+                <h4>Your reviews</h4>
+                <ul th:each="review, stat: ${reviews}" th:id="${stat.index}">
+                    <div id = "form-container">
+                        <form id="reviewForm">
+                            <div style="min-width:300px">
+                            <h4 th:text="'For: ' + ${review.serviceProvider.name}"></h4>
+                            <label>Title:</label>
+                            <input type="text" th:id="'title-' + ${stat.index}" name="title" th:value="${review.title}"><br>
+                            </div>
+                            <div>
+                            <label >Review: </label>
+                            <textarea rows="5" cols="25" th:id="'content-' + ${stat.index}" name="content" >[[${review.content}]]</textarea><br>
+                            </div>
+                            <div>
+                            <label>Rating: [[${review.rating}]]</label>
+                            <select th:id="'rating-' + ${stat.index}" name="rating">
+                                <option value="1">1</option>å
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select><br>
+                            </div>
+                            <button type="submit"  href="" style="text-align: end">Update Review</button>
+                        </form>
+                    </div>
+                </ul>
+            </div>
         </div>
     </div>
     <div th:if="${serviceProvider == null}">
@@ -50,4 +93,46 @@
             <button type="submit">Add Service Provider</button>
         </form>
     </div>
+<!-- Footer -->
+<footer class="w3-row-padding w3-padding-32">
+    <div class="w3-third">
+        <h3>FOOTER</h3>
+        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+    </div>
+
+    <div class="w3-third">
+        <h3>BLOG POSTS</h3>
+        <ul class="w3-ul w3-hoverable">
+            <li class="w3-padding-16">
+
+                <span class="w3-large">Lorem</span><br>
+                <span>Sed mattis nunc</span>
+            </li>
+            <li class="w3-padding-16">
+                <span class="w3-large">Ipsum</span><br>
+                <span>Praes tinci sed</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="w3-third w3-serif">
+        <h3>POPULAR TAGS</h3>
+        <p>
+            <span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Italian Citizenship</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Italian Genealogy</span>
+            <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Become Italian</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dual Citizenship</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Italian Heritage</span>
+            <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Jure Sanguinis</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">EU Passport</span>
+            <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Citizenship by blood</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">EU Citizenship</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Italian Citizenship Service Providers</span>
+        </p>
+    </div>
+</footer>
+<script>
+    // Script to open and close sidebar
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+</script>
 </body>

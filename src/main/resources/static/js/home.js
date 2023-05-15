@@ -45,3 +45,27 @@ function createReview(event) {
             console.error(error);
         });
 }
+
+var ratingElements = document.getElementsByClassName('rating');
+
+for (var i = 0; i < ratingElements.length; i++) {
+    var ratingElement = ratingElements[i];
+    var rating = parseFloat(ratingElement.innerText);
+    var starRating = convertToStarRating(rating);
+    ratingElement.innerHTML = starRating;
+}
+
+function convertToStarRating(rating) {
+    var fullStars = Math.round(rating);
+    var starRating = '';
+
+    for (var i = 0; i < 5; i++) {
+        if (i < fullStars) {
+            starRating += '<i class="fas fa-star star-yellow" style="color: #ffaa4a;"></i>';
+        } else {
+            starRating += '<i class="far fa-star star-grey"></i>';
+        }
+    }
+
+    return starRating;
+}
