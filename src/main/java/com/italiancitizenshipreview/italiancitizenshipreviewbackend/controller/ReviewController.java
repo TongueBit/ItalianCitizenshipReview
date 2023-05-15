@@ -20,6 +20,6 @@ public class ReviewController {
     @PostMapping("/{reviewId}")
     public String deleteReview(@PathVariable("reviewId") Long reviewId) {
         reviewService.deleteById(reviewId);
-        return "redirect:/home";
+        return "redirect:/service-provider/all";
     }
 }

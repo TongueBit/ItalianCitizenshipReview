@@ -34,9 +34,9 @@ public class WebSecurityConfig {
 
                 .authorizeRequests(auth -> auth
                         .requestMatchers("/src/main/resources/static/css/home.css",
-                                "/home"
+                                "/directory"
                                 ,"/"
-                                ,"/user/dashboard/**"
+                                ,"/service-provider/**"
                                 , "/register"
                                 , "/login"
                                 , "/logout"
@@ -49,7 +49,7 @@ public class WebSecurityConfig {
                         .anyRequest().authenticated())
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home")
+                .defaultSuccessUrl("/landing-page")
                 .permitAll()
                 .and()
                 .logout()

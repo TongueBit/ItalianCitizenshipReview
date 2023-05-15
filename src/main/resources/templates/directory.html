@@ -21,7 +21,7 @@
        class="w3-bar-item w3-button">Close Menu</a>
     <a href="/login" onclick="w3_close()" class="w3-bar-item w3-button">Login</a>
     <a href="/user/dashboard/" onclick="w3_close()" class="w3-bar-item w3-button">Dashboard</a>
-    <a href="/home" onclick="w3_close()" class="w3-bar-item w3-button">View all Service Providers </a>
+    <a href="/service-provider/all" onclick="w3_close()" class="w3-bar-item w3-button">View all Service Providers </a>
 </nav>
 
 <!-- Top menu -->
@@ -58,10 +58,10 @@
                             </ul>
 
                         </div>
-                    <div th:unless="${serviceProvider.reviews.size() > 0}">
-                        <p><b><em>No reviews available.</em></b></p>
+                        <div th:unless="${serviceProvider.reviews.size() > 0}">
+                            <p><b><em>No reviews available.</em></b></p>
+                        </div>
                     </div>
-                </div>
                     <!- this will need to be changed! -->
                 <div style="margin-left: 10px">
                     <div th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">
@@ -130,7 +130,7 @@
         </p>
     </div>
 </footer>
-<script src="/js/home.js"></script>
+<script src="/js/directory.js"></script>
 <script>
     // Script to open and close sidebar
     function w3_open() {

@@ -24,7 +24,6 @@ public class ServiceProviderController {
     @Autowired
     private UserService userService;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
     @GetMapping("/service-provider")
     public String getAddServiceProviderForm(Model map){
         map.addAttribute("serviceProvider", new ServiceProvider());
@@ -40,12 +39,10 @@ public class ServiceProviderController {
         return "redirect:/service-provider/ " + serviceProvider.getServiceProviderId();
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+
     @GetMapping("/service-provider/{serviceProviderId}")
-    public String getServiceProviders(ModelMap model, @PathVariable Long serviceProviderId, @CookieValue Long userId){
+    public String getServiceProviders(ModelMap model, @PathVariable Long serviceProviderId){
         ServiceProvider serviceProvider = serviceProviderService.getServiceProvider(serviceProviderId);
-        User user = userService.findUserById(userId);
-        model.put("user", user);
         model.put("serviceProvider", serviceProvider);
         return "service-provider";
     }

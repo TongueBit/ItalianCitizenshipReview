@@ -22,7 +22,7 @@ public class UserController {
     @Autowired
     private ReviewService reviewService;
 
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+
     @GetMapping("/user/dashboard/")
     public String getUserDashboard(Model model, @CookieValue (value = "userId") Long userId) {
         User user = userService.findUserById(userId);

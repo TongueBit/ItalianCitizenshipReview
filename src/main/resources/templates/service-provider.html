@@ -20,7 +20,7 @@
        class="w3-bar-item w3-button">Close Menu</a>
     <a href="/login" onclick="w3_close()" class="w3-bar-item w3-button">Login</a>
     <a href="/user/dashboard/" onclick="w3_close()" class="w3-bar-item w3-button">Dashboard</a>
-    <a href="/home" onclick="w3_close()" class="w3-bar-item w3-button">View all Service Providers </a>
+    <a href="/service-provider/all" onclick="w3_close()" class="w3-bar-item w3-button">View all Service Providers </a>
 </nav>
 
 <!-- Top menu -->
@@ -35,20 +35,35 @@
         <div th:if="${serviceProvider.name != null}">
             <h1>Edit a Service Provider</h1>
             <form th:action="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}" method="post">
-                <label for="edit-name"><b>Edit Name: </b><span th:text="${serviceProvider.name}"></span></label><br><br>
-                <input type="text" id="edit-name" name="name" th:value="${serviceProvider.name}" required/><br><br>
-                <label for="edit-description"><b>Edit Description: </b><span th:text="${serviceProvider.description}"></span></label><br><br>
-                <textarea id="edit-description"  name="description" required style="font-family: Arial, sans-serif;">[[${serviceProvider.description}]]</textarea><br><br>
-                <button type="submit">Update Service Provider</button>
+                <h3><b>Service Provider: </b><span th:text="${serviceProvider.name}"></span></h3>
+                <h5><b>Description: </b><span th:text="${serviceProvider.description}"></span></h5>
+                <div th:if="${serviceProvider.reviews.size() != 0}" id="reviewList" style="border-style: solid ">
+                    <ul>
+                        <li th:each="review : ${serviceProvider.reviews}">
+                            <p><b><span th:text="${review.title}"></span></b></p>
+                            <p><span th:text="${review.content}"></span></p>
+                            <p class="rating" th:text="${review.rating}"><b></b></p>
+                            <form th:action="@{'/review/' + ${review.reviewId}}" method="post">
+                                <div th:if="${user != null}">
+                                    <button th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" type="submit">Delete review</button>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+
+                </div>
+                <div th:unless="${serviceProvider.reviews.size() > 0}">
+                    <p><b><em>No reviews available.</em></b></p>
+                </div>
             </form>
         </div>
         <div th:if="${serviceProvider.name == null}">
             <h1>Add a Service Provider</h1>
             <form action="/service-provider" method="post">
                 <label for="edit-name">Name: </label><br><br>
-                <input type="text"  name="name" required/><br><br>
+                <input type="text" id="edit-name" name="name" required/><br><br>
                 <label for="edit-description">Description: </span></label><br><br>
-                <textarea name="description" required style="font-family: Arial, sans-serif;"></textarea><br><br>
+                <textarea name="description" id="edit-description" required style="font-family: Arial, sans-serif;"></textarea><br><br>
                 <button type="submit">Update Service Provider</button>
             </form>
         </div>
@@ -97,5 +112,6 @@
         document.getElementById("mySidebar").style.display = "none";
     }
 </script>
+<script src="/js/directory.js"></script>
 </body>
 </html>
