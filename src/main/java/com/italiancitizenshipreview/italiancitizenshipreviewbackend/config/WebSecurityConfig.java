@@ -44,6 +44,7 @@ public class WebSecurityConfig {
                                 , "/js/**"
                                 , "/rest/user/exists/**"
                                 , "/rest/service-provider"
+                                ,"/landing-page"
                                 , "/resources/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin()

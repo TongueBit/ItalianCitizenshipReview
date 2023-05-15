@@ -9,3 +9,21 @@ header {
     width: 50%;
     padding: 20px;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+label {
+    width: 100px;
+    display: inline-block;
+    text-align: right;
+    padding-right: 10px;
+}
+
+input[type="text"],
+textarea {
+    width: 300px;
+}
