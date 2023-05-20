@@ -18,6 +18,7 @@ window.onload = function() {
             // here you can use the data to populate your serviceProviders array
             console.log(data); // for example, you can log the data to the console
             loadFirstServiceProviders(serviceProviders);
+            startStarConversion(ratingElements);
         })
         .catch(error => console.error(error));
 };
@@ -78,6 +79,18 @@ function showServiceProvider(index, serviceProvidersContainer1) {
         cardDiv.children[1].innerHTML = serviceProvider.description;
         if(serviceProvider.rating!= null)
             cardDiv.children[2].innerHTML = serviceProvider.rating;
+        serviceProviderDiv.addEventListener("click", function() {
+            // Redirect to the service provider's page or perform any desired action
+            window.location.href = "/service-provider/" + serviceProvider.serviceProviderId;
+        });
+        serviceProviderDiv.addEventListener("mouseenter", function() {
+            serviceProviderDiv.classList.add("hovered");
+        });
+
+        // Remove CSS class when mouse leaves the serviceProviderDiv
+        serviceProviderDiv.addEventListener("mouseleave", function() {
+            serviceProviderDiv.classList.remove("hovered");
+        });
         serviceProviderDiv.style.display = "block";
     }
 }

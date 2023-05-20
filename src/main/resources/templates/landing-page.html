@@ -16,17 +16,15 @@
 <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
   <a href="javascript:void(0)" onclick="w3_close()"
      class="w3-bar-item w3-button">Close Menu</a>
-  <a href="/login" onclick="w3_close()" class="w3-bar-item w3-button">Login</a>
-  <a href="/user/dashboard/" onclick="w3_close()" class="w3-bar-item w3-button">Dashboard</a>
-  <a href="/service-provider/all" onclick="w3_close()" class="w3-bar-item w3-button">View all Service Providers </a>
-
+  <a href="/user/dashboard/" onclick="w3_close()" class="w3-bar-item w3-button">User Dashboard</a>
+  <a href="/service-provider/all" onclick="w3_close()" class="w3-bar-item w3-button">All Service Providers </a>
 </nav>
 
 <!-- Top menu -->
 <div class="w3-top">
   <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
     <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
-    <div class="w3-right w3-padding-16" style="margin-right: 10px">Contact</div>
+    <div class="w3-right w3-padding-16" style="margin-right: 10px"><a href="/login">Login</a></div>
     <div class="w3-center w3-padding-16" id="go-home"><a href="/" style="">Italian Citizenship Review</a></div>
   </div>
 </div>
@@ -138,7 +136,7 @@
     document.getElementById("mySidebar").style.display = "none";
   }
 </script>
-<script src="/js/landing-page.js"></script>
 <script src="/js/directory.js"></script>
+<script src="/js/landing-page.js"></script>
 </body>
 </html>

@@ -48,17 +48,19 @@ function createReview(event) {
 
 var ratingElements = document.getElementsByClassName('rating');
 
-for (var i = 0; i < ratingElements.length; i++) {
-    var ratingElement = ratingElements[i];
+function startStarConversion(ratingElements) {
+    for (var i = 0; i < ratingElements.length; i++) {
+        var ratingElement = ratingElements[i];
 
-    // Check if conversion is already done
-    if (!ratingElement.classList.contains('star-rating-converted')) {
-        var rating = parseFloat(ratingElement.innerText);
-        var starRating = convertToStarRating(rating);
-        ratingElement.innerHTML = starRating;
+        // Check if conversion is already done
+        if (!ratingElement.classList.contains('star-rating-converted')) {
+            var rating = parseFloat(ratingElement.innerText);
+            var starRating = convertToStarRating(rating);
+            ratingElement.innerHTML = starRating;
 
-        // Add a class to mark conversion is done
-        ratingElement.classList.add('star-rating-converted');
+            // Add a class to mark conversion is done
+            ratingElement.classList.add('star-rating-converted');
+        }
     }
 }
 

@@ -29,3 +29,59 @@ textarea {
     color: #CD212A!important;;
 }
 
+#login-form {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#login-form h2 {
+    margin-top: 0;
+}
+
+#login-form label {
+    display: block;
+    text-align: left;
+}
+
+#login-form input[type="text"],
+#login-form input[type="password"] {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+#login-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-container {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#login-form button:hover {
+    background-color: #CD212A;
+}
+
+.hovered {
+    color: white;
+    background-color: #CD212A; /* Change the background color when hovered */
+    /* Add any other desired styles */
+}
