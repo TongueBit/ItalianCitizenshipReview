@@ -28,18 +28,8 @@ public class LandingPageController {
     }
     @GetMapping("/landing-page")
     public String homePage(Model model, HttpServletRequest request) {
-        List<ServiceProvider> serviceProviders = serviceProviderService.getAllServiceProviders();
-        model.addAttribute("serviceProviders", serviceProviders);
-        model.addAttribute("request", request);
         return "landing-page";
     }
 
-    @GetMapping("/js/landing-page.js")
-    public ResponseEntity<Resource> getHomeJs() {
-        // Load and return the "directory.js" file as a resource
-        Resource resource = new ClassPathResource("static/js/landing-page.js");
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType("application/javascript"))
-                .body(resource);
-    }
+
 }

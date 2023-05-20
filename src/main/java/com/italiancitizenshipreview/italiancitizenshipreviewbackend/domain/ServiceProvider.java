@@ -15,8 +15,7 @@ public class ServiceProvider {
     private String description;
 
 
-    @OneToMany(mappedBy = "serviceProvider")
-    @Fetch(FetchMode.JOIN)
+    @OneToMany(mappedBy = "serviceProvider" ,fetch = FetchType.EAGER)
     private List<Review> reviews;
 
     @Id

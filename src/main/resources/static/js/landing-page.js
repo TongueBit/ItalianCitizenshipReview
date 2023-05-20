@@ -1,17 +1,16 @@
 // the index of the first service provider to show
 var startIndex = 0;
-
+var div_index = 0;
 // the number of service providers to show at a time
-var pageSize = 8;
+var pageSize = 4;
 
 // get the service providers containers
 var serviceProvidersContainer1 = document.getElementById("service-providers");
-var serviceProvidersContainer2 = document.getElementById("service-providers2");
 
-var nextButton = document.getElementById("next-button");
+var loadMoreButton = document.getElementById("load-more-button");
 
 let serviceProviders = [];
-document.addEventListener("DOMContentLoaded", function() {
+window.onload = function() {
     fetch('/rest/service-provider')
         .then(response => response.json())
         .then(data => {
@@ -21,9 +20,9 @@ document.addEventListener("DOMContentLoaded", function() {
             loadFirstServiceProviders(serviceProviders);
         })
         .catch(error => console.error(error));
-});
+};
 
-nextButton.addEventListener("click", function() {
+loadMoreButton.addEventListener("click", function() {
     showNextServiceProviders();
 });
 
@@ -33,29 +32,23 @@ function loadFirstServiceProviders(serviceProviders) {
     for (var i = 0; i < serviceProvidersContainer1.children.length; i++) {
         serviceProvidersContainer1.children[i].style.display = "none";
     }
-    for (var i = 0; i < serviceProvidersContainer2.children.length; i++) {
-        serviceProvidersContainer2.children[i].style.display = "none";
-    }
+
 
     // show the first page of service providers
     for (var i = 0; i < pageSize; i++) {
         if (i < 4) {
             showServiceProvider(startIndex + i, serviceProvidersContainer1);
-        } else {
-            showServiceProvider(startIndex + i, serviceProvidersContainer2);
         }
     }
 }
 
 // function to show the next page of service providers
 function showNextServiceProviders() {
-
+    div_index = 0;
     // hide the current page of service providers
     for (var i = 0; i < pageSize; i++) {
         if (startIndex + i <  4) {
             hideServiceProvider(startIndex + i, serviceProvidersContainer1);
-        } else {
-            hideServiceProvider(startIndex + i - 4, serviceProvidersContainer2);
         }
     }
 
@@ -66,22 +59,19 @@ function showNextServiceProviders() {
     for (var i = 0; i < pageSize; i++) {
         if (startIndex + i < temp + 4) {
             showServiceProvider(startIndex + i, serviceProvidersContainer1);
-        } else {
-            showServiceProvider(startIndex + i - 4, serviceProvidersContainer2);
         }
+
     }
 }
 
 // function to show a service provider
 function showServiceProvider(index, serviceProvidersContainer1) {
+
     if (index < serviceProviders.length) {
         var serviceProvider = serviceProviders[index];
         var serviceProviderDiv, containerDiv, cardDiv;
-        if (index < serviceProvidersContainer1.children.length) {
-            serviceProviderDiv = serviceProvidersContainer1.children[index];
-        } else {
-            serviceProviderDiv = serviceProvidersContainer2.children[index - serviceProvidersContainer1.children.length];
-        }
+        serviceProviderDiv = serviceProvidersContainer1.children[div_index++];
+
         containerDiv = serviceProviderDiv.children[0];
         cardDiv = containerDiv.children[0];
         cardDiv.children[0].innerHTML = serviceProvider.name;
@@ -100,3 +90,4 @@ function hideServiceProvider(index, serviceProvidersContainer) {
         serviceProviderDiv.style.display = "none";
     }
 }
+
