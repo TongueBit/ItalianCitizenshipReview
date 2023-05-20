@@ -35,7 +35,7 @@
                 <h4>Your reviews</h4>
                 <ul th:each="review, stat: ${reviews}" th:id="${stat.index}">
                     <div id = "form-container">
-                        <form id="reviewForm">
+                        <form id="reviewForm" th:action="@{/review/edit/{serviceProviderId}(serviceProviderId=${review.serviceProvider.serviceProviderId})}" method="post">
                             <div style="min-width:300px">
                             <h4 th:text="'For: ' + ${review.serviceProvider.name}"></h4>
                             <label>Title:</label>
@@ -55,7 +55,9 @@
                                 <option value="5">5</option>
                             </select><br>
                             </div>
-                            <button type="submit"  th:href="" style="text-align: end">Update Review</button>
+                            <input type="hidden" name="reviewId" th:value="${review.reviewId}">
+                            <input type="hidden" name="userId" th:value="${review.userId}">
+                            <button type="submit" style="text-align: end">Update Review</button>
                         </form>
                     </div>
                 </ul>

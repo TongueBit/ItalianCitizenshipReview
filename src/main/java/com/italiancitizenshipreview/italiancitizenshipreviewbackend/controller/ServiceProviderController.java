@@ -39,7 +39,6 @@ public class ServiceProviderController {
         return "redirect:/service-provider/ " + serviceProvider.getServiceProviderId();
     }
 
-
     @GetMapping("/service-provider/{serviceProviderId}")
     public String getServiceProviders(ModelMap model, @PathVariable Long serviceProviderId){
         ServiceProvider serviceProvider = serviceProviderService.getServiceProvider(serviceProviderId);
