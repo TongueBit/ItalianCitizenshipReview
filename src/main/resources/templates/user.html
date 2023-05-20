@@ -62,6 +62,7 @@
                     </div>
                 </ul>
             </div>
+
         </div>
     </div>
     <div th:if="${serviceProvider == null}">
@@ -72,6 +73,12 @@
             <label for="description">Description:</label><br><br>
             <input type="text" id="description" name="description" required/><br>
             <button type="submit">Add Service Provider</button>
+        </form>
+    </div>
+    <div>
+        <h3>Want to delete your account?</h3>
+        <form method="post" th:action="@{/user/delete/{userId}(userId=${user.userId})}">
+            <button type="submit" style="text-align: end">Delete Account</button>
         </form>
     </div>
 <!-- Footer -->
