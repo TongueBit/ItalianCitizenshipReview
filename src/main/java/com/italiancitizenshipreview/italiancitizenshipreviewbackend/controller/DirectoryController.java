@@ -21,14 +21,7 @@ public class DirectoryController {
     @Autowired
     private ServiceProviderService serviceProviderService;
 
-    @GetMapping("/js/directory.js")
-    public ResponseEntity<Resource> getHomeJs() {
-        // Load and return the "directory.js" file as a resource
-        Resource resource = new ClassPathResource("static/js/directory.js");
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType("application/javascript"))
-                .body(resource);
-    }
+
 
     @GetMapping("/service-provider/all")
     public String homePage(Model model, HttpServletRequest request) {

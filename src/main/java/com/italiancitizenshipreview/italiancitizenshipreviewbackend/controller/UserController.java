@@ -22,7 +22,6 @@ public class UserController {
     @Autowired
     private ReviewService reviewService;
 
-
     @GetMapping("/user/dashboard/")
     public String getUserDashboard(Model model, @CookieValue (value = "userId") Long userId) {
         User user = userService.findUserById(userId);

@@ -33,7 +33,7 @@ public class WebSecurityConfig {
         return http
 
                 .authorizeRequests(auth -> auth
-                        .requestMatchers("/src/main/resources/static/css/home.css",
+                        .requestMatchers("/css/style.css",
                                 "/directory"
                                 ,"/"
                                 ,"/service-provider/**"
