@@ -24,34 +24,68 @@
 <div class="w3-top">
     <div class="w3-white w3-xlarge" style="max-width:1200px; margin:auto">
         <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
-        <div class="w3-right w3-padding-16" style="margin-right: 10px"><a href="/login">Login</a></div>
+        <div th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="w3-right w3-padding-16" style="margin-right: 10px"><a href="/logout">Logout</a></div>
+        <div th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="w3-right w3-padding-16" style="margin-right: 10px"><a href="/login">Login</a></div>
         <div class="w3-center w3-padding-16" id="go-home"><a href="/">Italian Citizenship Review</a></div>
 
     </div>
 </div>
     <div class="service-provider-container" style="max-width:1200px;margin-top:100px;margin-left: 10px">
-        <div th:if="${serviceProvider.name != null}">
-            <form th:action="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}" method="post">
-                <h3><b>Service Provider: </b><span th:text="${serviceProvider.name}"></span></h3>
-                <h5><b>Description: </b><span th:text="${serviceProvider.description}"></span></h5>
-
-                <p class="rating" th:text="${serviceProvider.avgRating}"> </p>
-                <div th:if="${serviceProvider.reviews.size() != 0}" id="reviewList" style="border-style: solid ">
-                    <ul>
-                        <li th:each="review : ${serviceProvider.reviews}">
-                            <p><b><span th:text="${review.title}"></span></b></p>
-                            <p><span th:text="${review.content}"></span></p>
-
-                            <p class="rating"  th:text="${review.rating}"></p>
-                        </li>
-                    </ul>
-
+        <div>
+            <div style="border-style: solid; margin-left: 10px; margin-right: 10px; margin-bottom: 10px">
+                <div>
+                    <div class="service-provider" style="margin-left: 10px">
+                        <input type="hidden" name="service-provider-id" th:value="${serviceProvider.serviceProviderId}" />
+                        <h2>[[${serviceProvider.name}]]</h2>
+                        <p th:text="${serviceProvider.description}"></p>
+                        <p class="rating" th:text="${serviceProvider.avgRating}"></p>
+                        <h3>Reviews</h3>
+                    </div>
+                    <div th:if="${serviceProvider.reviews.size() != 0}" id="reviewList" style="border-style: solid;">
+                        <ul>
+                            <li th:each="review : ${serviceProvider.reviews}">
+                                <p><b><span th:text="${review.title}"></span></b></p>
+                                <p><span th:text="${review.content}"></span></p>
+                                <p class="rating" th:text="${review.rating}"><b></b></p>
+                                <!-- th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}"-->
+                                <form th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" th:action="@{'/review/' + ${review.reviewId}}" method="post">
+                                    <button  type="submit">Delete review</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    <div th:unless="${serviceProvider.reviews.size() > 0}">
+                        <p><b><em>No reviews available.</em></b></p>
+                    </div>
                 </div>
-                <div th:unless="${serviceProvider.reviews.size() > 0}">
-                    <p><b><em>No reviews available.</em></b></p>
+
+                <div style="margin-left: 10px" >
+                        <form id="reviewForm" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">
+                            <br>
+                            <label>Title:</label>
+                            <input type="text" th:id="'title'" name="title" value="Give a brief title of your experience"><br>
+                            <label >Review</label>
+                            <textarea th:id="'content'" name="content"></textarea><br>
+                            <label>Rating:</label>
+                            <select th:id="'rating'" name="rating">
+                                <option value="1">1</option>å
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+
+                            <button type="submit" onclick="createReviewFromServiceProviderPage(event)">Add Review</button>
+                        </form>
+                        <br>
+
+                    <div th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">
+                        <b><a href="/login">Login</a> to leave a review!</b>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
+    </div>
         <div th:if="${serviceProvider.name == null}">
             <h1>Add a Service Provider</h1>
             <form action="/service-provider" method="post">

@@ -55,4 +55,8 @@ public class ReviewService {
     public List<Review> findAllReviewsByUserId(Long userId) {
         return reviewRepository.findAllByUserId(userId);
     }
+
+    public void updateReview(Review review) {
+        reviewRepository.save(review);
+    }
 }

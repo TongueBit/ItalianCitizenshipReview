@@ -4,6 +4,7 @@ import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.Servi
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.User;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ServiceProviderService;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -39,11 +40,11 @@ public class ServiceProviderController {
         return "redirect:/service-provider/ " + serviceProvider.getServiceProviderId();
     }
 
-
     @GetMapping("/service-provider/{serviceProviderId}")
-    public String getServiceProviders(ModelMap model, @PathVariable Long serviceProviderId){
+    public String getServiceProviders(ModelMap model, @PathVariable Long serviceProviderId, HttpServletRequest request){
         ServiceProvider serviceProvider = serviceProviderService.getServiceProvider(serviceProviderId);
         model.put("serviceProvider", serviceProvider);
+        model.put("request", request);
         return "service-provider";
     }
 
