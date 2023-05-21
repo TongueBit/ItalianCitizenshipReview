@@ -6,6 +6,20 @@ form, #reviewForm {
     align-items: flex-start;
 }
 
+#service-providers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.w3-card-4 {
+    flex: 1 0 300px; /* Adjust the width as needed */
+    margin-bottom: 10px;
+}
+
+.w3-col s12 m6 l3 {
+    display: none!important;
+}
 a:hover {
     color: #CD212A!important;
 }
@@ -85,3 +99,13 @@ textarea {
     background-color: #CD212A; /* Change the background color when hovered */
     /* Add any other desired styles */
 }
+
+#reviewList {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+

@@ -19,12 +19,15 @@ window.onload = function() {
             console.log(data); // for example, you can log the data to the console
             loadFirstServiceProviders(serviceProviders);
             startStarConversion(ratingElements);
+
         })
         .catch(error => console.error(error));
 };
 
 loadMoreButton.addEventListener("click", function() {
     showNextServiceProviders();
+    var newRatingElements = document.getElementsByClassName('rating');
+    startStarConversion(newRatingElements);
 });
 
 // function to load the first page of service providers

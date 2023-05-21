@@ -4,6 +4,7 @@ import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.Revie
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.User;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ReviewService;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -24,11 +25,12 @@ public class UserController {
     private ReviewService reviewService;
 
     @GetMapping("/user/dashboard/")
-    public String getUserDashboard(Model model, @CookieValue (value = "userId") Long userId) {
+    public String getUserDashboard(Model model, @CookieValue (value = "userId") Long userId, HttpServletRequest request) {
         User user = userService.findUserById(userId);
         List<Review> reviews = reviewService.findAllReviewsByUserId(userId);
         model.addAttribute("reviews", reviews);
         model.addAttribute("user", user);
+        model.addAttribute("request", request);
         return "user";
     }
 

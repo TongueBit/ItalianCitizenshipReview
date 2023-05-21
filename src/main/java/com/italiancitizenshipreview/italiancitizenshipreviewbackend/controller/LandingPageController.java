@@ -28,6 +28,7 @@ public class LandingPageController {
     }
     @GetMapping("/landing-page")
     public String homePage(Model model, HttpServletRequest request) {
+        model.addAttribute("request", request);
         return "landing-page";
     }
 

@@ -24,7 +24,8 @@
 <div class="w3-top">
   <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
     <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
-    <div class="w3-right w3-padding-16" style="margin-right: 10px"><a href="/login">Login</a></div>
+    <div th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="w3-right w3-padding-16" style="margin-right: 10px"><a href="/logout">Logout</a></div>
+    <div th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="w3-right w3-padding-16" style="margin-right: 10px"><a href="/login">Login</a></div>
     <div class="w3-center w3-padding-16" id="go-home"><a href="/" style="">Italian Citizenship Review</a></div>
   </div>
 </div>
@@ -33,7 +34,7 @@
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
   <div class="w3-row-padding w3-padding-16 w3-center" id="service-providers">
     <div class="w3-col s12 m6 l3">
-      <div class="w3-card-4">
+      <div class="w3-card-4" style="margin-bottom: 10px">
         <div class="w3-container">
           <h3></h3>
           <p></p>
@@ -42,6 +43,15 @@
       </div>
     </div>
     <div class="w3-col s12 m6 l3">
+      <div class="w3-card-4" style="margin-bottom: 10px">
+        <div class="w3-container">
+          <h3></h3>
+          <p></p>
+          <h3 class="rating"></h3>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col s12 m6 l3" style="margin-bottom: 10px">
       <div class="w3-card-4">
         <div class="w3-container">
           <h3></h3>
@@ -50,16 +60,7 @@
         </div>
       </div>
     </div>
-    <div class="w3-col s12 m6 l3">
-      <div class="w3-card-4">
-        <div class="w3-container">
-          <h3></h3>
-          <p></p>
-          <h3 class="rating"></h3>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col s12 m6 l3">
+    <div class="w3-col s12 m6 l3" style="margin-bottom: 10px">
       <div class="w3-card-4">
         <div class="w3-container">
           <h3></h3>
@@ -70,6 +71,7 @@
     </div>
   </div>
   <button id="load-more-button">Load More</button>
+
 
   <hr id="about">
 
@@ -94,7 +96,6 @@
     <div class="w3-third">
       <h3>FOOTER</h3>
       <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
     </div>
 
     <div class="w3-third">
