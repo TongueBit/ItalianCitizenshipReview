@@ -109,3 +109,7 @@ ul {
     list-style-type: none;
 }
 
+service-provider-form {
+    margin-left: 10px;
+    margin-right: 10px;
+}
