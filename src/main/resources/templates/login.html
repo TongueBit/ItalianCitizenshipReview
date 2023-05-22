@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
     <link rel="stylesheet" href="/css/style.css">
+
 </head>
 <body>
 
@@ -30,6 +31,7 @@
     <h4>Log in or register to leave reviews and join our community of Italian citizenship enthusiasts.</h4>
     <div class="form-container">
         <h2>Login</h2>
+            <span id="alert"></span>
             <form action="/login" method="post">
                 <div>
                     <label for="username">Username:</label>
@@ -137,6 +139,17 @@
     function w3_close() {
         document.getElementById("mySidebar").style.display = "none";
     }
+
+
+    // Check if the URL contains the "?error" parameter
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('error')) {
+    // Display an error message to the user
+        var errorMessage = 'Invalid username or password.';
+        var alertDiv = document.querySelector('#alert')
+        alertDiv.innerHTML = '<p style="color: red">' + errorMessage + '</p>';
+    }
+
 </script>
 </body>
 </html>
