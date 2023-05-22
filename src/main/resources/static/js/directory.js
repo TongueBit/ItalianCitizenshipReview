@@ -33,9 +33,9 @@ function createReview(event) {
     })
         .then(response => {
             if (response.ok) {
-                setTimeout(() => {
-                    //location.reload();
-                }, 1000);
+                addReviewToDOM(reviewRequest, index);
+                var ratingElement = document.querySelectorAll('#new_rating')
+                startStarConversion(ratingElement)
             } else {
                 throw new Error('Error creating review');
             }
@@ -49,17 +49,26 @@ function createReview(event) {
 var ratingElements = document.getElementsByClassName('rating');
 
 function startStarConversion(ratingElements) {
-    for (var i = 0; i < ratingElements.length; i++) {
-        var ratingElement = ratingElements[i];
-
-        var rating = parseFloat(ratingElement.innerText);
+    if (ratingElements.length === 1) {
+        var rating = parseFloat(ratingElements[0].innerText);
         var starRating = convertToStarRating(rating);
-        ratingElement.innerHTML = starRating;
-
+        ratingElements[0].innerHTML = starRating;
         // Add a class to mark conversion is done
-        ratingElement.classList.add('star-rating-converted');
+    }
+    else {
+        for (var i = 0; i < ratingElements.length; i++) {
+            var ratingElement = ratingElements[i];
+
+            var rating = parseFloat(ratingElement.innerText);
+            var starRating = convertToStarRating(rating);
+            ratingElement.innerHTML = starRating;
+
+            // Add a class to mark conversion is done
+            ratingElement.classList.add('star-rating-converted');
+        }
     }
 }
+
 
 function convertToStarRating(rating) {
     var nullRating = '';
@@ -120,9 +129,7 @@ function createReviewFromServiceProviderPage(event) {
     })
         .then(response => {
             if (response.ok) {
-                setTimeout(() => {
-                    //location.reload();
-                }, 1000);
+                location.reload();
             } else {
                 throw new Error('Error creating review');
             }
@@ -131,4 +138,25 @@ function createReviewFromServiceProviderPage(event) {
             // Handle error
             console.error(error);
         });
+}
+
+function addReviewToDOM(review, index) {
+    var serviceProviderDiv = document.getElementById(index);
+    var reviewList = serviceProviderDiv.querySelector('#reviewList ul');
+
+    var liElement = document.createElement('li');
+    var titleElement = document.createElement('p');
+    titleElement.innerHTML = '<b>' + review.title + '</b>';
+
+    var contentElement = document.createElement('p');
+    contentElement.innerHTML = review.content;
+
+    var ratingElement = document.createElement('p');
+    ratingElement.setAttribute('id', 'new_rating');
+    ratingElement.innerHTML = '<b>' + review.rating + '</b>';
+
+    liElement.appendChild(titleElement);
+    liElement.appendChild(contentElement);
+    liElement.appendChild(ratingElement);
+    reviewList.appendChild(liElement);
 }

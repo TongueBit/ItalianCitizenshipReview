@@ -26,9 +26,10 @@ public class ServiceProviderController {
     private UserService userService;
 
     @GetMapping("/service-provider")
-    public String getAddServiceProviderForm(Model map){
+    public String getAddServiceProviderForm(Model map, HttpServletRequest request){
         map.addAttribute("serviceProvider", new ServiceProvider());
         map.addAttribute("user", new User());
+        map.addAttribute("request", request);
         return "service-provider";
     }
 
