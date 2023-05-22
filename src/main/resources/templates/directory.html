@@ -27,9 +27,10 @@
         <div class="w3-center w3-padding-16" id="go-home"><a href="/">Italian Citizenship Review</a></div>
     </div>
 </div>
-<h2 style="margin-top: 80px">Service Provider Reviews</h2>
-<h4>Can't find your Italian Citizenship Service Provider? Add it <a href="/service-provider">here </a></h4>
-
+<div style="margin-left: 10px">
+    <h2 style="margin-top: 80px">Service Provider Reviews</h2>
+    <h4>Can't find your Italian Citizenship Service Provider? Add it <a href="/service-provider">here </a></h4>
+</div>
     <div th:each="serviceProvider, stat : ${serviceProviders}" th:id="${stat.index}">
         <div style="border-style: solid; margin-left: 10px; margin-right: 10px; margin-bottom: 10px">
             <div>
@@ -87,7 +88,8 @@
                 </div>
         </div>
     </div>
-    <br><br>
+<br>
+    <h3 style="margin-left: 10px">Can't find your Italian Citizenship Service Provider?</h3>
     <form action="/service-provider" method="get" id="add-service-provider" style="margin-left: 20px">
         <button type="submit">Add a service provider</button>
     </form>
