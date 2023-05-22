@@ -1,11 +1,17 @@
 package com.italiancitizenshipreview.italiancitizenshipreviewbackend.dto;
 
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.Review;
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ServiceProviderService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class ReviewRequest {
     private Long serviceProviderId;
     private String title;
     private String content;
     private int rating;
     private Long userId;
+
+
 
     public ReviewRequest() {
         // Default constructor
@@ -50,4 +56,5 @@ public class ReviewRequest {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
 }
