@@ -48,7 +48,6 @@
                                 <p><b><span th:text="${review.title}"></span></b></p>
                                 <p><span th:text="${review.content}"></span></p>
                                 <p class="rating" th:text="${review.rating}"><b></b></p>
-                                <!-- th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}"-->
                                 <form th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" th:action="@{'/review/' + ${review.reviewId}}" method="post">
                                     <button  type="submit">Delete review</button>
                                 </form>

@@ -129,7 +129,7 @@ function createReviewFromServiceProviderPage(event) {
     })
         .then(response => {
             if (response.ok) {
-                addReviewToDOM(reviewRequest, index);
+                location.reload();
             } else {
                 throw new Error('Error creating review');
             }
