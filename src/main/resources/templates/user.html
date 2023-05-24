@@ -1,30 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Italian Citizenship Reviews</title>
+    <title >Italian Citizenship Reviews</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-
 <!-- Sidebar (hidden by default) -->
-<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
-    <a href="javascript:void(0)" onclick="w3_close()"
-       class="w3-bar-item w3-button">Close Menu</a>
+<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-large w3-animate-left" style="display: none; z-index: 2; width: 40%; min-width: 300px" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
     <a href="/user/dashboard/" onclick="w3_close()" class="w3-bar-item w3-button">User Dashboard</a>
-    <a href="/service-provider/all" onclick="w3_close()" class="w3-bar-item w3-button">All Service Providers </a>
+    <a href="/service-provider/all" onclick="w3_close()" class="w3-bar-item w3-button">All Service Providers</a>
 </nav>
 
-<!-- Top menu -->
-<div class="w3-top">
-    <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-        <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
-        <div th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="w3-right w3-padding-16" style="margin-right: 10px"><a href="/logout">Logout</a></div>
-        <div th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="w3-right w3-padding-16" style="margin-right: 10px"><a href="/login">Login</a></div>
-        <div class="w3-center w3-padding-16" id="go-home"><a href="/">Italian Citizenship Review</a></div>
+
+<div class="w3-top" style="background-color: #008C45">
+    <div class="w3-xlarge" style="max-width:1200px;margin:auto;">
+        <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()" id="mobileMenuIcon">☰</div>
+        <style>
+            @media (min-width: 500px) {
+                #mobileMenuIcon {
+                    display: none;
+                }
+            }
+            @media (max-width: 500px) {
+                #go-home {
+                    display: flex;
+                }
+                #menu {
+                    display: none;
+                }
+            }
+        </style>
+        <div id="menu" class="w3-bar-item w3-button w3-right" style="font-size: medium;background-color: #008C45">
+            <a href="/user/dashboard/" >Dashboard</a>
+            <a href="/service-provider/all">All providers</a>
+            <a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
+            <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" href="/login"> Login</a>
+        </div>
+        <div class="w3-bar-item w3-button w3-center" id="go-home"><a href="/">Italian Citizenship Review</a></div>
     </div>
 </div>
     <div style="margin-top: 100px">
