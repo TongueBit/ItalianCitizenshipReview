@@ -82,6 +82,11 @@ function showServiceProvider(index, serviceProvidersContainer1) {
         cardDiv.children[1].innerHTML = serviceProvider.description;
         if(serviceProvider.rating!= null)
             cardDiv.children[2].innerHTML = serviceProvider.rating;
+        var readMoreLink = document.createElement("a");
+        readMoreLink.href = "/service-provider/" + serviceProvider.serviceProviderId;
+        readMoreLink.textContent = "Read More";
+
+        cardDiv.appendChild(readMoreLink);
         serviceProviderDiv.addEventListener("click", function() {
             // Redirect to the service provider's page or perform any desired action
             window.location.href = "/service-provider/" + serviceProvider.serviceProviderId;

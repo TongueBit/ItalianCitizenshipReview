@@ -21,7 +21,7 @@ form, #reviewForm {
     display: none!important;
 }
 a:hover {
-    color: #CD212A!important;
+    color: #008C45!important;
 }
 
 label {
@@ -133,4 +133,12 @@ service-provider-form {
 
 .radio-group input[type="radio"] {
     margin-right: 3px; /* Adjust the margin value as needed */
+}
+
+.card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
