@@ -36,11 +36,12 @@ textarea {
 }
 
 .w3-button:hover {
+
     background-color:#008C45!important;
 }
 
-#go-home:hover {
-    color: #CD212A!important;;
+#go-home a:hover {
+    color: white!important;
 }
 
 #login-form {
@@ -71,8 +72,8 @@ textarea {
     border: 1px solid #ccc;
 }
 
-#login-form button {
-    background-color: #4CAF50;
+button {
+    background-color: #008C45;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -90,7 +91,7 @@ textarea {
     vertical-align: top;
 }
 
-#login-form button:hover {
+button:hover {
     background-color: #CD212A;
 }
 
@@ -112,4 +113,25 @@ ul {
 service-provider-form {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+#menu a:hover {
+    color: white!important;
+}
+#menu a {
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+#go-home {
+    text-decoration: none!important;
+}
+
+
+.radio-group {
+    align-items: center;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 3px; /* Adjust the margin value as needed */
 }
