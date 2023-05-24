@@ -95,10 +95,9 @@ button:hover {
     background-color: #CD212A;
 }
 
-.hovered {
+.w3-container:hover {
     color: white;
-    background-color: #CD212A; /* Change the background color when hovered */
-    /* Add any other desired styles */
+    background-color: #CD212A;
 }
 
 #reviewList {
