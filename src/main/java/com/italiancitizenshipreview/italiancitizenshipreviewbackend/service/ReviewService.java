@@ -32,7 +32,8 @@ public class ReviewService {
                                String content,
                                Long userId,
                                Long serviceProviderId,
-                               int rating) {
+                               int rating)
+    {
         Review review = new Review();
         review.setTitle(title);
         review.setContent(content);
@@ -51,11 +52,9 @@ public class ReviewService {
     public void deleteById(Long reviewId) {
         reviewRepository.deleteById(reviewId);
     }
-
     public List<Review> findAllReviewsByUserId(Long userId) {
         return reviewRepository.findAllByUserId(userId);
     }
-
     public void updateReview(Review review) {
         reviewRepository.save(review);
     }
