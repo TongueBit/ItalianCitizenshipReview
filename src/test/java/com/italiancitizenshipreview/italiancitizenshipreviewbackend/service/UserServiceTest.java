@@ -8,10 +8,15 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import static org.mockito.Mockito.verify;
+
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 public class UserServiceTest {
@@ -62,14 +67,29 @@ public class UserServiceTest {
         assertTrue(result);
     }
 
-
-
-
-
-    public User findUserById(Long userId) {
-        return userRepository.findById(userId).orElse(null);
+    @Test
+    public void findByUserId_shouldReturnUser() {
+        //Arrange
+        Long userId = 1L;
+        User expectedUser = new User();
+        expectedUser.setUserId(userId);
+        //Act
+        when(userRepository.findById(userId)).thenReturn(Optional.of(expectedUser));
+        User actualUser = userService.findUserById(userId);
+        //Assert
+        assertEquals(actualUser,expectedUser);
     }
 
+    @Test
+    public void deleteUserById_ShouldCallDeleteByIdMethod() {
+        //Arrange
+        Long userId = 1L;
+        //Act
+        userService.deleteUserById(userId);
+        //Assert
+        verify(userRepository, times(1)).deleteById(userId);
+
+    }
     public void deleteUserById(Long userId) {
         userRepository.deleteById(userId);
     }
