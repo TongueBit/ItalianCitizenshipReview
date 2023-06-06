@@ -54,7 +54,7 @@ public class RestController {
 
     @GetMapping("/service-provider")
     public List<ServiceProviderResponse> getServiceProviders() {
-        List<ServiceProviderResponse> serviceProviderRequests = new ArrayList<>();
+        List<ServiceProviderResponse> serviceProviderRequests = new ArrayList<ServiceProviderResponse>();
         List<ServiceProvider> serviceProviders = serviceProviderService.getAllServiceProviderswithoutReviews();
         for (ServiceProvider sp : serviceProviders) {
             serviceProviderRequests.add(new ServiceProviderResponse(sp.getName(), sp.getDescription(), sp.getAvgRating(), sp.getServiceProviderId()));

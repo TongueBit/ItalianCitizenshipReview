@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "reviews")
@@ -92,5 +93,18 @@ public class Review {
                 ", date='" + date + '\'' +
                 ", rating=" + rating +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Review review = (Review) o;
+        return rating == review.rating && Objects.equals(reviewId, review.reviewId) && Objects.equals(title, review.title) && Objects.equals(content, review.content) && Objects.equals(userId, review.userId) && Objects.equals(serviceProvider, review.serviceProvider) && Objects.equals(date, review.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(reviewId, title, content, userId, serviceProvider, date, rating);
     }
 }
