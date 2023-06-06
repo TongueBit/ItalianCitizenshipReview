@@ -43,8 +43,7 @@
         <div id="menu" class="w3-bar-item w3-button w3-right" style="font-size: medium;background-color: #008C45">
             <a href="/user/dashboard/" >Dashboard</a>
             <a href="/service-provider/all">All providers</a>
-            <a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
-            <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" href="/login"> Login</a>
+            <a href="/login"> Login</a>
         </div>
         <div class="w3-bar-item w3-button w3-center" id="go-home"><a href="/">Italian Citizenship Review</a></div>
     </div>
