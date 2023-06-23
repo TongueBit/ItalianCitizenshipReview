@@ -14,14 +14,14 @@ $(function() {
 
 
 		setTimeout(function() {
-			
+
 			var counter = 0;
       $('.site-mobile-menu .has-children').each(function(){
         var $this = $(this);
-        
-        $this.prepend('<span class="arrow-collapse collapsed">');
 
-        $this.find('.arrow-collapse').attr({
+        $this.prepend('<span class="fa fa-arrow-down collapsed">');
+
+        $this.find('.fa-arrow-down').attr({
           'data-toggle' : 'collapse',
           'data-target' : '#collapseItem' + counter,
         });
@@ -37,15 +37,15 @@ $(function() {
 
     }, 1000);
 
-		$('body').on('click', '.arrow-collapse', function(e) {
+		$('body').on('click', '.fa-caret-down', function(e) {
       var $this = $(this);
       if ( $this.closest('li').find('.collapse').hasClass('show') ) {
         $this.removeClass('active');
       } else {
         $this.addClass('active');
       }
-      e.preventDefault();  
-      
+      e.preventDefault();
+
     });
 
 		$(window).resize(function() {
@@ -70,7 +70,7 @@ $(function() {
 				$('body').addClass('offcanvas-menu');
 				$this.addClass('active');
 			}
-		}) 
+		})
 
 		// click outisde offcanvas
 		$(document).mouseup(function(e) {
@@ -81,7 +81,7 @@ $(function() {
 				}
 	    }
 		});
-	}; 
+	};
 	siteMenuClone();
 
 });

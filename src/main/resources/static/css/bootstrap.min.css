@@ -4629,6 +4629,9 @@ input[type="button"].btn-block {
   .navbar-expand-md .navbar-toggler {
     display: none;
   }
+  #hamburger {
+    display: none;
+  }
 }
 
 @media (max-width: 991.98px) {

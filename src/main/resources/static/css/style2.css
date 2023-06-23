@@ -331,7 +331,7 @@ a {
       display: block; }
       .site-mobile-menu .site-nav-wrap li .active {
         color: #000; }
-    .site-mobile-menu .site-nav-wrap .arrow-collapse {
+    .site-mobile-menu .site-nav-wrap .fa-arrow-down {
       position: absolute;
       right: 0px;
       top: 10px;
@@ -341,12 +341,12 @@ a {
       text-align: center;
       cursor: pointer;
       border-radius: 50%; }
-      .site-mobile-menu .site-nav-wrap .arrow-collapse:hover {
+      .site-mobile-menu .site-nav-wrap .fa-arrow-down:hover {
         background: #f8f9fa; }
-      .site-mobile-menu .site-nav-wrap .arrow-collapse:before {
+      .site-mobile-menu .site-nav-wrap .fa-arrow-down:before {
         font-size: 12px;
         z-index: 20;
-        font-family: "icomoon";
+
         content: "\f078";
         position: absolute;
         top: 50%;
@@ -357,7 +357,7 @@ a {
         -webkit-transition: .3s all ease;
         -o-transition: .3s all ease;
         transition: .3s all ease; }
-      .site-mobile-menu .site-nav-wrap .arrow-collapse.collapsed:before {
+      .site-mobile-menu .site-nav-wrap .fa-arrow-down.collapsed:before {
         -webkit-transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%); }
@@ -775,11 +775,7 @@ img {
   z-index: 9;
 }
 
-#qualify {
-  background-color: #f2f2f2;
-  padding: 20px;
-  border-radius: 5px;
-}
+
 
 /* Style for the select dropdown */
 .select-wrapper {
@@ -807,3 +803,8 @@ img {
 .qualify-block__description.active {
   display: block;
 }
+.fa-arrow-down {
+  font-family: "FontAwesome";
+}
+
+
