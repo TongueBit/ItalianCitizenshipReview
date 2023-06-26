@@ -33,7 +33,8 @@ public class WebSecurityConfig {
         return http
 
                 .authorizeRequests(auth -> auth
-                        .requestMatchers("/css/style.css",
+                        .requestMatchers("/css/**",
+                                "/images/**",
                                 "/directory"
                                 ,"/"
                                 ,"/service-provider/**"
@@ -45,6 +46,7 @@ public class WebSecurityConfig {
                                 , "/rest/user/exists/**"
                                 , "/rest/service-provider"
                                 ,"/landing-page"
+                                ,"/home"
                                 , "/resources/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin()

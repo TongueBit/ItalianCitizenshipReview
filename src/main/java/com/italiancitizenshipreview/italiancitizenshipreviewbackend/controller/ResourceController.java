@@ -25,11 +25,8 @@ public class ResourceController {
                 .body(resource);
     }
 
-    @GetMapping("/css/style.css")
-    public ResponseEntity<Resource> getCss()  {
-    Resource resource = new ClassPathResource("/static/css/styl.css");
-    return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType("text/css"))
-            .body(resource);
-    }
+
+
+
+
 }
