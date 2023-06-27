@@ -160,7 +160,7 @@ a {
           top: 100%;
           position: absolute;
           text-align: left;
-          border-top: 2px solid #89ba16;
+          border-top: 2px solid #1e7e34;
           -webkit-box-shadow: 0 2px 20px -2px rgba(0, 0, 0, 0.2);
           box-shadow: 0 2px 20px -2px rgba(0, 0, 0, 0.2);
           padding: 0px 0;
@@ -197,7 +197,7 @@ a {
             color: #343a40; }
             .site-navbar .site-navigation .site-menu .has-children .dropdown a.active {
               background: #ebeef0;
-              color: #89ba16; }
+              color: #1e7e34; }
           .site-navbar .site-navigation .site-menu .has-children .dropdown > li {
             list-style: none;
             padding: 0;
@@ -214,7 +214,7 @@ a {
               right: 20px; }
             .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children > a.active {
               background: #ebeef0;
-              color: #89ba16; }
+              color: #1e7e34; }
             .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children > .dropdown, .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children > ul {
               left: 100%;
               top: 0; }
@@ -248,7 +248,7 @@ a {
           -o-transition: .3s all ease;
           transition: .3s all ease; }
         .site-navbar .site-navigation .site-menu.site-menu-dark > li > a:hover, .site-navbar .site-navigation .site-menu.site-menu-dark > li > a.active {
-          color: #89ba16;
+          color: #1e7e34;
           position: relative; }
           .site-navbar .site-navigation .site-menu.site-menu-dark > li > a:hover:after, .site-navbar .site-navigation .site-menu.site-menu-dark > li > a.active:after {
             -webkit-transform: scale(1);
@@ -324,7 +324,7 @@ a {
       position: relative;
       color: #212529; }
       .site-mobile-menu .site-nav-wrap a:hover {
-        color: #89ba16;
+        color: #1e7e34;
         text-decoration: none; }
     .site-mobile-menu .site-nav-wrap li {
       position: relative;
@@ -451,7 +451,7 @@ a {
         color: #000; }
         .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a:after {
           height: 2px;
-          background: #89ba16;
+          background: #1e7e34;
           content: "";
           position: absolute;
           bottom: 0;
@@ -464,7 +464,7 @@ a {
           -o-transition: .3s all ease;
           transition: .3s all ease; }
         .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a:hover, .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a.active {
-          color: #89ba16;
+          color: #1e7e34;
           position: relative; }
           .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a:hover:after, .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a.active:after {
             -webkit-transform: scale(1);
@@ -490,7 +490,17 @@ a {
     background: #dd2b34;
     border-color: #dd2b34; }
 
-.btn.btn-outline-white {
+.btn-outline-primary {
+  color: #1e7e34;
+  border-color: #1c7430}
+  .btn-outline-primary:hover {
+    color: white;
+    background-color: darkgrey;
+  }
+  .btn-lg:hover {
+    color: white;
+  }
+.btn.btn-outline-white  {
   background: transparent;
   border-width: 2px;
   border-color: #fff;
@@ -500,10 +510,10 @@ a {
     color: #000; }
 
 .btn.btn-outline-primary {
-  color: #89ba16; }
+  color: #1e7e34; }
   .btn.btn-outline-primary:hover {
     color: #fff;
-    background: #89ba16; }
+    color: #1e7e34 }
 #title-anchor {
   font-family: Italiana;
 }
@@ -616,13 +626,14 @@ img {
 
 #title-benefits {
   font-family: Italiana;
-  color: #89ba16;
+  color: #1e7e34;
 }
 
-#header {
+#header  {
   font-family: Italiana;
-  color: #89ba16;
+  color: #1e7e34;
 }
+
 
 .process-box{
   background: #fff;
@@ -805,6 +816,15 @@ img {
 }
 .fa-arrow-down {
   font-family: "FontAwesome";
+}
+
+#call-to-action{
+  font-family: Italiana;
+  color: #1e7e34;
+}
+
+.card:hover {
+  background-color: whitesmoke;
 }
 
 

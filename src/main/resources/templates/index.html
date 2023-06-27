@@ -36,28 +36,34 @@
         <div class="container-fluid">
 
             <div class="row align-items-center">
-                <div class="site-logo col-3 pt-3 "><a id="title-anchor" href="index.html">Italian Citizenship Reviews</a>
+                <div class="site-logo col-3 pt-3 "><a id="title-anchor" href="/">Italian Citizenship Reviews</a>
 
                 </div>
                 <nav class="site-navigation flex-md-row">
                     <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
                         <li><a href="about.html">About</a></li>
                         <li class="has-children">
-                            <a href="job-listings.html">Job Listings</a>
+                            <a href="job-listings.html">Services</a>
                             <ul class="dropdown">
-                                <li><a href="job-single.html">Job Single</a></li>
-                                <li><a href="post-job.html">Post a Job</a></li>
+                                <li><a href="">Translation Service</a></li>
+                                <li><a href="">Application Assistance</a></li>
+                                <li><a href="">Genealogical Research</a></li>
+                                <li><a href="">Legal Guidance</a></li>
+                                <li><a href="">Full Service</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li class="d-md-none"><a href="login.html">Log In</a></li>
+                        <li><a href="contact.html">User Dashboard</a></li>
+                        <li class="d-md-none"><a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
+                            <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" href="/login"> Login</a></li>
                     </ul>
                 </nav>
                 <div class="right-cta-menu text-right d-flex align-items-right col-2">
                     <div class="ml-auto">
-                        <a href="login.html" class="btn btn-primary border-width-2 d-none d-md-inline-block"><span
+                        <a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block"><span
                                 class="mr-2 icon-lock_outline" style="align:right"></span><i class="fas fa-user-circle"></i>
-                            Log In</a>
+                            Log Out</a>
+
+                        <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block" href="/login"><i class="fas fa-user-circle"></i> Login</a>
                     </div>
                     <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block mt-lg-2 ml-3"><span
                             class="fa fa-bars h3 m-0 p-0 mt-2" id="hamburger"></span></a>
@@ -72,242 +78,85 @@
             </div>
         </div>
     </section>
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2 text-center">
+                    <h1 style="font-family: Italiana; text-align: center; margin-top: 20px; color: #1e7e34 ">Find the best Italian Citizenship Service Providers</h1>
+                    <div class="mb-4">
+                        <h5><b>Experience A Seamless Journey to Italian Citizenship</b></h5>
+                        <p>
+                            Our goal is to provide transparency in the complicated process of becoming an Italian citizen by connecting you with the best in the business service providers.                        </p>
+                        </p>
+                    </div>
+                    <div>
+                        <a href="#" class="btn btn-primary btn-lg me-3">Register Now</a>
+                        <a href="#" class="btn btn-outline-primary btn-lg">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section id="services" style="color: #000; background-color: #f3f2f2;">
         <div class="py-5">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-10 col-xl-8 text-center">
                     <h1 class="fw-bold mb-4" id="header">Highest-Rated Service Providers</h1>
-                    <h4 class="mb-4 pb-2 mb-md-5 pb-md-0">
-                        Check out what users think are the best all around Service Providers!
-                    </h4>
+                    <h4 class="mb-4 pb-2 mb-md-5 pb-md-0">Check out what users think are the best all around Service Providers!</h4>
                 </div>
             </div>
 
-            <div class="row text-center mx-2">
+            <div class="row text-center mx-2" id="service-providers">
                 <div class="col-md-4 mb-4 mb-md-1">
                     <div class="card" id="card-1">
                         <div class="card-body py-4 mt-2">
-                            <div class="d-flex justify-content-center mb-4">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp"
-                                     class="rounded-circle shadow-1-strong" width="100" height="100"/>
-                            </div>
-                            <h5 class="font-weight-bold">Teresa May</h5>
-                            <h6 class="font-weight-bold my-3">Founder at ET Company</h6>
-                            <ul class="list-unstyled d-flex justify-content-center">
-                                <li>
-                                    <i class="fas fa-star fa-sm text-info"></i>
-                                </li>
-                                <li>
-                                    <i class="fas fa-star fa-sm text-info"></i>
-                                </li>
-                                <li>
-                                    <i class="fas fa-star fa-sm text-info"></i>
-                                </li>
-                                <li>
-                                    <i class="fas fa-star fa-sm text-info"></i>
-                                </li>
-                                <li>
-                                    <i class="fas fa-star-half-alt fa-sm text-info"></i>
-                                </li>
+                            <h2 class="d-flex justify-content-center mb-4 font-weight-bold" style="font-family: Italiana">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" class="rounded-circle shadow-1-strong" width="100" height="100" />
+                            </h2>
+                            <h5 >Teresa May</h5>
+                            <h5 class=" rating">Founder at ET Company</h5>
+                            <ul class="list-unstyled d-flex justify-content-center ">
                             </ul>
-                            <p class="mb-2">
-                                <i class="fas fa-quote-left pe-2"></i>Lorem ipsum dolor sit amet,
-                                consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat
-                                ad velit ab hic tenetur.
-                            </p>
+                            <p class="mb-2"><i class="fas fa-quote-left pe-2"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab hic tenetur.</p>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-md-4 mb-4 mb-md-0">
-                    <div class="card">
+                    <div class="card" id="card-2">
                         <div class="card-body py-4 mt-2">
-                            <div class="d-flex justify-content-center mb-4">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(15).webp"
-                                     class="rounded-circle shadow-1-strong" width="100" height="100"/>
-                            </div>
-                            <h5 class="font-weight-bold">Maggie McLoan</h5>
-                            <h6 class="font-weight-bold my-3">Photographer at Studio LA</h6>
-                            <ul class="list-unstyled d-flex justify-content-center">
-                                <li>
-                                    <i class="fas fa-star fa-sm text-info"></i>
-                                </li>
-                                <li>
-                                    <i class="fas fa-star fa-sm text-info"></i>
-                                </li>
-                                <li>
-                                    <i class="fas fa-star fa-sm text-info"></i>
-                                </li>
-                                <li>
-                                    <i class="fas fa-star fa-sm text-info"></i>
-                                </li>
-                                <li>
-                                    <i class="fas fa-star fa-sm text-info"></i>
-                                </li>
+                            <h2 class="d-flex justify-content-center mb-4 font-weight-bold" style="font-family: Italiana">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" class="rounded-circle shadow-1-strong" width="100" height="100" />
+                            </h2>
+                            <h5 >Teresa May</h5>
+                            <h5 class="font-weight-bold my-3 rating">Founder at ET Company</h5>
+                            <ul class="list-unstyled d-flex justify-content-center ">
                             </ul>
-                            <p class="mb-2">
-                                <i class="fas fa-quote-left pe-2"></i>Autem, totam debitis suscipit saepe
-                                sapiente magnam officiis quaerat necessitatibus odio assumenda perferendis
-                                labore laboriosam.
-                            </p>
+                            <p class="mb-2"><i class="fas fa-quote-left pe-2"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab hic tenetur.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-0">
-                    <div class="card">
+                    <div class="card" id="card-3">
                         <div class="card-body py-4 mt-2">
-                            <div class="d-flex justify-content-center mb-4">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(17).webp"
-                                     class="rounded-circle shadow-1-strong" width="100" height="100"/>
-                            </div>
-                            <h5 class="font-weight-bold">Alexa Horwitz</h5>
-                            <h6 class="font-weight-bold my-3">Front-end Developer in NY</h6>
-                            <ul class="list-unstyled d-flex justify-content-center">
-                                <li>
-                                    <i class="fas fa-star fa-sm text-info"></i>
-                                </li>
-                                <li>
-                                    <i class="fas fa-star fa-sm text-info"></i>
-                                </li>
-                                <li>
-                                    <i class="fas fa-star fa-sm text-info"></i>
-                                </li>
-                                <li>
-                                    <i class="fas fa-star fa-sm text-info"></i>
-                                </li>
-                                <li>
-                                    <i class="far fa-star fa-sm text-info"></i>
-                                </li>
+                            <h2 class="d-flex justify-content-center mb-4 font-weight-bold" style="font-family: Italiana">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" class="rounded-circle shadow-1-strong" width="100" height="100" />
+                            </h2>
+                            <h5 >Teresa May</h5>
+                            <h5 class="font-weight-bold my-3 rating">Founder at ET Company</h5>
+                            <ul class="list-unstyled d-flex justify-content-center ">
                             </ul>
-                            <p class="mb-2">
-                                <i class="fas fa-quote-left pe-2"></i>Cras sit amet nibh libero, in gravida
-                                nulla metus scelerisque ante sollicitudin commodo cras purus odio,
-                                vestibulum in tempus viverra turpis.
-                            </p>
+                            <p class="mb-2"><i class="fas fa-quote-left pe-2"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab hic tenetur.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section id="benefits">
-        <div class="container">
-            <h1 id="title-benefits" class="w-90 text-center" style="margin-top: 20px;">Unlock the Benefits of
-                Italian Citizenship</h1>
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <div class="mx-auto text-center pt-4">
-                        <img src="/images/italian-passport.jpg" class="rounded" alt="...">
-                    </div>
-                </div>
-                <div class="col-lg-6 pt-3">
-                    <div class="mb-4">
 
-                        <div>
-                            <div id="accordion" class="accordion-style">
-                                <div class="card">
-                                    <div class="card-header" id="headingOne">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseOne" aria-expanded="false"
-                                                    aria-controls="collapseOne">Rediscover Your Heritage
-                                            </button>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                                         data-bs-parent="#accordion" style="">
-                                        <div class="card-body position-relative pl-3"> Reconnect with your ancestral
-                                            heritage and embrace a deep sense of belonging. Immerse in Italy's rich history,
-                                            art, and traditions.
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingTwo">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseTwo" aria-expanded="false"
-                                                    aria-controls="collapseTwo">Unleash Boundless Exploration
-                                            </button>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                         data-bs-parent="#accordion">
-                                        <div class="card-body position-relative pl-3">
-                                            Enjoy seamless travel across the European Union, no borders or limitations.
-                                            Embark on unforgettable adventures and discover hidden gems across the
-                                            continent. Experience visa-free or visa-on-arrival access to numerous countries
-                                            worldwide with one of the worlds strongest passports.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingThree">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseThree" aria-expanded="false"
-                                                    aria-controls="collapseThree">Access Premier Education and Healthcare
-                                                Standards
-                                            </button>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                         data-bs-parent="#accordion">
-                                        <div class="card-body position-relative pl-3">
-                                            Unlock world-class education opportunities in Italy and prestigious European
-                                            institutions.
-                                            Benefit from high-quality healthcare systems, ensuring your well-being and peace
-                                            of mind.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingFour">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseFour" aria-expanded="false"
-                                                    aria-controls="collapseFour">Enjoy Social Welfare and Retirement
-                                                Benefits
-                                            </button>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
-                                         data-bs-parent="#accordion">
-                                        <div class="card-body position-relative pl-3">
-                                            Access comprehensive social welfare programs and retirement benefits.
-                                            Ensure a stable and prosperous future for yourself and your loved ones
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingSix">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseSix" aria-expanded="false"
-                                                    aria-controls="collapseSix">Gain Access to the Thriving European Union
-                                                Economy
-                                            </button>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseSix" class="collapse" aria-labelledby="headingSix"
-                                         data-bs-parent="#accordion">
-                                        <div class="card-body position-relative pl-3">
-                                            Obtain Italian citizenship to unlock the vast opportunities within the European
-                                            Union.
-                                            Seamlessly conduct business, trade, and investments across EU member states.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="d-flex justify-content-center mt-3"> <!-- Added container for centering the button -->
+                <button id="load-more-button" class="btn btn-primary btn-lg me-3">Load More</button>
             </div>
+            <hr id="about">
         </div>
-
     </section>
-
 
     <section id="qualify">
         <div style="color: #000; background-color: #f3f2f2;" class="mx-5">
@@ -851,6 +700,126 @@
         </div>
         </div>
     </section>
+    <section id="benefits">
+        <div class="container">
+            <h1 id="title-benefits" class="w-90 text-center" style="margin-top: 20px;">Unlock the Benefits of
+                Italian Citizenship</h1>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="mx-auto text-center pt-4">
+                        <img src="/images/italian-passport.jpg" class="rounded" alt="...">
+                    </div>
+                </div>
+                <div class="col-lg-6 pt-3">
+                    <div class="mb-4">
+
+                        <div>
+                            <div id="accordion" class="accordion-style">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne" aria-expanded="false"
+                                                    aria-controls="collapseOne">Rediscover Your Heritage
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                         data-bs-parent="#accordion" style="">
+                                        <div class="card-body position-relative pl-3"> Reconnect with your ancestral
+                                            heritage and embrace a deep sense of belonging. Immerse in Italy's rich history,
+                                            art, and traditions.
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseTwo" aria-expanded="false"
+                                                    aria-controls="collapseTwo">Unleash Boundless Exploration
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                         data-bs-parent="#accordion">
+                                        <div class="card-body position-relative pl-3">
+                                            Enjoy seamless travel across the European Union, no borders or limitations.
+                                            Embark on unforgettable adventures and discover hidden gems across the
+                                            continent. Experience visa-free or visa-on-arrival access to numerous countries
+                                            worldwide with one of the worlds strongest passports.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseThree" aria-expanded="false"
+                                                    aria-controls="collapseThree">Access Premier Education and Healthcare
+                                                Standards
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                         data-bs-parent="#accordion">
+                                        <div class="card-body position-relative pl-3">
+                                            Unlock world-class education opportunities in Italy and prestigious European
+                                            institutions.
+                                            Benefit from high-quality healthcare systems, ensuring your well-being and peace
+                                            of mind.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingFour">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseFour" aria-expanded="false"
+                                                    aria-controls="collapseFour">Enjoy Social Welfare and Retirement
+                                                Benefits
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                         data-bs-parent="#accordion">
+                                        <div class="card-body position-relative pl-3">
+                                            Access comprehensive social welfare programs and retirement benefits.
+                                            Ensure a stable and prosperous future for yourself and your loved ones
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingSix">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseSix" aria-expanded="false"
+                                                    aria-controls="collapseSix">Gain Access to the Thriving European Union
+                                                Economy
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseSix" class="collapse" aria-labelledby="headingSix"
+                                         data-bs-parent="#accordion">
+                                        <div class="card-body position-relative pl-3">
+                                            Obtain Italian citizenship to unlock the vast opportunities within the European
+                                            Union.
+                                            Seamlessly conduct business, trade, and investments across EU member states.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
 </main>
 
 
@@ -958,7 +927,8 @@
     </footer>
 
     </body>
-
+        <script src="/js/directory.js"></script>
+        <script src="/js/landing-page.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
         <script src="/js/popper.min.js"></script>

@@ -2,7 +2,7 @@
 var startIndex = 0;
 var div_index = 0;
 // the number of service providers to show at a time
-var pageSize = 4;
+var pageSize = 3;
 
 // get the service providers containers
 var serviceProvidersContainer1 = document.getElementById("service-providers");
@@ -40,7 +40,7 @@ function loadFirstServiceProviders(serviceProviders) {
 
     // show the first page of service providers
     for (var i = 0; i < pageSize; i++) {
-        if (i < 4) {
+        if (i < 3) {
             showServiceProvider(startIndex + i, serviceProvidersContainer1);
         }
     }
@@ -51,7 +51,7 @@ function showNextServiceProviders() {
     div_index = 0;
     // hide the current page of service providers
     for (var i = 0; i < pageSize; i++) {
-        if (startIndex + i <  4) {
+        if (startIndex + i <  3) {
             hideServiceProvider(startIndex + i, serviceProvidersContainer1);
         }
     }
@@ -61,7 +61,7 @@ function showNextServiceProviders() {
     var temp = startIndex;
     // show the next page of service providers
     for (var i = 0; i < pageSize; i++) {
-        if (startIndex + i < temp + 4) {
+        if (startIndex + i < temp + 3) {
             showServiceProvider(startIndex + i, serviceProvidersContainer1);
         }
 
@@ -111,4 +111,3 @@ function hideServiceProvider(index, serviceProvidersContainer) {
         serviceProviderDiv.style.display = "none";
     }
 }
-
