@@ -24,9 +24,9 @@ public class LandingPageController {
 
     @GetMapping("/")
     public String landingPageRedirect() {
-        return "redirect:/home";
+        return "redirect:/index";
     }
-    @GetMapping("/home")
+    @GetMapping("/index")
     public String homePage(Model model, HttpServletRequest request) {
         model.addAttribute("request", request);
         return "index";

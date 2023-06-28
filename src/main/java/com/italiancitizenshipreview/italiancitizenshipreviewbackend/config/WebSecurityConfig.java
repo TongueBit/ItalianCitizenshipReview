@@ -45,13 +45,12 @@ public class WebSecurityConfig {
                                 , "/js/**"
                                 , "/rest/user/exists/**"
                                 , "/rest/service-provider"
-                                ,"/landing-page"
-                                ,"/home"
+                                ,"/index"
                                 , "/resources/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/landing-page")
+                .defaultSuccessUrl("/index")
                 .permitAll()
                 .and()
                 .logout()

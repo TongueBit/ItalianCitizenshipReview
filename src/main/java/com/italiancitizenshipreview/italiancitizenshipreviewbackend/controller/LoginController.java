@@ -21,8 +21,8 @@ public class LoginController {
     }
 
     @PostMapping("/register")
-    public String registerUser( String username, String password, String role) {
-        userService.createUser(username, password, role);
+    public String registerUser( String username, String password) {
+        userService.createUser(username, password, "ROLE_USER");
         return "login";
     }
 }
