@@ -109,6 +109,7 @@ function createRegisterSection() {
 
 	var registerForm = document.createElement('form');
 	registerForm.action = '/register'; // Set the appropriate action for the register form
+	registerForm.setAttribute('onsubmit', 'checkIfUsernameExists(event)');
 	registerForm.method = 'POST'
 
 	var registerEmailGroup = document.createElement('div');
@@ -138,6 +139,7 @@ function createRegisterSection() {
 
 	var registerButton = document.createElement('button');
 	registerButton.type = 'submit';
+	registerButton.name = 'register-button'
 	registerButton.classList.add('btn', 'btn-theme');
 	registerButton.textContent = 'Register';
 
@@ -167,31 +169,37 @@ function createRegisterSection() {
 	var photoDiv = document.querySelector('.photo-div');
 	photoDiv.insertAdjacentElement('afterend', registerSection);
 	const elements = document.querySelectorAll('[name="password"]');
-	elements.forEach(element => {
-		element.addEventListener('click', checkIfUsernameExists);
-	});
+
 }
 
 var registerAnchor = document.getElementById('register-anchor');
 
 
-function checkIfUsernameExists()
-{
-	const element = document.getElementById('register-password');
-	const input = document.getElementById('register-username');
+function checkIfUsernameExists(event) {
+	event.preventDefault();
 
+	const input = document.getElementById('register-username');
 	const username = input.value;
-	if (input.value != '') {
+
+	if (username !== '') {
 		// Make a request to the server to check if the username exists
 		fetch('rest/user/exists/' + username)
 			.then(response => response.json())
 			.then(data => {
 				if (data) {
 					// Username exists
-					alert('Username already exists');
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: 'Username already exists',
+					});
 				} else {
 					// Username does not exist
-					console.log('Username is available');
+					Swal.fire({
+						icon: 'success',
+						title: 'Success!',
+						text: 'Username is available',
+					});
 				}
 			})
 			.catch(error => {

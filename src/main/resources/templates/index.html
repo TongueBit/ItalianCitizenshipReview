@@ -41,9 +41,9 @@
                 </div>
                 <nav class="site-navigation flex-md-row">
                     <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                        <li><a href="about.html">About</a></li>
+                        <li><a class="" href="about.html"><b>About</b></a></li>
                         <li class="has-children">
-                            <a href="" > Services  </a>
+                            <a href="" ><b> Services </b> </a>
                             <ul class="dropdown">
                                 <li><a href="">Translation Service</a></li>
                                 <li><a href="">Application Assistance</a></li>
@@ -52,7 +52,7 @@
                                 <li><a href="">Full Service</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">User Dashboard</a></li>
+                        <li><a href="contact.html"><b>User Dashboard</b></a></li>
                         <li class="d-md-none"><a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
                             <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" href="/login"> Login</a></li>
                     </ul>
@@ -78,7 +78,7 @@
             </div>
         </div>
     </section>
-    <section class="py-5 bg-light">
+    <section class="pt-5 ">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 offset-md-2 text-center">
@@ -91,18 +91,17 @@
                     </div>
                     <div>
                         <a href="#" class="btn btn-primary btn-lg me-3">Register Now</a>
-                        <a href="#" class="btn btn-outline-primary btn-lg">Learn More</a>
+                        <a href="#qualify" class="btn btn-outline-primary btn-lg">Learn More</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <section id="services" style="color: #000; background-color: #f3f2f2;">
-        <div class="py-5">
+        <div class="pt-5">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-10 col-xl-8 text-center">
                     <h1 class="fw-bold mb-4" id="header">Highest-Rated Service Providers</h1>
-                    <h4 class="mb-4 pb-2 mb-md-5 pb-md-0">Check out what users think are the best all around Service Providers!</h4>
                 </div>
             </div>
 
@@ -152,24 +151,24 @@
             </div>
 
             <div class="d-flex justify-content-center mt-3"> <!-- Added container for centering the button -->
-                <button id="load-more-button" class="btn btn-primary btn-lg me-3">Load More</button>
+                <button id="load-more-button" class="btn btn-primary btn-lg me-3 mb-3">Load More</button>
             </div>
-            <hr id="about">
+
         </div>
     </section>
 
-    <section id="qualify">
-        <div style="color: #000; background-color: #f3f2f2;" class="mx-5">
-            <div class="px-4">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-md-10 col-xl-8 text-center">
-                        <h1 class="fw-bold" id="header">How to become an Italian Citizen in 3 steps</h1>
+    <section id="qualify" >
+
+        <div class=" work-process hero pb-5" style="background-image: url('/images/italy.jpg');  height: fit-content">
+            <div class="mx-5" >
+                <div class="px-4">
+                    <div class="row d-flex justify-content-center ">
+                        <div class="col-md-10 col-xl-8 text-center">
+                            <h1 class="process-box " style="color: #1e7e34; font-family: Italiana" >How to become an Italian Citizen in 3 steps</h1>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class=" work-process hero pb-5" style="background-image: url('/images/italy.jpg');">
-
             <div class=" mb-5 d-flex">
                 <div class="col-2"></div>
                 <div class="col-8">
@@ -177,9 +176,9 @@
                 <div class="col-1"></div>
             </div>
             <!-- ============ step 1 =========== -->
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="process-box process-left" data-aos="fade-right" data-aos-duration="1000"
+            <div class="row " >
+                <div class="col-md-6 " >
+                    <div class="process-box process-left mx-4" data-aos="fade-right" data-aos-duration="1000"
                          style="margin-left: 20px">
                         <div class="row">
                             <div class="col-md-5">
@@ -206,7 +205,7 @@
                 </div>
                 <div class="col-md-2"></div>
                 <div class="col-md-6">
-                    <div class="process-box process-right" data-aos="fade-left" data-aos-duration="1000"
+                    <div class="process-box process-right mx-4" data-aos="fade-left" data-aos-duration="1000"
                          style="margin-right: 20px">
                         <div class="row">
                             <div class="col-md-5">
@@ -217,8 +216,7 @@
                             </div>
                             <div class="col-md-6">
                                 <h5>DOCUMENTS</h5>
-                                <p><small>Collect all legal documents and records, including naturalization documents
-                                    necessary to apply for Italian citizenship. </small></p>
+                                <p><small>Collect, translate, Apostille, notarize all documents and records. </small></p>
                             </div>
                         </div>
 
@@ -229,7 +227,7 @@
             <!-- ============ step 3 =========== -->
             <div class="row">
                 <div class="col-md-6">
-                    <div class="process-box process-left" data-aos="fade-right" data-aos-duration="1000"
+                    <div class="process-box process-left mx-4" data-aos="fade-right" data-aos-duration="1000"
                          style="margin-left: 20px">
                         <div class="row">
                             <div class="col-md-5">
@@ -240,9 +238,8 @@
                             </div>
                             <div class="col-md-6">
                                 <h5>APPLY</h5>
-                                <p><small>Authentication all records and complete your application for Italian
-                                    citizenship
-                                    either in Italy which is faster or at your correspondig Italian consulate. </small>
+                                <p><small>Verify all records and submit your application
+                                    either in Italy or your corresponding Italian consulate. </small>
                                 </p>
                             </div>
                         </div>
@@ -253,396 +250,395 @@
             <script>
                 AOS.init();
             </script>
-        </div>
-        <div>
+            <div>
 
-            <div class="mx-4 pt-5 ">
+                <div class="mx-4 pt-5 ">
+                    <div class="card px-5" style="background-color: #f3f2f2;">
+                        <h1 style="font-family: Italiana; text-align: center; margin-top: 20px; color: #1e7e34 ">Do I
+                            qualify? </h1>
 
-
-                <div class="card px-5" style="background-color: #f3f2f2;">
-                    <h1 style="font-family: Italiana; text-align: center; margin-top: 20px; color: #1e7e34 ">Do I
-                        qualify? </h1>
-
-                    <h4>Select the relationship between you and your Italian Ancestor born in Italy and learn if you
-                        qualify
-                    </h4>
-                    <div class="select-wrapper pb-4">
-                        <select name="qualify-options" class="qualify-block__select-options" id="qualify-options">
-                            <option value="">- Select -</option>
-                            <option value="0">1. Father</option>
-                            <option value="1">2. Father – Grandfather</option>
-                            <option value="2">3. Father – Grandfather – Great Grandfather</option>
-                            <option value="3">4. Father – Grandfather – Great Grandmother</option>
-                            <option value="4">5. Father – Grandfather – Great Grandfather – Great Great
-                                Grandfather
-                            </option>
-                            <option value="5">6. Father – Grandfather – Great Grandfather – Great Great
-                                Grandmother
-                            </option>
-                            <option value="6">7. Father – Grandmother</option>
-                            <option value="7">8. Father – Grandmother – Great Grandfather</option>
-                            <option value="8">9. Father – Grandmother – Great Grandmother</option>
-                            <option value="9">10. Father – Grandmother – Great Grandfather – Great Great Grandfather
-                            </option>
-                            <option value="10">11. Father – Grandmother – Great Grandfather – Great Great
-                                Grandmother
-                            </option>
-                            <option value="11">12. Mother</option>
-                            <option value="12">13. Mother – Grandfather</option>
-                            <option value="13">14. Mother – Grandfather – Great Grandfather</option>
-                            <option value="14">15. Mother – Grandfather – Great Grandmother</option>
-                            <option value="15">16. Mother – Grandfather – Great Grandfather – Great Great
-                                Grandfather
-                            </option>
-                            <option value="16">17. Mother – Grandfather – Great Grandfather – Great Great
-                                Grandmother
-                            </option>
-                            <option value="17">18. Mother – Grandmother</option>
-                            <option value="18">19. Mother – Grandmother – Great Grandfather</option>
-                            <option value="19">20. Mother – Grandmother – Great Grandmother</option>
-                            <option value="20">21. Mother – Grandmother – Great Grandfather – Great Great
-                                Grandfather
-                            </option>
-                            <option value="21">22. Mother – Grandmother – Great Grandfather – Great Great
-                                Grandmother
-                            </option>
-                        </select>
-                    </div>
-                    <p class="qualify-block__disclaimer">* For each category all conditions must be met.</p>
-                    <div class="qualify-block__description qualify-description qualify-description-0">Your father
-                        was an
-                        Italian
-                        citizen
-                        at the time of your birth (i.e., he did not become a US citizen before your birth), and you
-                        never
-                        renounced your
-                        right to Italian citizenship. If your father became a US Citizen after August 15, 1992, he
-                        did not
-                        lose
-                        his
-                        Italian Citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-1">Your father
-                        was born
-                        in
-                        your
-                        native country, your paternal grandfather was an Italian citizen at the time of your father&#039;s
-                        birth
-                        (i.e.,
-                        he did not become a US citizen before the birth of your father; or before July 1, 1912*),
-                        and
-                        neither
-                        you nor
-                        your father ever renounced your right to Italian citizenship. If your grandfather became a
-                        US
-                        Citizen
-                        after
-                        August 15, 1992, he did not lose his Italian Citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-2">Your paternal
-                        grandfather
-                        was born
-                        in your native country, your paternal great grandfather was an Italian citizen at the time
-                        of your
-                        paternal
-                        grandfather’s birth (i.e., he did not become a US citizen before the birth of your paternal
-                        grandfather;
-                        or
-                        before July 1, 1912*), and neither you nor your father nor your grandfather ever renounced
-                        your
-                        right to
-                        Italian
-                        citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-3">Your paternal
-                        great-grandmother
-                        was an Italian citizen at the time of your paternal grandfather’s birth (i.e., she did not
-                        become a
-                        US
-                        citizen
-                        before the birth of your paternal grandfather; or before July 1, 1912*), your paternal
-                        grandfather
-                        was
-                        born
-                        after January 1, 1948** in your native country, and neither you nor your father nor your
-                        grandfather
-                        ever
-                        renounced your right to Italian citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-4">Your paternal
-                        great-grandfather
-                        was born in your native country, your paternal great-great-grandfather was an Italian
-                        citizen at the
-                        time of
-                        your paternal great-grandfather’s birth (i.e., he did not become a US citizen before the
-                        birth of
-                        your
-                        paternal
-                        great-grandfather; or before July 1, 1912*), and neither you nor your father nor your
-                        paternal
-                        grandfather nor
-                        your paternal great-grandfather ever renounced your right to Italian citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-5">Your paternal
-                        great-great-grandmother was an Italian citizen at the time of your great-grandfather’s birth
-                        (i.e.,
-                        she
-                        did not
-                        become a US citizen before his birth; or before July 1, 1912*), your paternal
-                        great-grandfather was
-                        born
-                        after
-                        January 1, 1948** in your native country, and neither you nor your father nor your paternal
-                        grandfather
-                        nor your
-                        paternal great-grandfather ever renounced your right to Italian citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-6">Your paternal
-                        grandmother
-                        was an
-                        Italian citizen at the time of your father&#039;s birth (i.e., she did not become a US
-                        citizen
-                        before
-                        the birth
-                        of your grandfather; or before July 1, 1912*), your father was born after January 1, 1948**
-                        in your
-                        native
-                        country, and neither you nor your father ever renounced your right to Italian citizenship.
-                        If your
-                        grandmother
-                        became a US Citizen after August 15, 1992, she did not lose his Italian Citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-7">Your paternal
-                        grandmother
-                        was born
-                        in your native country, your paternal great grandfather was an Italian citizen at the time
-                        of her
-                        birth
-                        (i.e.,
-                        he did not become a US citizen before the birth of your grandmother; or before July 1,
-                        1912*), and
-                        your
-                        father
-                        was born after January 1, 1948** in your native country, and neither you nor your father nor
-                        your
-                        grandmother
-                        ever renounced your right to Italian citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-8">Your paternal
-                        great
-                        grandmother
-                        was an Italian citizen at the time of your grandmother’s birth (i.e., she did not become a
-                        US
-                        citizen
-                        before the
-                        birth of your grandmother; or before July 1, 1912*) and your paternal grandmother was born
-                        after
-                        January
-                        1,
-                        1948** in your native country, and neither you nor your father nor your grandmother ever
-                        renounced
-                        your
-                        right to
-                        Italian citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-9">Your paternal
-                        great-grandfather
-                        was born in your native country, your paternal great-great-grandfather was an Italian
-                        citizen at the
-                        time of
-                        your paternal great-grandfather’s birth (i.e., he did not become a US citizen before the
-                        birth of
-                        your
-                        great-grandfather; or before July 1, 1912*), your father was born after January 1, 1948** in
-                        your
-                        native
-                        country, and neither you nor your father nor your paternal grandmother nor your paternal
-                        great-grandfather ever
-                        renounced your right to Italian citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-10">Your paternal
-                        great-great-grandmother was an Italian citizen at the time of your paternal
-                        great-grandfather’s
-                        birth
-                        (i.e., she
-                        did not become a US citizen before his birth; or before July 1, 1912*), your paternal
-                        great-grandfather
-                        was born
-                        after January 1, 1948** in your native country, and neither you nor your father nor your
-                        paternal
-                        grandmother
-                        nor your paternal great-grandfather ever renounced your right to Italian citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-11">Your mother
-                        was an
-                        Italian
-                        citizen at the time of your birth (i.e., she did not become a US citizen before your birth),
-                        and you
-                        never
-                        renounced your right to Italian citizenship. If your mother became a US Citizen after August
-                        15,
-                        1992,
-                        she did
-                        not lose her Italian Citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-12">Your mother
-                        was born
-                        in
-                        your
-                        native country, your maternal grandfather was an Italian citizen at the time of her birth
-                        (i.e., he
-                        did
-                        not
-                        become a US citizen before the birth of your mother; or before July 1, 1912*), and you were
-                        born
-                        after
-                        January
-                        1, 1948**, and neither you nor your mother ever renounced your right to Italian citizenship.
-                        If your
-                        grandfather
-                        became a US Citizen after August 15, 1992, he did not lose his Italian Citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-13">Your maternal
-                        grandfather
-                        was
-                        born in your native country, your maternal great grandfather was an Italian citizen at the
-                        time of
-                        your
-                        maternal
-                        grandfather’s birth (i.e., he did not become a US citizen before his birth; or before July
-                        1,
-                        1912*),
-                        you were
-                        born after January 1st, 1948**, and neither you nor your mother nor your grandfather ever
-                        renounced
-                        your
-                        right
-                        to Italian citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-14">Your maternal
-                        great
-                        grandmother
-                        was an Italian citizen at the time of your grandfather’s birth (i.e., she did not become a
-                        US
-                        citizen
-                        before his
-                        birth; or before July 1, 1912*), and your maternal grandfather was born after January 1,
-                        1948**, in
-                        your
-                        native
-                        country, and neither you nor your mother nor your grandmother ever renounced your right to
-                        Italian
-                        citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-15">Your maternal
-                        great-grandfather
-                        was born in your native country, your maternal great-great-grandfather was an Italian
-                        citizen at the
-                        time of
-                        your maternal great grandfather’s birth (i.e., he did not become a US citizen before his
-                        birth; or
-                        before July
-                        1, 1912*), and you were born after January 1st, 1948**, and neither you nor your mother nor
-                        your
-                        maternal
-                        grandfather nor your maternal great-grandfather ever renounced your right to Italian
-                        citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-16">Your maternal
-                        great-great-grandmother was an Italian citizen at the time of your great-grandfather’s birth
-                        (i.e.,
-                        she
-                        did not
-                        become a US citizen before his birth; or before July 1, 1912*) and your maternal
-                        great-grandfather
-                        was
-                        born
-                        after January 1, 1948**, in your native country, and neither you nor your mother nor your
-                        maternal
-                        grandfather
-                        nor your maternal great-grandfather ever renounced your right to Italian citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-17">Your maternal
-                        grandmother
-                        was an
-                        Italian citizen at the time of your mother’s birth (i.e., she did not become a US citizen
-                        before her
-                        birth; or
-                        before July 1, 1912*), and your mother was born after January 1st, 1948**, in your native
-                        country,
-                        and
-                        neither
-                        you nor your mother ever renounced your right to Italian citizenship. (If your grandmother
-                        became a
-                        US
-                        Citizen
-                        after August 15, 1992, she did not lose his Italian Citizenship.)
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-18">Your maternal
-                        grandmother
-                        was
-                        born in your native country, your maternal great grandfather was an Italian citizen at the
-                        time of
-                        her
-                        birth
-                        (i.e., he did not become a US citizen before the birth of your grandmother; or before July
-                        1,
-                        1912*),
-                        and your
-                        mother was born after January 1st, 1948** in your native country, and neither you nor your
-                        mother
-                        nor
-                        your
-                        grandmother ever renounced your right to Italian citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-19">Your maternal
-                        great-grandmother
-                        was an Italian citizen at the time of our grandmother’s birth (i.e., she did not become a US
-                        citizen
-                        before the
-                        birth of your grandmother; or before July 1, 1912*), your maternal grandmother was born
-                        after
-                        January 1,
-                        1948**
-                        in your native country, and neither you nor your mother nor your grandmother ever renounced
-                        your
-                        right
-                        to
-                        Italian citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-20">Your maternal
-                        great-grandfather
-                        was born in your native country, your maternal great-great-grandfather was an Italian
-                        citizen at the
-                        time of
-                        your great-grandfather’s birth (i.e., he did not become a US citizen before the birth of
-                        your
-                        great-grandfather;
-                        or before July 1, 1912*), your grandmother was born after January 1st, 1948** in your native
-                        country,
-                        and
-                        neither you nor your mother nor your maternal grandmother nor your maternal
-                        great-grandfather ever
-                        renounced
-                        your right to Italian citizenship.
-                    </div>
-                    <div class="qualify-block__description qualify-description qualify-description-21">Your maternal
-                        great-great-grandmother was an Italian citizen at the time of your great-grandfather’s birth
-                        (i.e.,
-                        she
-                        did not
-                        become a US citizen before the birth of your great-grandfather; or before July 1, 1912*),
-                        and your
-                        maternal
-                        great-grandfather was born after January 1, 1948** in your native country, and neither you
-                        nor your
-                        mother nor
-                        your maternal grandmother nor your maternal great-grandfather ever renounced your right to
-                        Italian
-                        citizenship.
+                        <h4>Select the relationship between you and your Italian Ancestor born in Italy and learn if you
+                            qualify
+                        </h4>
+                        <div class="select-wrapper pb-4">
+                            <select name="qualify-options" class="qualify-block__select-options" id="qualify-options" size="auto">
+                                <option value="">- Select -</option>
+                                <option value="0">1. Father</option>
+                                <option value="1">2. Father – Grandfather</option>
+                                <option value="2">3. Father – Grandfather – Great Grandfather</option>
+                                <option value="3">4. Father – Grandfather – Great Grandmother</option>
+                                <option value="4">5. Father – Grandfather – Great Grandfather – Great Great
+                                    Grandfather
+                                </option>
+                                <option value="5">6. Father – Grandfather – Great Grandfather – Great Great
+                                    Grandmother
+                                </option>
+                                <option value="6">7. Father – Grandmother</option>
+                                <option value="7">8. Father – Grandmother – Great Grandfather</option>
+                                <option value="8">9. Father – Grandmother – Great Grandmother</option>
+                                <option value="9">10. Father – Grandmother – Great Grandfather – Great Great Grandfather
+                                </option>
+                                <option value="10">11. Father – Grandmother – Great Grandfather – Great Great
+                                    Grandmother
+                                </option>
+                                <option value="11">12. Mother</option>
+                                <option value="12">13. Mother – Grandfather</option>
+                                <option value="13">14. Mother – Grandfather – Great Grandfather</option>
+                                <option value="14">15. Mother – Grandfather – Great Grandmother</option>
+                                <option value="15">16. Mother – Grandfather – Great Grandfather – Great Great
+                                    Grandfather
+                                </option>
+                                <option value="16">17. Mother – Grandfather – Great Grandfather – Great Great
+                                    Grandmother
+                                </option>
+                                <option value="17">18. Mother – Grandmother</option>
+                                <option value="18">19. Mother – Grandmother – Great Grandfather</option>
+                                <option value="19">20. Mother – Grandmother – Great Grandmother</option>
+                                <option value="20">21. Mother – Grandmother – Great Grandfather – Great Great
+                                    Grandfather
+                                </option>
+                                <option value="21">22. Mother – Grandmother – Great Grandfather – Great Great
+                                    Grandmother
+                                </option>
+                            </select>
+                        </div>
+                        <p class="qualify-block__disclaimer">* For each category all conditions must be met.</p>
+                        <div class="qualify-block__description qualify-description qualify-description-0">Your father
+                            was an
+                            Italian
+                            citizen
+                            at the time of your birth (i.e., he did not become a US citizen before your birth), and you
+                            never
+                            renounced your
+                            right to Italian citizenship. If your father became a US Citizen after August 15, 1992, he
+                            did not
+                            lose
+                            his
+                            Italian Citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-1">Your father
+                            was born
+                            in
+                            your
+                            native country, your paternal grandfather was an Italian citizen at the time of your father&#039;s
+                            birth
+                            (i.e.,
+                            he did not become a US citizen before the birth of your father; or before July 1, 1912*),
+                            and
+                            neither
+                            you nor
+                            your father ever renounced your right to Italian citizenship. If your grandfather became a
+                            US
+                            Citizen
+                            after
+                            August 15, 1992, he did not lose his Italian Citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-2">Your paternal
+                            grandfather
+                            was born
+                            in your native country, your paternal great grandfather was an Italian citizen at the time
+                            of your
+                            paternal
+                            grandfather’s birth (i.e., he did not become a US citizen before the birth of your paternal
+                            grandfather;
+                            or
+                            before July 1, 1912*), and neither you nor your father nor your grandfather ever renounced
+                            your
+                            right to
+                            Italian
+                            citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-3">Your paternal
+                            great-grandmother
+                            was an Italian citizen at the time of your paternal grandfather’s birth (i.e., she did not
+                            become a
+                            US
+                            citizen
+                            before the birth of your paternal grandfather; or before July 1, 1912*), your paternal
+                            grandfather
+                            was
+                            born
+                            after January 1, 1948** in your native country, and neither you nor your father nor your
+                            grandfather
+                            ever
+                            renounced your right to Italian citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-4">Your paternal
+                            great-grandfather
+                            was born in your native country, your paternal great-great-grandfather was an Italian
+                            citizen at the
+                            time of
+                            your paternal great-grandfather’s birth (i.e., he did not become a US citizen before the
+                            birth of
+                            your
+                            paternal
+                            great-grandfather; or before July 1, 1912*), and neither you nor your father nor your
+                            paternal
+                            grandfather nor
+                            your paternal great-grandfather ever renounced your right to Italian citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-5">Your paternal
+                            great-great-grandmother was an Italian citizen at the time of your great-grandfather’s birth
+                            (i.e.,
+                            she
+                            did not
+                            become a US citizen before his birth; or before July 1, 1912*), your paternal
+                            great-grandfather was
+                            born
+                            after
+                            January 1, 1948** in your native country, and neither you nor your father nor your paternal
+                            grandfather
+                            nor your
+                            paternal great-grandfather ever renounced your right to Italian citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-6">Your paternal
+                            grandmother
+                            was an
+                            Italian citizen at the time of your father&#039;s birth (i.e., she did not become a US
+                            citizen
+                            before
+                            the birth
+                            of your grandfather; or before July 1, 1912*), your father was born after January 1, 1948**
+                            in your
+                            native
+                            country, and neither you nor your father ever renounced your right to Italian citizenship.
+                            If your
+                            grandmother
+                            became a US Citizen after August 15, 1992, she did not lose his Italian Citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-7">Your paternal
+                            grandmother
+                            was born
+                            in your native country, your paternal great grandfather was an Italian citizen at the time
+                            of her
+                            birth
+                            (i.e.,
+                            he did not become a US citizen before the birth of your grandmother; or before July 1,
+                            1912*), and
+                            your
+                            father
+                            was born after January 1, 1948** in your native country, and neither you nor your father nor
+                            your
+                            grandmother
+                            ever renounced your right to Italian citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-8">Your paternal
+                            great
+                            grandmother
+                            was an Italian citizen at the time of your grandmother’s birth (i.e., she did not become a
+                            US
+                            citizen
+                            before the
+                            birth of your grandmother; or before July 1, 1912*) and your paternal grandmother was born
+                            after
+                            January
+                            1,
+                            1948** in your native country, and neither you nor your father nor your grandmother ever
+                            renounced
+                            your
+                            right to
+                            Italian citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-9">Your paternal
+                            great-grandfather
+                            was born in your native country, your paternal great-great-grandfather was an Italian
+                            citizen at the
+                            time of
+                            your paternal great-grandfather’s birth (i.e., he did not become a US citizen before the
+                            birth of
+                            your
+                            great-grandfather; or before July 1, 1912*), your father was born after January 1, 1948** in
+                            your
+                            native
+                            country, and neither you nor your father nor your paternal grandmother nor your paternal
+                            great-grandfather ever
+                            renounced your right to Italian citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-10">Your paternal
+                            great-great-grandmother was an Italian citizen at the time of your paternal
+                            great-grandfather’s
+                            birth
+                            (i.e., she
+                            did not become a US citizen before his birth; or before July 1, 1912*), your paternal
+                            great-grandfather
+                            was born
+                            after January 1, 1948** in your native country, and neither you nor your father nor your
+                            paternal
+                            grandmother
+                            nor your paternal great-grandfather ever renounced your right to Italian citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-11">Your mother
+                            was an
+                            Italian
+                            citizen at the time of your birth (i.e., she did not become a US citizen before your birth),
+                            and you
+                            never
+                            renounced your right to Italian citizenship. If your mother became a US Citizen after August
+                            15,
+                            1992,
+                            she did
+                            not lose her Italian Citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-12">Your mother
+                            was born
+                            in
+                            your
+                            native country, your maternal grandfather was an Italian citizen at the time of her birth
+                            (i.e., he
+                            did
+                            not
+                            become a US citizen before the birth of your mother; or before July 1, 1912*), and you were
+                            born
+                            after
+                            January
+                            1, 1948**, and neither you nor your mother ever renounced your right to Italian citizenship.
+                            If your
+                            grandfather
+                            became a US Citizen after August 15, 1992, he did not lose his Italian Citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-13">Your maternal
+                            grandfather
+                            was
+                            born in your native country, your maternal great grandfather was an Italian citizen at the
+                            time of
+                            your
+                            maternal
+                            grandfather’s birth (i.e., he did not become a US citizen before his birth; or before July
+                            1,
+                            1912*),
+                            you were
+                            born after January 1st, 1948**, and neither you nor your mother nor your grandfather ever
+                            renounced
+                            your
+                            right
+                            to Italian citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-14">Your maternal
+                            great
+                            grandmother
+                            was an Italian citizen at the time of your grandfather’s birth (i.e., she did not become a
+                            US
+                            citizen
+                            before his
+                            birth; or before July 1, 1912*), and your maternal grandfather was born after January 1,
+                            1948**, in
+                            your
+                            native
+                            country, and neither you nor your mother nor your grandmother ever renounced your right to
+                            Italian
+                            citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-15">Your maternal
+                            great-grandfather
+                            was born in your native country, your maternal great-great-grandfather was an Italian
+                            citizen at the
+                            time of
+                            your maternal great grandfather’s birth (i.e., he did not become a US citizen before his
+                            birth; or
+                            before July
+                            1, 1912*), and you were born after January 1st, 1948**, and neither you nor your mother nor
+                            your
+                            maternal
+                            grandfather nor your maternal great-grandfather ever renounced your right to Italian
+                            citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-16">Your maternal
+                            great-great-grandmother was an Italian citizen at the time of your great-grandfather’s birth
+                            (i.e.,
+                            she
+                            did not
+                            become a US citizen before his birth; or before July 1, 1912*) and your maternal
+                            great-grandfather
+                            was
+                            born
+                            after January 1, 1948**, in your native country, and neither you nor your mother nor your
+                            maternal
+                            grandfather
+                            nor your maternal great-grandfather ever renounced your right to Italian citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-17">Your maternal
+                            grandmother
+                            was an
+                            Italian citizen at the time of your mother’s birth (i.e., she did not become a US citizen
+                            before her
+                            birth; or
+                            before July 1, 1912*), and your mother was born after January 1st, 1948**, in your native
+                            country,
+                            and
+                            neither
+                            you nor your mother ever renounced your right to Italian citizenship. (If your grandmother
+                            became a
+                            US
+                            Citizen
+                            after August 15, 1992, she did not lose his Italian Citizenship.)
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-18">Your maternal
+                            grandmother
+                            was
+                            born in your native country, your maternal great grandfather was an Italian citizen at the
+                            time of
+                            her
+                            birth
+                            (i.e., he did not become a US citizen before the birth of your grandmother; or before July
+                            1,
+                            1912*),
+                            and your
+                            mother was born after January 1st, 1948** in your native country, and neither you nor your
+                            mother
+                            nor
+                            your
+                            grandmother ever renounced your right to Italian citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-19">Your maternal
+                            great-grandmother
+                            was an Italian citizen at the time of our grandmother’s birth (i.e., she did not become a US
+                            citizen
+                            before the
+                            birth of your grandmother; or before July 1, 1912*), your maternal grandmother was born
+                            after
+                            January 1,
+                            1948**
+                            in your native country, and neither you nor your mother nor your grandmother ever renounced
+                            your
+                            right
+                            to
+                            Italian citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-20">Your maternal
+                            great-grandfather
+                            was born in your native country, your maternal great-great-grandfather was an Italian
+                            citizen at the
+                            time of
+                            your great-grandfather’s birth (i.e., he did not become a US citizen before the birth of
+                            your
+                            great-grandfather;
+                            or before July 1, 1912*), your grandmother was born after January 1st, 1948** in your native
+                            country,
+                            and
+                            neither you nor your mother nor your maternal grandmother nor your maternal
+                            great-grandfather ever
+                            renounced
+                            your right to Italian citizenship.
+                        </div>
+                        <div class="qualify-block__description qualify-description qualify-description-21">Your maternal
+                            great-great-grandmother was an Italian citizen at the time of your great-grandfather’s birth
+                            (i.e.,
+                            she
+                            did not
+                            become a US citizen before the birth of your great-grandfather; or before July 1, 1912*),
+                            and your
+                            maternal
+                            great-grandfather was born after January 1, 1948** in your native country, and neither you
+                            nor your
+                            mother nor
+                            your maternal grandmother nor your maternal great-grandfather ever renounced your right to
+                            Italian
+                            citizenship.
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
         </div>
 
@@ -700,9 +696,9 @@
         </div>
         </div>
     </section>
-    <section id="benefits">
+    <section id="benefits" class="pt-5" style="color: #000; background-color: #f3f2f2;">
         <div class="container">
-            <h1 id="title-benefits" class="w-90 text-center" style="margin-top: 20px;">Unlock the Benefits of
+            <h1 id="title-benefits" class="w-90 text-center " >Unlock the Benefits of
                 Italian Citizenship</h1>
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
@@ -935,5 +931,7 @@
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/jquery.sticky.js"></script>
         <script src="/js/main.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </html>

@@ -1,7 +1,8 @@
 body {
   font-family: "Monteserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   background-color: #fff;
-  position: relative; }
+  position: relative;
+  }
   body:before {
     content: "";
     position: absolute;
@@ -822,7 +823,13 @@ img {
   color: #1e7e34;
 }
 
+
+
 .card:hover {
+  background-color: whitesmoke;
+}
+
+#login-form {
   background-color: whitesmoke;
 }
 
@@ -868,7 +875,17 @@ img {
   color: #fff;
 }
 
+/* Default styles for the select tag */
+select {
+  width: 200px;
+}
 
+/* Styles for small screens */
+@media (max-width: 600px) {
+  select {
+    width: 100%;
+  }
+}
 
 
 
