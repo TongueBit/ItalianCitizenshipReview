@@ -52,7 +52,7 @@
                                 <li><a href="">Full Service</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html"><b>User Dashboard</b></a></li>
+                        <li><a href="/user/dashboard/"><b>User Dashboard</b></a></li>
                         <li class="d-md-none"><a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
                             <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" href="/login"> Login</a></li>
                     </ul>

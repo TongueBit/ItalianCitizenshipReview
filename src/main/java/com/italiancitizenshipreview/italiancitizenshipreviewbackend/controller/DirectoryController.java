@@ -29,6 +29,6 @@ public class DirectoryController {
         model.addAttribute("serviceProviders", serviceProviders);
         model.addAttribute("request", request);
 
-        return "directory";
+        return "service-provider-new";
     }
 }
