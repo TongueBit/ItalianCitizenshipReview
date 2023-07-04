@@ -160,3 +160,4 @@ function addReviewToDOM(review, index) {
     liElement.appendChild(ratingElement);
     reviewList.appendChild(liElement);
 }
+startStarConversion(ratingElements);
