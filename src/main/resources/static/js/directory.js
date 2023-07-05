@@ -1,7 +1,7 @@
 function createReview(event) {
     event.preventDefault();
     var index = event.target.getAttribute('data-index');
-    var serviceProviderId = document.getElementById('serviceProvider-' + index).value;
+    var serviceProviderId = document.getElementById('serviceProvider-' + (index-1)).value;
     var title = document.getElementById('title-' + index).value;
     var content = document.getElementById('content-' + index).value;
     var rating = document.getElementById('rating-' + index).value;

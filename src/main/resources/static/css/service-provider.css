@@ -1,5 +1,8 @@
 
-
+.service-provider-card {
+border: 1px solid rgba(0, 34, 51, 0.1);
+box-shadow: 2px 4px 10px 0 rgba(0, 34, 51, 0.05), 2px 4px 10px 0 rgba(0, 34, 51, 0.05);
+}
 body{
     background-color:#eee;
 }
@@ -13,7 +16,6 @@ b {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif
 }
 
 .container {

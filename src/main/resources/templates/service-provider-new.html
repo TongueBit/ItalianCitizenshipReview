@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <!-- Style -->
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/service-provider.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -81,7 +82,7 @@
         <div id="content" style="margin-top: 125px; ">
 
             <div class="d-sm-flex">
-                <div class="me-sm-2">
+                <div class="me-sm-2 pr-2">
                     <div id="filter" class="p-2 bg-light ms-md-4 ms-sm-2 border">
                         <div class="border-bottom h5 text-uppercase">Filter By</div>
                         <div class="box border-bottom">
@@ -176,127 +177,157 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-2 border" id="hotels">
-                    <div class="service-provider py-2 px-2 pb-4 border-bottom">
-                        <div class="row " th:each="serviceProvider, stat : ${serviceProviders}" th:id="${stat.index}">
-                            <input type="hidden" th:id="'serviceProvider-' + ${stat.index}" th:value="${serviceProvider.serviceProviderId}" />
-                            <div class="col-lg-3"><img
-                                    src="https://images.unsplash.com/photo-1580835845971-a393b73bf370?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80"
-                                    alt="" class="hotel-img"></div>
-                            <div class="col-lg-9">
-                                <div class="d-md-flex align-items-md-center">
-                                    <div class="name"><a th:href="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}">[[${serviceProvider.name}]]</a></div>
-                                </div>
-                                <div><p th:text="${serviceProvider.description}"></p></div>
-                                <div><p class="rating" th:text="${serviceProvider.avgRating}"></p></div>
 
-                                <div class="d-flex flex-column tags pt-1">
-                                    <div><span class="fas fa-comment-dollar"></span> Fee Canellation</div>
-                                    <div><span class="fas fa-receipt"></span> Express check-in</div>
-                                    <div><span class="fas fa-concierge-bell"></span> Concierge</div>
-                                </div>
-                                <div th:if="${serviceProvider.reviews.size() != 0}" id="reviewList" style="border-style: solid;">
-                                    <ul>
-                                        <li th:each="review : ${serviceProvider.reviews}">
-                                            <p><b><span th:text="${review.title}"></span></b></p>
-                                            <p><span th:text="${review.content}"></span></p>
-                                            <p class="rating" th:text="${review.rating}"><b></b></p>
-                                            <form th:action="@{'/review/' + ${review.reviewId}}" method="post">
-                                                <button th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" type="submit">Delete review</button>
-                                            </form>
-                                        </li>
-                                    </ul>
 
+                        <div class="bg-white p-2 border" id="hotels">
+
+                            <div class="service-provider py-2 px-2 pb-4 border-bottom" th:each="serviceProvider, stat : ${serviceProviders}" th:id="${stat.index}">
+                                <div class="row">
+                                    <input type="hidden" th:id="'serviceProvider-' + ${stat.index}" th:value="${serviceProvider.serviceProviderId}" />
+                                    <div class="col-lg-3">
+                                        <img src="https://italymondo-wagtail.s3.amazonaws.com/media/documents/italymondo-blue-logo.svg" alt="" class="hotel-img">
+                                    </div>
+                                    <div class="col-lg-9">
+
+                                        <div class="d-md-flex align-items-md-center">
+                                            <div class="name">
+                                                <h3><a th:href="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}" th:text="${serviceProvider.name}"></a></h3>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <h4 class="rating" th:text="${serviceProvider.avgRating}"></h4>
+                                            </div>
+                                            <p th:text="${serviceProvider.description}"></p>
+
+                                        </div>
+
+
+                                        <div class="d-flex flex-column tags pt-1">
+
+
+                                        </div>
+
+                                        <div>
+                                            <div class="service-provider-card">
+                                                <div class="card-header d-flex align-items-center">
+                                                    <div class="align-content-end">
+                                                        <h5 class="card-title">Lastest reviews</h5>
+                                                    </div>
+                                                    <button class="btn btn-link caret-button" type="button" data-toggle="collapse" th:data-target="'#reviewsCollapse-' + ${serviceProvider.serviceProviderId}" aria-expanded="false" th:aria-controls="'reviewsCollapse-' + ${serviceProvider.serviceProviderId}">
+                                                        <i class="fa fa-caret-down "></i>
+                                                    </button>
+
+                                                </div>
+                                                <div th:id="'reviewsCollapse-' + ${serviceProvider.serviceProviderId}" class="collapse">
+                                                    <div class="p-4 service-provider-card">
+                                                        <div th:if="${serviceProvider.reviews.size() != 0}" >
+                                                            <ul style="list-style: none" id="reviewList">
+                                                                <li th:each="review : ${serviceProvider.reviews}">
+                                                                    <div class="m-2 p-4" style="border-style: solid; border-radius: 5px;">
+                                                                        <h6><b><span th:text="${review.title}"></span></b></h6>
+                                                                        <p class="rating" th:text="${review.rating}"><b></b></p>
+                                                                        <p><span th:text="${review.content}"></span></p>
+                                                                        <form th:action="@{'/review/' + ${review.reviewId}}" method="post">
+                                                                            <button th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" type="submit">Delete review</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div th:unless="${serviceProvider.reviews.size() > 0}">
+                                                            <p><b><em>No reviews available.</em></b></p>
+                                                        </div>
+                                                    </div>
+                                                    <div th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="bg-light p-2">
+                                                        <form id="reviewForm">
+                                                            <br>
+                                                            <label>Title:</label>
+                                                            <input type="text" th:id="'title-' + ${serviceProvider.serviceProviderId}" name="title" value="Give a brief title of your experience"><br>
+                                                            <label>Review</label>
+                                                            <textarea th:id="'content-' + ${serviceProvider.serviceProviderId}" name="content"></textarea><br>
+                                                            <label>Rating:</label>
+                                                            <select th:id="'rating-' + ${serviceProvider.serviceProviderId}" name="rating">
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                            </select>
+                                                            <button type="submit" onclick="createReview(event)" th:data-index="${serviceProvider.serviceProviderId}" style="margin-top: 10px">Add Review</button>
+                                                        </form>
+                                                        <br>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="pt-2">
+
+                                                <div th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">
+                                                    <b><a href="/login">Login</a> to leave a review!</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div th:unless="${serviceProvider.reviews.size() > 0}">
-                                    <p><b><em>No reviews available.</em></b></p>
+                                <div class="d-flex justify-content-end mt-1">
+                                    <div class="btn btn-primary text-uppercase">Contact</div>
                                 </div>
                             </div>
-                            <!- this will need to be changed! -->
-                            <div style="margin-left: 10px">
-                                <div th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">
-                                    <form id="reviewForm">
-                                        <br>
-                                        <label>Title:</label>
-                                        <input type="text" th:id="'title-' + ${stat.index}" name="title" value="Give a brief title of your experience"><br>
-                                        <label >Review</label>
-                                        <textarea th:id="'content-' + ${stat.index}" name="content"></textarea><br>
-                                        <label>Rating:</label>
-                                        <select th:id="'rating-' + ${stat.index}" name="rating">
-                                            <option value="1">1</option>å
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-
-                                        <button type="submit" onclick="createReview(event)" th:data-index="${stat.index}" style="margin-top: 10px">Add Review</button>
-                                    </form>
-                                    <br>
+                            <div class="hotel py-2 px-2 pb-4 border-bottom">
+                                <div class="row">
+                                    <div class="col-lg-3"><img
+                                            src="https://images.unsplash.com/photo-1596618502142-d2a9d0c1fc2e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTd8fHJlc29ydHN8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                            alt="" class="hotel-img"></div>
+                                    <div class="col-lg-9">
+                                        <div class="d-md-flex align-items-md-center">
+                                            <div class="name">Sunflower Hibiscus Inn <span class="city">Zuhu, Mumbai</span></div>
+                                            <div class="ms-auto code text-uppercase">ABD09eh8</div>
+                                        </div>
+                                        <div class="rating"><span class="fas fa-star"></span> <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span
+                                                    class="far fa-star"></span> <!-- Book now Enquiry --> </div>
+                                        <div class="d-flex flex-column tags pt-1">
+                                            <div><span class="fas fa-comment-dollar"></span> Fee Canellation</div>
+                                            <div><span class="fas fa-receipt"></span> Express check-in</div>
+                                            <div><span class="fas fa-concierge-bell"></span> Concierge</div>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">
-                                    <b><a href="/login">Login</a> to leave a review!</b>
+                                <div class="d-flex justify-content-end mt-1">
+                                    <div class="btn enquiry text-uppercase mx-2">Enquiry</div>
+                                    <div class="btn btn-primary text-uppercase">Book Now</div>
                                 </div>
                             </div>
-
-                        </div>
-                        <div class="d-flex justify-content-end mt-1">
-                            <div class="btn enquiry text-uppercase mx-2">Enquiry</div>
-                            <div class="btn btn-primary text-uppercase">Book Now</div>
+                            <div class="hotel py-2 px-2 pb-4">
+                                <div class="row">
+                                    <div class="col-lg-3"><img
+                                            src="https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NzV8fHJlc29ydHN8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                            alt="" class="hotel-img"></div>
+                                    <div class="col-lg-9">
+                                        <div class="d-md-flex align-items-md-center">
+                                            <div class="name">Atlantic Inn <span class="city">Mulund West, Mumbai</span></div>
+                                            <div class="ms-auto code text-uppercase">ABD09eh8</div>
+                                        </div>
+                                        <div class="rating"><span class="fas fa-star"></span> <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span
+                                                    class="far fa-star"></span> <!-- Book now Enquiry --> </div>
+                                        <div class="d-flex flex-column tags pt-1">
+                                            <div><span class="fas fa-comment-dollar"></span> Fee Canellation</div>
+                                            <div><span class="fas fa-receipt"></span> Express check-in</div>
+                                            <div><span class="fas fa-concierge-bell"></span> Concierge</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end mt-1">
+                                    <div class="btn enquiry text-uppercase mx-2">Enquiry</div>
+                                    <div class="btn btn-primary text-uppercase">Book Now</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="hotel py-2 px-2 pb-4 border-bottom">
-                        <div class="row">
-                            <div class="col-lg-3"><img
-                                    src="https://images.unsplash.com/photo-1596618502142-d2a9d0c1fc2e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTd8fHJlc29ydHN8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                    alt="" class="hotel-img"></div>
-                            <div class="col-lg-9">
-                                <div class="d-md-flex align-items-md-center">
-                                    <div class="name">Sunflower Hibiscus Inn <span class="city">Zuhu, Mumbai</span></div>
-                                    <div class="ms-auto code text-uppercase">ABD09eh8</div>
-                                </div>
-                                <div class="rating"><span class="fas fa-star"></span> <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span
-                                            class="far fa-star"></span> <!-- Book now Enquiry --> </div>
-                                <div class="d-flex flex-column tags pt-1">
-                                    <div><span class="fas fa-comment-dollar"></span> Fee Canellation</div>
-                                    <div><span class="fas fa-receipt"></span> Express check-in</div>
-                                    <div><span class="fas fa-concierge-bell"></span> Concierge</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end mt-1">
-                            <div class="btn enquiry text-uppercase mx-2">Enquiry</div>
-                            <div class="btn btn-primary text-uppercase">Book Now</div>
-                        </div>
-                    </div>
-                    <div class="hotel py-2 px-2 pb-4">
-                        <div class="row">
-                            <div class="col-lg-3"><img
-                                    src="https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NzV8fHJlc29ydHN8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                    alt="" class="hotel-img"></div>
-                            <div class="col-lg-9">
-                                <div class="d-md-flex align-items-md-center">
-                                    <div class="name">Atlantic Inn <span class="city">Mulund West, Mumbai</span></div>
-                                    <div class="ms-auto code text-uppercase">ABD09eh8</div>
-                                </div>
-                                <div class="rating"><span class="fas fa-star"></span> <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span
-                                            class="far fa-star"></span> <!-- Book now Enquiry --> </div>
-                                <div class="d-flex flex-column tags pt-1">
-                                    <div><span class="fas fa-comment-dollar"></span> Fee Canellation</div>
-                                    <div><span class="fas fa-receipt"></span> Express check-in</div>
-                                    <div><span class="fas fa-concierge-bell"></span> Concierge</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end mt-1">
-                            <div class="btn enquiry text-uppercase mx-2">Enquiry</div>
-                            <div class="btn btn-primary text-uppercase">Book Now</div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

@@ -178,8 +178,10 @@ var registerAnchor = document.getElementById('register-anchor');
 function checkIfUsernameExists(event) {
 	event.preventDefault();
 
-	const input = document.getElementById('register-username');
-	const username = input.value;
+	const inputUsername = document.getElementById('register-username');
+	const inputPassword = document.getElementById('register-password');
+	const username = inputUsername.value;
+	const password = inputPassword.value;
 
 	if (username !== '') {
 		// Make a request to the server to check if the username exists
@@ -194,12 +196,30 @@ function checkIfUsernameExists(event) {
 						text: 'Username already exists',
 					});
 				} else {
-					// Username does not exist
-					Swal.fire({
-						icon: 'success',
-						title: 'Success!',
-						text: 'Username is available',
-					});
+					// Username does not exist, send it to the API
+					fetch('/register', {
+						method: 'POST',
+						body: JSON.stringify({username: username, password: password}),
+						headers: {
+							'Content-Type': 'application/json',
+						},
+					})
+						.then(response => {
+							if (response.ok) {
+								// API request successful, reload the page
+								location.reload();
+							} else {
+								// Handle the error case
+								Swal.fire({
+									icon: 'error',
+									title: 'Oops...',
+									text: 'Error sending username to API',
+								});
+							}
+						})
+						.catch(error => {
+							console.error('Error sending username to API:', error);
+						});
 				}
 			})
 			.catch(error => {
@@ -207,5 +227,4 @@ function checkIfUsernameExists(event) {
 			});
 	}
 }
-
 
