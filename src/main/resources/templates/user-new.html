@@ -51,7 +51,7 @@
                             <li><a href="">Full Service</a></li>
                         </ul>
                     </li>
-
+                    <li><a href="#add-provider"><b>Add Service Provider</b></a></li>
                     <li class="d-md-none"><a href="/logout"
                                              th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
                         <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}"
@@ -73,64 +73,91 @@
         </div>
     </div>
 </header>
-<main>
-    <span class="photo-div" ></span>
-    <section id="login" class="login-section m-3" >
-        <div id="main-wrapper" class="container" style="margin-top: 150px">
-            <div class="row justify-content-center">
-                <div class="col-l-10">
-                    <div class="card border-0">
-                        <div class="card-body p-0">
-                            <div class="row no-gutters">
-                                <div id="login-form" class="col-lg-6">
-                                    <div class="p-5">
-                                        <div class="mb-2">
-                                            <h3 class="h4 font-weight-bold text-theme">Login</h3>
-                                        </div>
 
-                                        <h6 class="h5 mb-0">Welcome back!</h6>
-                                        <p class="text-muted mt-2 mb-3">Enter your email address and password leave a review!</p>
+<body>
 
-                                        <form action="/login" method="post">
-                                            <div class="form-group">
-                                                <label for="username">Email address</label>
-                                                <input name="username" class="form-control" id="username">
-                                                <label for="password">Password</label>
-                                                <input name="password" class="form-control" id="password">
-                                            </div>
-                                            <button type="submit" class="btn btn-theme" >Login</button>
+<div class="container">
+    <div id="content" style="margin-top: 125px; ">
+        <div style="margin-top: 100px">
+            <title style="margin-top: 100px">User Dashboard</title>
 
-                                        </form>
-                                        <div class="d-flex mt-3">
-                                            <a class="forgot-link float-left text-primary" onclick="createRegisterSection()">Register</a>
 
-                                        </div>
-                                    </div>
+            <div>
+                <div class="review-container bg-white border">
+
+                        <h1 class="pl-3" style="font-family: Italiana" th:text="'Welcome ' + ${user.username}"></h1>
+                        <h4 class="pl-3">Here you can edit your reviews, delete your account or <a style="color: #005cbf" href="#add-provider"> add a service
+                            provider. </a></h4>
+
+                    <h3 style="font-family: Italiana" class="m-3 ">Reviews</h3>
+                    <ul th:each="review, stat: ${reviews}" th:id="${stat.index}">
+                        <div class="form-container pb-3">
+                            <form id="reviewForm"
+                                  th:action="@{/review/edit/{serviceProviderId}(serviceProviderId=${review.serviceProvider.serviceProviderId})}"
+                                  method="post" class="service-provider-card m-3 p-3">
+                                <h4 th:text="'For: ' + ${review.serviceProvider.name}"></h4>
+                                <div class="form-group">
+                                    <label for="'title-' + ${stat.index}">Title:</label>
+                                    <input type="text" th:id="'title-' + ${stat.index}" name="title"
+                                           th:value="${review.title}" class="form-control">
                                 </div>
-                                <div class="col-lg-6 ">
-                                    <div class="account-block rounded-right" style="background-image: url('/images/julia-solonina.jpg');">
-                                        <div class=" rounded-right"></div>
-
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="'content-' + ${stat.index}">Review:</label>
+                                    <textarea rows="5" cols="25" th:id="'content-' + ${stat.index}" name="content"
+                                              class="form-control">[[${review.content}]]</textarea>
                                 </div>
-
-
-
-                            </div>
+                                <div class="form-group">
+                                    <label for="'rating-' + ${stat.index}">Rating: [[${review.rating}]]</label>
+                                    <select th:id="'rating-' + ${stat.index}" name="rating" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <input type="hidden" name="reviewId" th:value="${review.reviewId}">
+                                <input type="hidden" name="userId" th:value="${review.userId}">
+                                <button type="submit" class="btn btn-primary">Update Review</button>
+                            </form>
                         </div>
-                    </div>
+                    </ul>
+
+                </div>
+                <div class="bg-white pb-3 form-container">
+                    <h1 class="m-3 p-3" id="add-provider" style="font-family: Italiana">Add a Service Provider</h1>
+                    <form th:action="@{/service-provider}" method="post" class="service-provider-card m-3 p-3">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <input type="text" id="description" name="description" class="form-control" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Add Service Provider</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
 
 
+    </div>
 
+</div>
+</div>
+</div>
+<div>
 
+</div>
+</div>
+<script>
+    AOS.init();
+</script>
+</body>
 
-
-</main>
 <footer class="text-center text-white" style="background-color: #1e7e34">
     <!-- Grid container -->
     <div class="container">
@@ -185,7 +212,7 @@
         <hr class="my-5"/>
 
         <!-- Section: Text -->
-        <section class="mb-5">
+        <section class="mb-3">
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-8">
                     <p>
@@ -200,7 +227,7 @@
         <!-- Section: Text -->
 
         <!-- Section: Social -->
-        <section class="text-center mb-5">
+        <section class="text-center mb-3">
             <a href="" class="text-white me-4">
                 <i class="fab fa-facebook-f"></i>
             </a>
@@ -234,29 +261,12 @@
     </div>
 </footer>
 
-<script>
-
-    // Check if the URL contains the "?error" parameter
-    var urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('error')) {
-    // Display an error message to the user
-        var errorMessage = 'Invalid username or password.';
-        var alertDiv = document.querySelector('#alert')
-        alertDiv.innerHTML = '<p style="color: red">' + errorMessage + '</p>';
-    }
-
-
-
-
-
-
-</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
 <script src="/js/popper.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.sticky.js"></script>
 <script src="/js/main.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/directory.js"></script>
 
 </html>

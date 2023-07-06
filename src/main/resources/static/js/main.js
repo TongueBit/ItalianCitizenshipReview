@@ -90,6 +90,9 @@ function createRegisterSection() {
 	var registerSection = document.createElement('section');
 	registerSection.id = 'register';
 	registerSection.classList.add('register-section');
+	registerSection.style.height = '100%';
+	registerSection.style.paddingTop = '150px';
+
 
 	var registerDiv = document.createElement('div');
 	registerDiv.classList.add('container');

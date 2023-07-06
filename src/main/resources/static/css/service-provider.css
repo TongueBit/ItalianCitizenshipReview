@@ -20,8 +20,6 @@ b {
 
 .container {
     position: relative;
-    min-height: 800px;
-    overflow-y: auto
 }
 
 .container::-webkit-scrollbar {

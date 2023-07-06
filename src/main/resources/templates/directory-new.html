@@ -22,7 +22,7 @@
     <title>Italian Citizenship Reviews</title>
 </head>
 <!-- NAVBAR -->
-<header class="site-navbar" style="background-image: url('/images/col.jpg'); background-size: cover; height: fit-content">
+<header class="site-navbar m-3" >
     <div class="site-mobile-menu site-navbar-target">
         <div class="site-mobile-menu-header">
             <div class="site-mobile-menu-close" id="mobile-close">
@@ -32,7 +32,7 @@
         <div class="site-mobile-menu-body"></div>
     </div> <!-- .site-mobile-menu -->
 
-    <div class="container-fluid" >
+    <div class="container-fluid " >
         <div class="row align-items-center">
             <div class="site-logo col-3 pt-3 "><a id="title-anchor" href="/" style="color: #1e7e34">Italian Citizenship Reviews</a>
 
@@ -50,30 +50,34 @@
                             <li><a href="">Full Service</a></li>
                         </ul>
                     </li>
-                    <li><a href="/user/dashboard/"><b>User Dashboard</b></a></li>
+                    <li><a href="/user/dashboard/"><b>Blog</b></a></li>
                     <li class="d-md-none"><a href="/logout"
                                              th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
                         <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}"
                            href="/login"> Login</a></li>
                 </ul>
             </nav>
-            <div class="right-cta-menu text-right d-flex align-items-right col-2">
+            <div class="right-cta-menu text-right d-flex align-items-right col-3">
                 <div class="ml-auto">
-                    <a href="/logout"
-                       th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}"
-                       class="btn btn-primary border-width-2 d-none d-md-inline-block"><span
-                            class="mr-2 icon-lock_outline" style="align:right"></span><i class="fas fa-user-circle"></i>
+                    <a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block"><span
+                            class="mr-2 icon-lock_outline" style="align:right"></span>
                         Log Out</a>
+                    <a href="/user/dashboard/" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block"> <i  class="fas fa-user-circle"></i></a>
 
-                    <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}"
-                       class="btn btn-primary border-width-2 d-none d-md-inline-block" href="/login"><i
-                            class="fas fa-user-circle"></i> Login</a>
+                    <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block" href="/login"> Login</a>
                 </div>
                 <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block mt-lg-2 ml-3"><span
                         class="fa fa-bars h3 m-0 p-0 mt-2" id="hamburger"></span></a>
             </div>
         </div>
     </div>
+    <style>
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+    </style>
 </header>
 
 <body>
@@ -229,7 +233,7 @@
                                                                         <p class="rating" th:text="${review.rating}"><b></b></p>
                                                                         <p><span th:text="${review.content}"></span></p>
                                                                         <form th:action="@{'/review/' + ${review.reviewId}}" method="post">
-                                                                            <button th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" type="submit">Delete review</button>
+                                                                            <button th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" type="submit" class="btn btn-primary">Delete review</button>
                                                                         </form>
                                                                     </div>
                                                                 </li>
@@ -254,7 +258,7 @@
                                                                 <option value="4">4</option>
                                                                 <option value="5">5</option>
                                                             </select>
-                                                            <button type="submit" onclick="createReview(event)" th:data-index="${serviceProvider.serviceProviderId}" style="margin-top: 10px">Add Review</button>
+                                                            <button type="submit" onclick="createReview(event)" th:data-index="${serviceProvider.serviceProviderId}" style="margin-top: 10px" class="btn btn-primary">Add Review</button>
                                                         </form>
                                                         <br>
                                                     </div>
@@ -275,63 +279,15 @@
                                     <div class="btn btn-primary text-uppercase">Contact</div>
                                 </div>
                             </div>
-                            <div class="hotel py-2 px-2 pb-4 border-bottom">
-                                <div class="row">
-                                    <div class="col-lg-3"><img
-                                            src="https://images.unsplash.com/photo-1596618502142-d2a9d0c1fc2e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTd8fHJlc29ydHN8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                            alt="" class="hotel-img"></div>
-                                    <div class="col-lg-9">
-                                        <div class="d-md-flex align-items-md-center">
-                                            <div class="name">Sunflower Hibiscus Inn <span class="city">Zuhu, Mumbai</span></div>
-                                            <div class="ms-auto code text-uppercase">ABD09eh8</div>
-                                        </div>
-                                        <div class="rating"><span class="fas fa-star"></span> <span class="fas fa-star"></span>
-                                            <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span
-                                                    class="far fa-star"></span> <!-- Book now Enquiry --> </div>
-                                        <div class="d-flex flex-column tags pt-1">
-                                            <div><span class="fas fa-comment-dollar"></span> Fee Canellation</div>
-                                            <div><span class="fas fa-receipt"></span> Express check-in</div>
-                                            <div><span class="fas fa-concierge-bell"></span> Concierge</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end mt-1">
-                                    <div class="btn enquiry text-uppercase mx-2">Enquiry</div>
-                                    <div class="btn btn-primary text-uppercase">Book Now</div>
-                                </div>
-                            </div>
-                            <div class="hotel py-2 px-2 pb-4">
-                                <div class="row">
-                                    <div class="col-lg-3"><img
-                                            src="https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NzV8fHJlc29ydHN8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                            alt="" class="hotel-img"></div>
-                                    <div class="col-lg-9">
-                                        <div class="d-md-flex align-items-md-center">
-                                            <div class="name">Atlantic Inn <span class="city">Mulund West, Mumbai</span></div>
-                                            <div class="ms-auto code text-uppercase">ABD09eh8</div>
-                                        </div>
-                                        <div class="rating"><span class="fas fa-star"></span> <span class="fas fa-star"></span>
-                                            <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span
-                                                    class="far fa-star"></span> <!-- Book now Enquiry --> </div>
-                                        <div class="d-flex flex-column tags pt-1">
-                                            <div><span class="fas fa-comment-dollar"></span> Fee Canellation</div>
-                                            <div><span class="fas fa-receipt"></span> Express check-in</div>
-                                            <div><span class="fas fa-concierge-bell"></span> Concierge</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end mt-1">
-                                    <div class="btn enquiry text-uppercase mx-2">Enquiry</div>
-                                    <div class="btn btn-primary text-uppercase">Book Now</div>
-                                </div>
-                            </div>
+
                         </div>
-                    </div>
 
             </div>
+
         </div>
     </div>
-    <div >
+    </div>
+    <div>
 
     </div>
     </div>
@@ -339,6 +295,110 @@
     AOS.init();
 </script>
 </body>
+
+<footer class="text-center text-white" style="background-color: #1e7e34">
+    <!-- Grid container -->
+    <div class="container">
+        <!-- Section: Links -->
+        <section class="mt-5">
+            <!-- Grid row-->
+            <div class="row text-center d-flex justify-content-center pt-5">
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">About us</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Products</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Awards</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Help</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Contact</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row-->
+        </section>
+        <!-- Section: Links -->
+
+        <hr class="my-5"/>
+
+        <!-- Section: Text -->
+        <section class="mb-3">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+                        distinctio earum repellat quaerat voluptatibus placeat nam,
+                        commodi optio pariatur est quia magnam eum harum corrupti
+                        dicta, aliquam sequi voluptate quas.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Section: Text -->
+
+        <!-- Section: Social -->
+        <section class="text-center mb-3">
+            <a href="" class="text-white me-4">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-github"></i>
+            </a>
+        </section>
+        <!-- Section: Social -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div
+            class="text-center p-3"
+            style="background-color: rgba(0, 0, 0, 0.2)"
+    >
+        © 2023 Copyright:
+
+    </div>
+</footer>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>

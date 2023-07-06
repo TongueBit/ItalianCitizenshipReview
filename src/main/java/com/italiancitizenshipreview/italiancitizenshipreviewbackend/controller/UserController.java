@@ -31,7 +31,7 @@ public class UserController {
         model.addAttribute("reviews", reviews);
         model.addAttribute("user", user);
         model.addAttribute("request", request);
-        return "user";
+        return "user-new";
     }
 
     @PostMapping("/user/delete/{userId}")
