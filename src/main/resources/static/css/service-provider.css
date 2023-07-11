@@ -20,6 +20,8 @@ b {
 
 .container {
     position: relative;
+
+    padding-top: 50px;
 }
 
 .container::-webkit-scrollbar {
@@ -33,7 +35,7 @@ b {
 }
 
 .container.bg-sec-light {
-    background-color: #e7e7e7
+    background-color: #1e7e34;
 }
 
 #navbar-toggler-icon {
@@ -291,7 +293,7 @@ label {
     }
 }
 
-@media(max-width: 1399.5px) {
+@media(max-width: 2000px) {
     #navbar-toggler-icon {
         display: block;
         z-index: 11
@@ -300,7 +302,7 @@ label {
     #side-nav {
         float: none;
         width: 250px;
-        background-color: #161616f5;
+        background-color: #1e7e34;
         z-index: 10
     }
 

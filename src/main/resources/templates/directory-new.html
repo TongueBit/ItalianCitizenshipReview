@@ -94,11 +94,11 @@
 <body>
 
     <div class="container">
-        <div id="content" style="margin-top: 125px; ">
+        <div id="content" style="margin-top: 125px; background-color: #1e7e34 ">
 
             <div class="d-sm-flex">
                 <div class="me-sm-2 pr-2">
-                    <div id="filter" class="p-2 bg-light ms-md-4 ms-sm-2 border">
+                    <div id="filter" class="p-2 m-2 bg-light ms-md-4 ms-sm-2 border">
                         <div class="border-bottom h5 text-uppercase">Filter By</div>
                         <div class="box border-bottom">
                             <div class="box-label text-uppercase d-flex align-items-center">Price
@@ -194,7 +194,7 @@
                 </div>
 
 
-                        <div class="bg-white p-2 border" id="hotels">
+                        <div class="bg-white p-2 m-2 border" id="hotels" style="background-color: #1e7e34">
 
                             <div class="service-provider py-2 px-2 pb-4 border-bottom" th:each="serviceProvider, stat : ${serviceProviders}" th:id="${stat.index}">
                                 <div class="row">
@@ -243,6 +243,7 @@
                                                                         <input type="hidden" name="userId" th:value="${review.userId}" />
                                                                         <h6><b><span th:text="${review.title}"></span></b></h6>
                                                                         <p class="rating" th:text="${review.rating}"><b></b></p>
+                                                                        <p th:text="${review.date}"></p>
                                                                         <p><span th:text="${review.content}"></span></p>
                                                                         <form th:action="@{'/review/' + ${review.reviewId}}" method="post">
                                                                             <button th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" type="submit" class="btn btn-primary">Delete review</button>

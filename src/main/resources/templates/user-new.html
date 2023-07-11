@@ -108,6 +108,7 @@
                                   th:action="@{/review/edit/{serviceProviderId}(serviceProviderId=${review.serviceProvider.serviceProviderId})}"
                                   method="post" class="service-provider-card m-3 p-3">
                                 <h4 th:text="'For: ' + ${review.serviceProvider.name}"></h4>
+                                <p th:text="${review.date}"></p>
                                 <div class="form-group">
                                     <label for="'title-' + ${stat.index}">Title:</label>
                                     <input type="text" th:id="'title-' + ${stat.index}" name="title"

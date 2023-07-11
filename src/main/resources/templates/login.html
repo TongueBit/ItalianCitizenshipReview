@@ -111,6 +111,9 @@
                                             <button type="submit" class="btn btn-theme" >Login</button>
 
                                         </form>
+                                        <div class="mt-1">
+                                            <p id="alert"></p>
+                                        </div>
                                         <div class="d-flex mt-3">
                                             <a class="forgot-link float-left text-primary" onclick="createRegisterSection()">Register</a>
 
@@ -254,12 +257,6 @@
         var alertDiv = document.querySelector('#alert')
         alertDiv.innerHTML = '<p style="color: red">' + errorMessage + '</p>';
     }
-
-
-
-
-
-
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
