@@ -1,23 +1,13 @@
 package com.italiancitizenshipreview.italiancitizenshipreviewbackend.service;
 
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.Review;
-import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.SecurityUser;
-import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.User;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.repository.ReviewRepository;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletRequestWrapper;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ReviewService {
@@ -57,5 +47,15 @@ public class ReviewService {
     }
     public void updateReview(Review review) {
         reviewRepository.save(review);
+    }
+
+    public List<Review> findAllByApproved(boolean approved) {
+        return reviewRepository.findAllByApproved(approved);
+    }
+
+    public void setApprovedByReviewId(Long reviewId) {
+       Review review = reviewRepository.findByReviewId(reviewId);
+       review.setApproved();
+       reviewRepository.save(review);
     }
 }

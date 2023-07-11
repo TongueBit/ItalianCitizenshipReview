@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Italiana:400,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/owl.carousel.min.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Style -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/service-provider.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+  <title>Italian Citizenship Reviews</title>
+</head>
+<!-- NAVBAR -->
+<header class="site-navbar m-3" >
+  <div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close" id="mobile-close">
+        <span class="fa fa-arrow-right js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div> <!-- .site-mobile-menu -->
+
+  <div class="container-fluid " >
+    <div class="row align-items-center">
+      <div class="site-logo col-3 pt-3 "><a id="title-anchor" href="/" style="color: #1e7e34">Italian Citizenship Reviews</a>
+
+      </div>
+      <nav class="site-navigation flex-md-row" >
+        <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0" >
+          <li ><a class="" href="about.html"><b>About</b></a></li>
+          <li class="has-children">
+            <a href="/service-provider/all"><b > Services </b> </a>
+            <ul class="dropdown" >
+              <li><a href="">Translation Service</a></li>
+              <li><a href="">Application Assistance</a></li>
+              <li><a href="">Genealogical Research</a></li>
+              <li><a href="">Legal Guidance</a></li>
+              <li><a href="">Full Service</a></li>
+            </ul>
+          </li>
+          <li><a href="/user/dashboard/"><b>Blog</b></a></li>
+          <li class="d-md-none"><a href="/logout"
+                                   th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
+            <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}"
+               href="/login"> Login</a></li>
+        </ul>
+      </nav>
+      <div class="right-cta-menu text-right d-flex align-items-right col-3">
+        <div class="ml-auto">
+          <a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block">
+            <span class="mr-2 icon-lock_outline" style="align:right"></span>
+            Log Out
+          </a>
+          <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" href="/user/dashboard/admin/" class="btn btn-primary border-width-2 d-none d-md-inline-block">
+            <i class="fas fa-user-circle"></i>
+          </a>
+          <a th:if="${#vars.request.isUserInRole('ROLE_USER')}" href="/user/dashboard/" class="btn btn-primary border-width-2 d-none d-md-inline-block">
+            <i class="fas fa-user-circle"></i>
+          </a>
+
+
+          <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block" href="/login">
+            Login
+          </a>
+        </div>
+
+        <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block mt-lg-2 ml-3"><span
+                class="fa fa-bars h3 m-0 p-0 mt-2" id="hamburger"></span></a>
+      </div>
+    </div>
+  </div>
+  <style>
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+  </style>
+</header>
+<body>
+<div class="bg-white p-2 border" id="hotels">
+
+  <!-- Service Providers -->
+  <div class="service-provider py-2 px-2 pb-4 border-bottom" style="margin-top: 100px;">
+    <h1>Service Providers</h1>
+    <ul style="list-style: none" id="serviceProviderList">
+      <li th:each="serviceProvider, stat : ${serviceProviders}" th:id="${stat.index}">
+        <div class="m-2 p-4" style="border-style: solid; border-radius: 5px;">
+          <input type="hidden" th:id="'serviceProvider-' + ${stat.index}" th:value="${serviceProvider.serviceProviderId}" />
+
+            <h3><a th:href="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}" th:text="${serviceProvider.name}"></a></h3>
+            <h4 class="rating" th:text="${serviceProvider.avgRating}"></h4>
+            <p th:text="${serviceProvider.description}"></p>
+          <form th:action="@{/approve/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}" method="post" class="mt-3">
+            <button  class="btn btn-primary" method="post"> Approve</button>
+          </form>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Reviews -->
+  <div class="service-provider py-2 px-2 pb-4 border-bottom">
+    <h1>Reviews</h1>
+    <ul style="list-style: none" id="reviewList">
+      <li th:each="review : ${reviews}">
+        <div class="m-2 p-4" style="border-style: solid; border-radius: 5px;">
+          <input type="hidden" name="userId" th:value="${review.userId}" />
+          <h6><b><span th:text="${review.title}"></span></b></h6>
+          <p class="rating" th:text="${review.rating}"><b></b></p>
+          <p><span th:text="${review.content}"></span></p>
+            <form th:action="@{'/review/' + ${review.reviewId}}" method="post">
+              <button th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" type="submit" class="btn btn-primary">Delete review</button>
+              <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" th:href="@{/user/dashboard/{userId}(userId=${review.userId})}" class="btn btn-primary">Go to User</a>
+            </form>
+            <form th:action="@{/review/approve/{reviewId}(reviewId=${review.reviewId})}" method="post" class="mt-3">
+              <button  class="btn btn-primary" method="post"> Approve</button>
+            </form>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+
+</body>
+</html>

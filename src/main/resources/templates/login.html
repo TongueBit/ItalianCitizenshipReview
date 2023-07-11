@@ -60,13 +60,23 @@
             </nav>
             <div class="right-cta-menu text-right d-flex align-items-right col-3">
                 <div class="ml-auto">
-                    <a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block"><span
-                            class="mr-2 icon-lock_outline" style="align:right"></span>
-                        Log Out</a>
-                    <a href="/user/dashboard/" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block"> <i  class="fas fa-user-circle"></i></a>
+                    <a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block">
+                        <span class="mr-2 icon-lock_outline" style="align:right"></span>
+                        Log Out
+                    </a>
+                    <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" href="/user/dashboard/admin/" class="btn btn-primary border-width-2 d-none d-md-inline-block">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+                    <a th:if="${#vars.request.isUserInRole('ROLE_USER')}" href="/user/dashboard/" class="btn btn-primary border-width-2 d-none d-md-inline-block">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
 
-                    <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block" href="/login"> Login</a>
+
+                    <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block" href="/login">
+                        Login
+                    </a>
                 </div>
+
                 <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block mt-lg-2 ml-3"><span
                         class="fa fa-bars h3 m-0 p-0 mt-2" id="hamburger"></span></a>
             </div>

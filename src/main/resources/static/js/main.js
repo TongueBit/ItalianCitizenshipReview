@@ -208,17 +208,8 @@ function checkIfUsernameExists(event) {
 						},
 					})
 						.then(response => {
-							if (response.ok) {
-								// API request successful, reload the page
-								location.reload();
-							} else {
-								// Handle the error case
-								Swal.fire({
-									icon: 'error',
-									title: 'Oops...',
-									text: 'Error sending username to API',
-								});
-							}
+							location.reload();
+
 						})
 						.catch(error => {
 							console.error('Error sending username to API:', error);
