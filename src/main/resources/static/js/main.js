@@ -148,7 +148,7 @@ function createRegisterSection() {
 	var registerPasswordInput = document.createElement('input');
 	registerPasswordInput.name = 'password';
 	registerPasswordInput.classList.add('form-control');
-	registerPasswordInput.id = 'register-password';
+	registerPasswordInput.id = 'password';
 	registerPasswordInput.type = 'password';
 
 	var showPasswordCheckbox = document.createElement('input');
@@ -307,10 +307,10 @@ function checkIfUsernameExists(event) {
 }
 
 function showPassword() {
-	var x = document.getElementById("register-password");
+	var x = document.getElementById("password");
 	if (x.type === "password") {
 		x.type = "text";
-	} else {
+	}	 else {
 		x.type = "password";
 	}
 }
