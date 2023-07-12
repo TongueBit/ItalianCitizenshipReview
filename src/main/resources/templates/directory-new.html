@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Italiana:400,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- Style -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/service-provider.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+    <title>Italian Citizenship Reviews</title>
+</head>
+
+<!-- NAVBAR -->
+<header class="site-navbar m-3" >
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close" id="mobile-close">
+                <span class="fa fa-arrow-right js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div> <!-- .site-mobile-menu -->
+
+    <div class="container-fluid " >
+        <div class="row align-items-center">
+            <div class="site-logo col-3 pt-3 "><a id="title-anchor" href="/" style="color: #1e7e34">Italian Citizenship Reviews</a>
+
+            </div>
+            <nav class="site-navigation flex-md-row" >
+                <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0" >
+                    <li ><a class="" href="about.html"><b>About</b></a></li>
+                    <li class="has-children">
+                        <a href="/service-provider/all"><b > Services </b> </a>
+                        <ul class="dropdown" >
+                            <li><a href="">Translation Service</a></li>
+                            <li><a href="">Application Assistance</a></li>
+                            <li><a href="">Genealogical Research</a></li>
+                            <li><a href="">Legal Guidance</a></li>
+                            <li><a href="">Full Service</a></li>
+                        </ul>
+                    </li>
+                    <li><a th href="/user/dashboard/"><b>Blog</b></a></li>
+                    <li class="d-md-none"><a href="/logout"
+                                             th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
+                        <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}"
+                           href="/login"> Login</a></li>
+                </ul>
+            </nav>
+            <div class="right-cta-menu text-right d-flex align-items-right col-3">
+                <div class="ml-auto">
+                    <a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block">
+                        <span class="mr-2 icon-lock_outline" style="align:right"></span>
+                        Log Out
+                    </a>
+                    <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" href="/user/dashboard/admin/" class="btn btn-primary border-width-2 d-none d-md-inline-block">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+                    <a th:if="${#vars.request.isUserInRole('ROLE_USER')}" href="/user/dashboard/" class="btn btn-primary border-width-2 d-none d-md-inline-block">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+
+
+                    <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block" href="/login">
+                        Login
+                    </a>
+                </div>
+
+                <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block mt-lg-2 ml-3"><span
+                        class="fa fa-bars h3 m-0 p-0 mt-2" id="hamburger"></span></a>
+            </div>
+        </div>
+    </div>
+    <style>
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+    </style>
+</header>
+
+<body>
+
+    <div class="container">
+        <div id="content" style="margin-top: 125px; background-color: #1e7e34 ">
+
+            <div class="d-sm-flex">
+                <div class="me-sm-2 pr-2">
+                    <div id="filter" class="p-2 m-2 bg-light ms-md-4 ms-sm-2 border">
+                        <div class="border-bottom h5 text-uppercase">Filter By</div>
+                        <div class="box border-bottom">
+                            <div class="box-label text-uppercase d-flex align-items-center">Price
+                                <button class="btn ms-auto" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#inner-box" aria-expanded="false" aria-controls="inner-box"><span
+                                        class="fas fa-plus"></span></button>
+                            </div>
+                            <div id="inner-box" class="collapse show">
+                                <div class="my-1"><label class="tick">Less than 2000 <input type="checkbox"
+                                                                                            checked="checked"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">2000 - 3000 <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">3000 - 4500 <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">4500 - 6000 <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">6000 - 8000 <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">8000 -10,000 <input type="checkbox" checked> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">10,000 and Above <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                            </div>
+                        </div>
+                        <div class="box border-bottom">
+                            <div class="box-label text-uppercase d-flex align-items-center">Property Type
+                                <button class="btn ms-auto" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#property" aria-expanded="false" aria-controls="property"><span
+                                        class="fas fa-plus"></span></button>
+                            </div>
+                            <div id="property" class="collapse">
+                                <div class="my-1"><label class="tick">Hotels <input type="checkbox" checked="checked"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Apartments <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Guest houses <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Resorts <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Villas <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Lodges <input type="checkbox" checked> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Holiday Homes <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                            </div>
+                        </div>
+                        <div class="box border-bottom">
+                            <div class="box-label text-uppercase d-flex align-items-center">Amenities
+                                <button class="btn ms-auto" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#amenities" aria-expanded="false" aria-controls="amenities"><span
+                                        class="fas fa-plus"></span></button>
+                            </div>
+                            <div id="amenities" class="collapse show">
+                                <div class="my-1"><label class="tick">Parking <input type="checkbox" checked="checked">
+                                    <span class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Pets Allowed <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Room Service <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Family Rooms <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Free Wifi <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Non-smoking Rooms <input type="checkbox" checked>
+                                    <span class="check"></span> </label></div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="box-label text-uppercase d-flex align-items-center">Room Facilities
+                                <button class="btn ms-auto" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#room-facilities" aria-expanded="false"
+                                        aria-controls="room-facilities"><span class="fas fa-plus"></span></button>
+                            </div>
+                            <div id="room-facilities" class="collapse">
+                                <div class="my-1"><label class="tick">Air Condentioning <input type="checkbox"
+                                                                                               checked="checked"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Desk <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Balcony <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Flat Screen TV <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Coffe/Tea Maker <input type="checkbox"> <span
+                                        class="check"></span> </label></div>
+                                <div class="my-1"><label class="tick">Washing Machine <input type="checkbox" checked> <span
+                                        class="check"></span> </label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                        <div class="bg-white p-2 m-2 border" id="hotels" style="background-color: #1e7e34">
+
+                            <div class="service-provider py-2 px-2 pb-4 border-bottom" th:each="serviceProvider, stat : ${serviceProviders}" th:id="${stat.index}">
+                                <div class="row">
+                                    <input type="hidden" th:id="'serviceProvider-' + ${stat.index}" th:value="${serviceProvider.serviceProviderId}" />
+                                    <div class="col-lg-3">
+                                        <img src="https://italymondo-wagtail.s3.amazonaws.com/media/documents/italymondo-blue-logo.svg" alt="" class="hotel-img">
+                                    </div>
+                                    <div class="col-lg-9">
+
+                                        <div class="d-md-flex align-items-md-center">
+                                            <div class="name">
+                                                <h3><a th:href="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}" th:text="${serviceProvider.name}"></a></h3>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <h4 class="rating" th:text="${serviceProvider.avgRating}"></h4>
+                                            </div>
+                                            <p th:text="${serviceProvider.description}"></p>
+
+                                        </div>
+
+
+                                        <div class="d-flex flex-column tags pt-1">
+
+
+                                        </div>
+
+                                        <div>
+                                            <div class="service-provider-card">
+                                                <div class="card-header d-flex align-items-center">
+                                                    <div class="align-content-end">
+                                                        <h5 class="card-title">Lastest reviews</h5>
+                                                    </div>
+                                                    <button class="btn btn-link caret-button" type="button" data-toggle="collapse" th:data-target="'#reviewsCollapse-' + ${serviceProvider.serviceProviderId}" aria-expanded="false" th:aria-controls="'reviewsCollapse-' + ${serviceProvider.serviceProviderId}">
+                                                        <i class="fa fa-caret-down "></i>
+                                                    </button>
+
+                                                </div>
+                                                <div th:id="'reviewsCollapse-' + ${serviceProvider.serviceProviderId}" class="collapse">
+                                                    <div class="p-4 service-provider-card">
+                                                        <div th:if="${serviceProvider.reviews.size() != 0}" >
+                                                            <ul style="list-style: none" id="reviewList">
+                                                                <li th:each="review : ${serviceProvider.reviews}">
+                                                                    <div class="m-2 p-4" style="border-style: solid; border-radius: 5px;">
+                                                                        <input type="hidden" name="userId" th:value="${review.userId}" />
+                                                                        <h6><b><span th:text="${review.title}"></span></b></h6>
+                                                                        <p class="rating" th:text="${review.rating}"><b></b></p>
+                                                                        <p th:text="${review.date}"></p>
+                                                                        <p><span th:text="${review.content}"></span></p>
+                                                                        <form th:action="@{'/review/' + ${review.reviewId}}" method="post">
+                                                                            <button th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" type="submit" class="btn btn-primary">Delete review</button>
+                                                                            <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" th:href="@{/user/dashboard/{userId}(userId=${review.userId})}" class="btn btn-primary">Go to User</a>
+
+                                                                        </form>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div th:unless="${serviceProvider.reviews.size() > 0}">
+                                                            <p><b><em>No reviews available.</em></b></p>
+                                                        </div>
+                                                    </div>
+                                                    <div th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="bg-light p-2">
+                                                        <form id="reviewForm">
+                                                            <br>
+                                                            <label>Title:</label>
+                                                            <input type="text" th:id="'title-' + ${serviceProvider.serviceProviderId}" name="title" value="Give a brief title of your experience"><br>
+                                                            <label>Review</label>
+                                                            <textarea th:id="'content-' + ${serviceProvider.serviceProviderId}" name="content"></textarea><br>
+                                                            <label>Rating:</label>
+                                                            <select th:id="'rating-' + ${serviceProvider.serviceProviderId}" name="rating">
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                            </select>
+                                                            <button type="submit" onclick="createReview(event)" th:data-index="${serviceProvider.serviceProviderId}" style="margin-top: 10px" class="btn btn-primary">Add Review</button>
+                                                        </form>
+                                                        <br>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="pt-2">
+
+                                                <div th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">
+                                                    <b><a href="/login">Login</a> to leave a review!</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end mt-1">
+                                    <div class="btn btn-primary text-uppercase">Contact</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <div>
+
+    </div>
+    </div>
+<script>
+    AOS.init();
+</script>
+</body>
+
+<footer class="text-center text-white" style="background-color: #1e7e34">
+    <!-- Grid container -->
+    <div class="container">
+        <!-- Section: Links -->
+        <section class="mt-5">
+            <!-- Grid row-->
+            <div class="row text-center d-flex justify-content-center pt-5">
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">About us</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Products</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Awards</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Help</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Contact</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row-->
+        </section>
+        <!-- Section: Links -->
+
+        <hr class="my-5"/>
+
+        <!-- Section: Text -->
+        <section class="mb-3">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+                        distinctio earum repellat quaerat voluptatibus placeat nam,
+                        commodi optio pariatur est quia magnam eum harum corrupti
+                        dicta, aliquam sequi voluptate quas.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Section: Text -->
+
+        <!-- Section: Social -->
+        <section class="text-center mb-3">
+            <a href="" class="text-white me-4">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-github"></i>
+            </a>
+        </section>
+        <!-- Section: Social -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div
+            class="text-center p-3"
+            style="background-color: rgba(0, 0, 0, 0.2)"
+    >
+        © 2023 Copyright:
+
+    </div>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.sticky.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/directory.js"></script>
+</html>

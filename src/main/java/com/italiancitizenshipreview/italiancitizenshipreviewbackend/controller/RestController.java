@@ -10,9 +10,11 @@ import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.User
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @org.springframework.web.bind.annotation.RestController
@@ -39,6 +41,7 @@ public class RestController {
         review.setContent(reviewRequest.getContent());
         review.setRating(reviewRequest.getRating());
         review.setUserId(reviewRequest.getUserId());
+        review.setDate(new Date());
 
         // Save the review using the reviewService
         Review createdReview = reviewService.createReview(review);
@@ -61,6 +64,8 @@ public class RestController {
         }
         return serviceProviderRequests;
     }
+
+
 
 }
 

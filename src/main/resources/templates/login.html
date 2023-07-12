@@ -1,147 +1,253 @@
-<!DOCTYPE html>
-<html>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title >Italian Citizenship Reviews</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Italiana:400,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- Style -->
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/service-provider.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+    <title>Italian Citizenship Reviews</title>
 </head>
-<body>
-<!-- Sidebar (hidden by default) -->
-<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-large w3-animate-left" style="display: none; z-index: 2; width: 40%; min-width: 300px" id="mySidebar">
-    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
-    <a href="/user/dashboard/" onclick="w3_close()" class="w3-bar-item w3-button">User Dashboard</a>
-    <a href="/service-provider/all" onclick="w3_close()" class="w3-bar-item w3-button">All Service Providers</a>
-    <a href="/" onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
-
-</nav>
-
-
-<div class="w3-top" style="background-color: #008C45">
-    <div class="w3-xlarge" style="max-width:1200px;margin:auto;">
-        <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()" id="mobileMenuIcon">☰</div>
-        <style>
-            @media (min-width: 500px) {
-                #mobileMenuIcon {
-                    display: none;
-                }
-            }
-            @media (max-width: 500px) {
-                #go-home {
-                    display: none;
-                }
-                #menu {
-                    display: none;
-                }
-            }
-        </style>
-        <div id="menu" class="w3-bar-item w3-button w3-right" style="font-size: medium;background-color: #008C45">
-            <a href="/user/dashboard/" >Dashboard</a>
-            <a href="/service-provider/all">All providers</a>
-            <a href="/login"> Login</a>
+<!-- NAVBAR -->
+<header class="site-navbar m-3">
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close" id="mobile-close">
+                <span class="fa fa-arrow-right js-menu-toggle"></span>
+            </div>
         </div>
-        <div class="w3-bar-item w3-button w3-center" id="go-home"><a href="/">Italian Citizenship Review</a></div>
+        <div class="site-mobile-menu-body"></div>
+    </div> <!-- .site-mobile-menu -->
+
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="site-logo col-3 pt-3 "><a id="title-anchor" href="/" style="color: #1e7e34">Italian Citizenship
+                Reviews</a>
+
+            </div>
+            <nav class="site-navigation flex-md-row">
+                <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+                    <li><a class="" href="about.html"><b>About</b></a></li>
+                    <li class="has-children">
+                        <a href="/service-provider/all"><b> Services </b> </a>
+                        <ul class="dropdown" style="color: white">
+                            <li><a href="">Translation Service</a></li>
+                            <li><a href="">Application Assistance</a></li>
+                            <li><a href="">Genealogical Research</a></li>
+                            <li><a href="">Legal Guidance</a></li>
+                            <li><a href="">Full Service</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="d-md-none"><a href="/logout"
+                                             th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
+                        <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}"
+                           href="/login"> Login</a></li>
+                </ul>
+            </nav>
+            <div class="right-cta-menu text-right d-flex align-items-right col-3">
+                <div class="ml-auto">
+                    <a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block">
+                        <span class="mr-2 icon-lock_outline" style="align:right"></span>
+                        Log Out
+                    </a>
+                    <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" href="/user/dashboard/admin/" class="btn btn-primary border-width-2 d-none d-md-inline-block">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+                    <a th:if="${#vars.request.isUserInRole('ROLE_USER')}" href="/user/dashboard/" class="btn btn-primary border-width-2 d-none d-md-inline-block">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+
+
+                    <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block" href="/login">
+                        Login
+                    </a>
+                </div>
+
+                <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block mt-lg-2 ml-3"><span
+                        class="fa fa-bars h3 m-0 p-0 mt-2" id="hamburger"></span></a>
+            </div>
+        </div>
     </div>
-</div>
-<div id="login-form">
-    <h4>Log in or register to leave reviews and join our community of Italian citizenship enthusiasts.</h4>
-    <div class="form-container">
-        <h2>Login</h2>
-            <span id="alert"></span>
-            <form action="/login" method="post">
-                <div>
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required><br><br>
-                </div>
+</header>
+<main>
+    <span class="photo-div" ></span>
+    <section id="login" class="login-section m-3" >
+        <div id="main-wrapper" class="container" style="margin-top: 150px">
+            <div class="row justify-content-center">
+                <div class="col-l-10">
+                    <div class="card border-0">
+                        <div class="card-body p-0">
+                            <div class="row no-gutters">
+                                <div id="login-form" class="col-lg-6">
+                                    <div class="p-5">
+                                        <div class="mb-2">
+                                            <h3 class="h4 font-weight-bold text-theme">Login</h3>
+                                        </div>
 
-                <div>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required><br><br>
+                                        <h6 class="h5 mb-0">Welcome back!</h6>
+                                        <p class="text-muted mt-2 mb-3">Enter your email address and password leave a review!</p>
+
+                                        <form action="/login" method="post">
+                                            <div class="form-group">
+                                                <label for="username">Email address</label>
+                                                <input name="username" class="form-control" id="username">
+                                                <label for="password">Password</label>
+                                                <input name="password" class="form-control" id="password">
+                                            </div>
+                                            <button type="submit" class="btn btn-theme" >Login</button>
+
+                                        </form>
+                                        <div class="mt-1">
+                                            <p id="alert"></p>
+                                        </div>
+                                        <div class="d-flex mt-3">
+                                            <a class="forgot-link float-left text-primary" onclick="createRegisterSection()">Register</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 ">
+                                    <div class="account-block rounded-right" style="background-image: url('/images/julia-solonina.jpg');">
+                                        <div class=" rounded-right"></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="button-group">
-                    <button type="submit">Login</button>
-                    <button action="/logout" style="margin-left: 10px;" >Logout </button>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+</main>
+<footer class="text-center text-white" style="background-color: #1e7e34">
+    <!-- Grid container -->
+    <div class="container">
+        <!-- Section: Links -->
+        <section class="mt-5">
+            <!-- Grid row-->
+            <div class="row text-center d-flex justify-content-center pt-5">
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">About us</a>
+                    </h6>
                 </div>
-            </form>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Products</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Awards</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Help</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Contact</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row-->
+        </section>
+        <!-- Section: Links -->
+
+        <hr class="my-5"/>
+
+        <!-- Section: Text -->
+        <section class="mb-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+                        distinctio earum repellat quaerat voluptatibus placeat nam,
+                        commodi optio pariatur est quia magnam eum harum corrupti
+                        dicta, aliquam sequi voluptate quas.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Section: Text -->
+
+        <!-- Section: Social -->
+        <section class="text-center mb-5">
+            <a href="" class="text-white me-4">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-github"></i>
+            </a>
+        </section>
+        <!-- Section: Social -->
     </div>
-    <br>
-    <div class="form-container">
-        <h2>Register</h2>
-            <form th:action="@{/register}" method="post">
-                <div>
-                    <label for="username">Username:</label>
-                    <input type="text" id="register-username" name="username" required/><br><br>
-                </div>
+    <!-- Grid container -->
 
-                <div>
-                    <label for="password">Password:</label>
-                    <input type="password" id="register-password" name="password" required/><br><br>
-                </div>
-                <div class="radio-group">
-                    <label>Role:</label>
-                    <label for="user">
-                        <input type="radio" id="user" name="role" value="ROLE_USER" checked>
-                        User
-                    </label>
-                    <label for="admin">
-                        <input type="radio" id="admin" name="role" value="ROLE_ADMIN">
-                        Admin
-                    </label>
+    <!-- Copyright -->
+    <div
+            class="text-center p-3"
+            style="background-color: rgba(0, 0, 0, 0.2)"
+    >
+        © 2023 Copyright:
 
-                </div>
-                <button type="submit">Register</button>
-            </form>
-    </div>
-</div>
-<!-- Footer -->
-<footer class="w3-row-padding w3-padding-32">
-    <div class="w3-third">
-        <h3>FOOTER</h3>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-    </div>
-
-    <div class="w3-third">
-        <h3>BLOG POSTS</h3>
-        <ul class="w3-ul w3-hoverable">
-            <li class="w3-padding-16">
-
-                <span class="w3-large">Lorem</span><br>
-                <span>Sed mattis nunc</span>
-            </li>
-            <li class="w3-padding-16">
-                <span class="w3-large">Ipsum</span><br>
-                <span>Praes tinci sed</span>
-            </li>
-        </ul>
-    </div>
-
-    <div class="w3-third w3-serif">
-        <h3>POPULAR TAGS</h3>
-        <p>
-            <span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dinner</span>
-            <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Salmon</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">France</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Drinks</span>
-            <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Flavors</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Cuisine</span>
-            <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Chicken</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dressing</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fried</span>
-            <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fish</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Duck</span>
-        </p>
     </div>
 </footer>
+
 <script>
-    // Script to open and close sidebar
-    function w3_open() {
-        document.getElementById("mySidebar").style.display = "block";
-    }
-
-    function w3_close() {
-        document.getElementById("mySidebar").style.display = "none";
-    }
-
 
     // Check if the URL contains the "?error" parameter
     var urlParams = new URLSearchParams(window.location.search);
@@ -151,30 +257,13 @@
         var alertDiv = document.querySelector('#alert')
         alertDiv.innerHTML = '<p style="color: red">' + errorMessage + '</p>';
     }
-
-        const element = document.getElementById('register-password');
-        const input = document.getElementById('register-username');
-        element.addEventListener('click', function() {
-        const username = input.value;
-
-        if(input.value != '') {
-        // Make a request to the server to check if the username exists
-        fetch('rest/user/exists/' + username)
-        .then(response => response.json())
-        .then(data => {
-        if (data) {
-        // Username exists
-        alert('Username already exists');
-    } else {
-        // Username does not exist
-        console.log('Username is available');
-    }
-    })
-        .catch(error => {
-        console.error('Error checking username:', error);
-    });
-    }
-    });
 </script>
-</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.sticky.js"></script>
+<script src="/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </html>

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style3.css">
 </head>
 <body>
 <!-- Sidebar (hidden by default) -->
@@ -47,45 +47,6 @@
         <div class="w3-bar-item w3-button w3-center" id="go-home"><a href="/">Italian Citizenship Review</a></div>
     </div>
 </div>
-    <div style="margin-top: 100px">
-        <title style="margin-top: 100px">User Dashboard</title>
-        <h2 th:text="'Welcome ' + ${user.username}"> </h2>
-        <h3>Welcome to the user dashboard. Here you can edit your reviews, delete your account or add a service provider. </h3>
-        <div>
-            <div style="border-style: solid">
-                <h4>Your reviews</h4>
-                <ul th:each="review, stat: ${reviews}" th:id="${stat.index}">
-                    <div id = "form-container">
-                        <form id="reviewForm" th:action="@{/review/edit/{serviceProviderId}(serviceProviderId=${review.serviceProvider.serviceProviderId})}" method="post">
-                            <div style="min-width:300px">
-                            <h4 th:text="'For: ' + ${review.serviceProvider.name}"></h4>
-                            <label>Title:</label>
-                            <input type="text" th:id="'title-' + ${stat.index}" name="title" th:value="${review.title}"><br>
-                            </div>
-                            <div>
-                            <label >Review: </label>
-                            <textarea rows="5" cols="25" th:id="'content-' + ${stat.index}" name="content" >[[${review.content}]]</textarea><br>
-                            </div>
-                            <div>
-                            <label>Rating: [[${review.rating}]]</label>
-                            <select th:id="'rating-' + ${stat.index}" name="rating">
-                                <option value="1">1</option>å
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select><br>
-                            </div>
-                            <input type="hidden" name="reviewId" th:value="${review.reviewId}">
-                            <input type="hidden" name="userId" th:value="${review.userId}">
-                            <button type="submit" style="text-align: end">Update Review</button>
-                        </form>
-                    </div>
-                </ul>
-            </div>
-
-        </div>
-    </div>
     <div th:if="${serviceProvider == null}">
         <h4>Add a Service Provider</h4>
         <form th:action="@{/service-provider}" method="post">

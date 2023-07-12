@@ -2,6 +2,7 @@ package com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
 
 import java.util.Date;
 import java.util.Objects;
@@ -20,12 +21,23 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "serviceProviderId")
     private ServiceProvider serviceProvider;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     private int rating;
+
+    @Column(name = "approved")
+    private boolean approved;
 
     public Review() {
     }
 
+    public boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved() {
+        approved = true;
+    }
     public String getTitle() {
         return title;
     }
@@ -59,7 +71,7 @@ public class Review {
     }
 
     public Date getDate() {
-        return new Date();
+        return date;
     }
 
     public void setDate(Date date) {

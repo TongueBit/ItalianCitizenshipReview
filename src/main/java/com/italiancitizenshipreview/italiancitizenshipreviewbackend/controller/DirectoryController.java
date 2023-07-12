@@ -4,10 +4,6 @@ import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.Servi
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ServiceProviderService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +25,6 @@ public class DirectoryController {
         model.addAttribute("serviceProviders", serviceProviders);
         model.addAttribute("request", request);
 
-        return "directory";
+        return "directory-new";
     }
 }

@@ -24,12 +24,12 @@ public class LandingPageController {
 
     @GetMapping("/")
     public String landingPageRedirect() {
-        return "redirect:/landing-page";
+        return "redirect:/index";
     }
-    @GetMapping("/landing-page")
+    @GetMapping("/index")
     public String homePage(Model model, HttpServletRequest request) {
         model.addAttribute("request", request);
-        return "landing-page";
+        return "index";
     }
 
 

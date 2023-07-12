@@ -37,4 +37,13 @@ public class ReviewController {
         return "redirect:/user/dashboard/";
     }
 
+
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PostMapping("/approve/{reviewId}")
+    public String approveReview(@PathVariable Long reviewId) {
+        reviewService.setApprovedByReviewId(reviewId);
+
+        return "redirect:/user/dashboard/admin/";
+    }
 }

@@ -25,6 +25,18 @@ public class ServiceProvider {
     @Column(columnDefinition = "DECIMAL(2,1)")
     private BigDecimal avgRating;
 
+    private boolean approved;
+
+    public boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved() {
+        approved = true;
+    }
+
+
+
     public BigDecimal getAvgRating() {
         return avgRating;
     }
@@ -32,10 +44,10 @@ public class ServiceProvider {
     public ServiceProvider(String name, String description ) {
         this.name = name;
         this.description = description;
+        this.approved = false;
 
     }
     public ServiceProvider() {
-
     }
 
     public Long getServiceProviderId() {

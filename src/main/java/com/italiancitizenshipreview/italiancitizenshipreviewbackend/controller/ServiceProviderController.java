@@ -55,6 +55,12 @@ public class ServiceProviderController {
         return "redirect:/service-provider/" + serviceProvider.getServiceProviderId();
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PostMapping("/approve/service-provider/{serviceProviderId}")
+    public String approveServiceProvider(@PathVariable Long serviceProviderId) {
+        serviceProviderService.setApprovedByServiceProviderId(serviceProviderId);
+        return "redirect:/user/dashboard/admin/";
+    }
 
 }
 

@@ -2,7 +2,10 @@
 var startIndex = 0;
 var div_index = 0;
 // the number of service providers to show at a time
-var pageSize = 4;
+var pageSize = 3;
+
+var flag = true;
+
 
 // get the service providers containers
 var serviceProvidersContainer1 = document.getElementById("service-providers");
@@ -40,7 +43,7 @@ function loadFirstServiceProviders(serviceProviders) {
 
     // show the first page of service providers
     for (var i = 0; i < pageSize; i++) {
-        if (i < 4) {
+        if (i < 3) {
             showServiceProvider(startIndex + i, serviceProvidersContainer1);
         }
     }
@@ -51,9 +54,9 @@ function showNextServiceProviders() {
     div_index = 0;
     // hide the current page of service providers
     for (var i = 0; i < pageSize; i++) {
-        if (startIndex + i <  4) {
-            hideServiceProvider(startIndex + i, serviceProvidersContainer1);
-        }
+
+        hideServiceProvider(startIndex + i, serviceProvidersContainer1);
+
     }
 
     // update the start index
@@ -61,13 +64,22 @@ function showNextServiceProviders() {
     var temp = startIndex;
     // show the next page of service providers
     for (var i = 0; i < pageSize; i++) {
-        if (startIndex + i < temp + 4) {
+        if (startIndex + i < temp + 3 && startIndex + i < serviceProviders.length) {
             showServiceProvider(startIndex + i, serviceProvidersContainer1);
+        } else {
+            hideServiceProvider(i, serviceProvidersContainer1);
         }
 
     }
-}
+    if (startIndex + i > serviceProviders.length + pageSize && flag) {
+        flag = false;
+        var sorry = document.createElement('h1');
+        sorry.textContent = "Sorry, that's all!";
+        sorry.style.fontFamily = 'Italiana'
+        serviceProvidersContainer1.appendChild(sorry);
+    }
 
+}
 // function to show a service provider
 function showServiceProvider(index, serviceProvidersContainer1) {
 
@@ -82,7 +94,8 @@ function showServiceProvider(index, serviceProvidersContainer1) {
         cardDiv.children[1].innerHTML = serviceProvider.description;
         if(serviceProvider.rating!= null)
             cardDiv.children[2].innerHTML = serviceProvider.rating;
-        var readMoreLink = document.createElement("a");
+        var cardBodyDiv = serviceProviderDiv.querySelector('.card-body');
+        var readMoreLink = cardBodyDiv.querySelector('a.read-more');
         readMoreLink.href = "/service-provider/" + serviceProvider.serviceProviderId;
         readMoreLink.textContent = "Read More";
 
@@ -111,4 +124,3 @@ function hideServiceProvider(index, serviceProvidersContainer) {
         serviceProviderDiv.style.display = "none";
     }
 }
-

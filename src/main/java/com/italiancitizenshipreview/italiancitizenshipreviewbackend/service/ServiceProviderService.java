@@ -1,5 +1,6 @@
 package com.italiancitizenshipreview.italiancitizenshipreviewbackend.service;
 
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.Review;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.ServiceProvider;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.repository.ServiceProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,15 @@ public class ServiceProviderService {
 
     public List<ServiceProvider> getAllServiceProviderswithoutReviews() {
         return serviceProviderRepository.findAllServiceProviders();
+    }
+
+    public List<ServiceProvider> findAllByApproved(boolean b) {
+        return serviceProviderRepository.findAllByApproved(b);
+    }
+
+    public void setApprovedByServiceProviderId(Long serviceProviderId) {
+        ServiceProvider serviceProvider = serviceProviderRepository.findByServiceProviderId(serviceProviderId);
+        serviceProvider.setApproved();
+        serviceProviderRepository.save(serviceProvider);
     }
 }

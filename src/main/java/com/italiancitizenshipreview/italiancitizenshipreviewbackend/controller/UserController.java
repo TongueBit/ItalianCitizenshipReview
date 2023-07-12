@@ -1,6 +1,7 @@
 package com.italiancitizenshipreview.italiancitizenshipreviewbackend.controller;
 
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.Review;
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.SecurityUser;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.User;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ReviewService;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.UserService;
@@ -31,12 +32,25 @@ public class UserController {
         model.addAttribute("reviews", reviews);
         model.addAttribute("user", user);
         model.addAttribute("request", request);
-        return "user";
+        return "user-new";
     }
 
     @PostMapping("/user/delete/{userId}")
     public String deleteAccount(@PathVariable Long userId) {
         userService.deleteUserById(userId);
-        return "login";
+
+        return "redirect:/logout";
+    }
+
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/user/dashboard/{userId}")
+    public String editAccount(@PathVariable Long userId, Model model, HttpServletRequest request) {
+        User user = userService.findUserById(userId);
+        List<Review> reviews = reviewService.findAllReviewsByUserId(userId);
+        model.addAttribute("reviews", reviews);
+        model.addAttribute("user", user);
+        model.addAttribute("request", request);
+        return "user-new";
     }
 }
