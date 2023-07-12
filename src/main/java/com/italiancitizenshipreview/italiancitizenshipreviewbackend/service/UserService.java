@@ -14,11 +14,12 @@ public class UserService {
     @Autowired
     private PasswordEncoderService passwordEncoderService;
 
-    public User createUser(String username, String password, String role) {
+    public User createUser(String username, String password, String email, String role) {
         User user = new User();
         user.setUsername(username);
         user.setPassword(passwordEncoderService.encode(password));
         user.setRoles(role);
+        user.setEmail(email);
         userRepository.save(user);
         return user;
     }

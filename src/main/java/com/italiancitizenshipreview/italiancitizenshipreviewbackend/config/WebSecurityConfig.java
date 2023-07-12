@@ -45,6 +45,7 @@ public class WebSecurityConfig {
                                 , "/js/**"
                                 , "/rest/user/exists/**"
                                 , "/rest/service-provider"
+                                ,"/rest/**"
                                 ,"/index"
                                 , "/resources/**").permitAll()
                         .anyRequest().authenticated())
