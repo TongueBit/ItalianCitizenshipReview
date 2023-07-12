@@ -4,6 +4,8 @@ import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.Revie
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.ServiceProvider;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.dto.ReviewRequest;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.dto.ServiceProviderResponse;
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.dto.UserRegistrationRequest;
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.EmailService;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ReviewService;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ServiceProviderService;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.UserService;
@@ -26,6 +28,9 @@ public class RestController {
     private ServiceProviderService serviceProviderService;
     @Autowired
     private ReviewService reviewService;
+    @Autowired
+    private EmailService emailService;
+
     @GetMapping("/service-provider/{serviceProviderId}")
     public ServiceProvider getServiceProvider(@PathVariable Long serviceProviderId) {
         ServiceProvider sp = serviceProviderService.getOneServiceProviderWithReviews(serviceProviderId);
@@ -65,7 +70,27 @@ public class RestController {
         return serviceProviderRequests;
     }
 
+    @GetMapping("/register/{email}")
+    public ResponseEntity<String> register(@PathVariable String email) {
+        emailService.sendRegistrationEmail(email);
+        return ResponseEntity.ok().build();
+    }
 
+    @GetMapping("/verify/{code}")
+    public ResponseEntity<String> verifyCode( @PathVariable String code) {
+        if (emailService.verifyRegistrationCode(code)) {
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.badRequest().build();
+    }
 
+    @PostMapping("/register")
+    public ResponseEntity<String> registerUser(@RequestBody UserRegistrationRequest request) {
+        String username = request.getUsername();
+        String password = request.getPassword();
+        String email = request.getEmail();
+        userService.createUser(username, password, email, "ROLE_USER");
+        return ResponseEntity.ok().build();
+    }
 }
 

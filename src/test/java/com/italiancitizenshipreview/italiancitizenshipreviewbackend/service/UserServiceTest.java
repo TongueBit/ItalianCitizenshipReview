@@ -41,6 +41,7 @@ public class UserServiceTest {
         String username = "XXXX";
         String password = "test";
         String role = "ROLE_USER";
+        String email = "email@email.com";
         User user = new User();
         user.setUsername(username);
         user.setPassword("encodedpassword"); // Assume the password encoder service returns this specific value for testing
@@ -50,7 +51,7 @@ public class UserServiceTest {
         when(userRepository.save(any(User.class))).thenReturn(user);
 
         //Act
-        User expectedUser = userService.createUser(username, password, role);
+        User expectedUser = userService.createUser(username, password, email, role);
         //Assert
         assertEquals(user, expectedUser);
     }

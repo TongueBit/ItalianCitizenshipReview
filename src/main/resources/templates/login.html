@@ -103,11 +103,16 @@
 
                                         <form action="/login" method="post">
                                             <div class="form-group">
-                                                <label for="username">Email address</label>
+                                                <label for="username">Username</label>
                                                 <input name="username" class="form-control" id="username">
                                                 <label for="password">Password</label>
-                                                <input name="password" class="form-control" id="password">
+                                                <input type="password" name="password" class="form-control"  id="password">
+
+
                                             </div>
+                                            <!-- An element to toggle between password visibility -->
+                                            <input type="checkbox" onclick="showPassword()">Show Password
+                                            <div></div>
                                             <button type="submit" class="btn btn-theme" >Login</button>
 
                                         </form>

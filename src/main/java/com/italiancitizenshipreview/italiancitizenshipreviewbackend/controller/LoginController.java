@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class LoginController {
@@ -22,11 +23,5 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("/register")
-    public String registerUser(@RequestBody UserRegistrationRequest request) {
-        String username = request.getUsername();
-        String password = request.getPassword();
-        userService.createUser(username, password, "ROLE_USER");
-        return "login";
-    }
+
 }
