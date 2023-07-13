@@ -1,8 +1,5 @@
 
-.service-provider-card {
-border: 1px solid rgba(0, 34, 51, 0.1);
-box-shadow: 2px 4px 10px 0 rgba(0, 34, 51, 0.05), 2px 4px 10px 0 rgba(0, 34, 51, 0.05);
-}
+
 body{
     background-color:#eee;
 }
@@ -50,12 +47,7 @@ b {
     transition: left 0.4s ease
 }
 
-#navbar-toggler-icon.click {
-    position: absolute;
-    left: 210px;
-    top: 0;
-    background-color: #747474
-}
+
 
 #navbar-toggler-icon.click span:before {
     content: '\f00d'
@@ -96,18 +88,12 @@ a {
 }
 
 nav ul .brand img {
-    object-fit: contain;
+
     width: 100px;
     height: 70px
 }
 
-nav ul {
-    height: 100%;
-    width: 100%;
-    list-style: none;
-    padding: 0;
-    margin-bottom: 0
-}
+
 
 nav ul li {
     line-height: 50px
@@ -132,6 +118,7 @@ nav ul li.active a {
     background-color: #747474;
     border-left: 4px solid #ffa500
 }
+
 
 .fa-phone {
     transform: rotate(90deg)
@@ -356,4 +343,5 @@ label {
         margin: 10px
     }
 }
+
 
