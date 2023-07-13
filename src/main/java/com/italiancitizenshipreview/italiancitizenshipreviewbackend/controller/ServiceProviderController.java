@@ -2,6 +2,7 @@ package com.italiancitizenshipreview.italiancitizenshipreviewbackend.controller;
 
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.ServiceProvider;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.User;
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ReviewService;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ServiceProviderService;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,6 +25,9 @@ public class ServiceProviderController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ReviewService reviewService;
+
     @GetMapping("/service-provider")
     public String getAddServiceProviderForm(Model map, HttpServletRequest request){
         map.addAttribute("serviceProvider", new ServiceProvider());
@@ -43,6 +47,7 @@ public class ServiceProviderController {
     @GetMapping("/service-provider/{serviceProviderId}")
     public String getServiceProviders(ModelMap model, @PathVariable Long serviceProviderId, HttpServletRequest request){
         ServiceProvider serviceProvider = serviceProviderService.getServiceProvider(serviceProviderId);
+        reviewService.filterReviewsByNewest(serviceProvider);
         model.put("serviceProvider", serviceProvider);
         model.put("request", request);
         return "service-provider";

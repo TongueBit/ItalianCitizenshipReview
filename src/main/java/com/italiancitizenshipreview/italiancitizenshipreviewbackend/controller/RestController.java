@@ -11,6 +11,7 @@ import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.Serv
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -91,6 +92,15 @@ public class RestController {
         String email = request.getEmail();
         userService.createUser(username, password, email, "ROLE_USER");
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/update/{userId}")
+    public ResponseEntity<String> updateUser(@PathVariable Long userId, @RequestBody String username) {
+
+        userService.updateUsername(userId, username);
+        return ResponseEntity.ok().build();
+
+
     }
 }
 

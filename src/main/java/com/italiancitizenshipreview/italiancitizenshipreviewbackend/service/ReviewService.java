@@ -1,12 +1,14 @@
 package com.italiancitizenshipreview.italiancitizenshipreviewbackend.service;
 
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.Review;
+import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.ServiceProvider;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -57,5 +59,11 @@ public class ReviewService {
        Review review = reviewRepository.findByReviewId(reviewId);
        review.setApproved();
        reviewRepository.save(review);
+    }
+
+    public void filterReviewsByNewest(ServiceProvider serviceProvider) {
+        List<Review> reviews = serviceProvider.getReviews();
+
+        reviews.sort(Comparator.comparing(Review::getDate, Comparator.nullsLast(Comparator.naturalOrder())));
     }
 }
