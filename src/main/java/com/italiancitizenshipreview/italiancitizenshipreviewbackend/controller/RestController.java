@@ -12,6 +12,7 @@ import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.User
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParserFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,10 @@ public class RestController {
     }
     @PostMapping("/review")
     public ResponseEntity<Review> createReview(@RequestBody ReviewRequest reviewRequest) {
-
+        Long serviceProviderId = reviewRequest.getServiceProviderId();
+        Long userId = reviewRequest.getUserId();
+        if(reviewService.hasUserMadeReview(serviceProviderId, userId))
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         // Create a new Review object
         Review review = new Review();
         review.setServiceProvider(serviceProviderService.getServiceProvider(reviewRequest.getServiceProviderId()));

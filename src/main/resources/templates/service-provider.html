@@ -38,12 +38,20 @@
       <div class="site-logo col-3 pt-3 "><a id="title-anchor" href="/" style="color: #1e7e34">Italian Citizenship Reviews</a>
 
       </div>
-      <nav class="site-navigation flex-md-row" >
-        <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0" >
-          <li ><a class="" href="about.html"><b>About</b></a></li>
+      <nav class="site-navigation flex-md-row">
+        <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+          <li id="dashboard-button" class="d-md-none">
+            <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" href="/user/dashboard/admin/" class="btn btn-primary border-width-2 ">Admin Dashboard
+
+            </a>
+            <a th:if="${#vars.request.isUserInRole('ROLE_USER')}" href="/user/dashboard/" class="btn btn-primary border-width-2 ">Dashboard
+              <i class="fas fa-user-circle"></i>
+            </a>
+          </li>
+          <li><a class="" href="about.html"><b>About</b></a></li>
           <li class="has-children">
-            <a href="/service-provider/all"><b > Services </b> </a>
-            <ul class="dropdown" >
+            <a href="/service-provider/all" ><b> Services </b> </a>
+            <ul class="dropdown">
               <li><a href="">Translation Service</a></li>
               <li><a href="">Application Assistance</a></li>
               <li><a href="">Genealogical Research</a></li>
@@ -51,11 +59,9 @@
               <li><a href="">Full Service</a></li>
             </ul>
           </li>
-          <li><a th href="/user/dashboard/"><b>Blog</b></a></li>
-          <li class="d-md-none"><a href="/logout"
-                                   th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
-            <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}"
-               href="/login"> Login</a></li>
+          <li class="d-md-none"><a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
+            <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" href="/login"> Login</a></li>
+
         </ul>
       </nav>
       <div class="right-cta-menu text-right d-flex align-items-right col-3">
@@ -165,6 +171,11 @@
                   <div class="card-header d-flex align-items-center">
                     <div class="align-content-end">
                       <h5 class="card-title">Latest reviews</h5>
+                      <div class="pt-2">
+                        <div th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">
+                          <b><a style="color: #005cbf" href="/login">Login</a> to leave a review!</b>
+                        </div>
+                      </div>
                     </div>
                     <button class="btn btn-link caret-button" type="button" data-toggle="collapse" th:data-target="'#reviewsCollapse-' + ${serviceProvider.serviceProviderId}" aria-expanded="false" th:aria-controls="'reviewsCollapse-' + ${serviceProvider.serviceProviderId}">
                       <i class="fa fa-caret-down"></i>
@@ -195,11 +206,7 @@
 
 
                 </div>
-                <div class="pt-2">
-                  <div th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">
-                    <b><a href="/login">Login</a> to leave a review!</b>
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>
@@ -333,4 +340,6 @@
 <script src="/js/jquery.sticky.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/directory.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </html>

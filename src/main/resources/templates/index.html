@@ -41,6 +41,15 @@
                 </div>
                 <nav class="site-navigation flex-md-row">
                     <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+                        <li id="dashboard-button" class="d-md-none">
+                            <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" href="/user/dashboard/admin/" class="btn btn-primary border-width-2 ">Admin Dashboard
+
+                            </a>
+                            <a th:if="${#vars.request.isUserInRole('ROLE_USER')}" href="/user/dashboard/" class="btn btn-primary border-width-2 ">Dashboard
+                                <i class="fas fa-user-circle"></i>
+                            </a>
+                        </li>
+
                         <li><a class="" href="about.html"><b>About</b></a></li>
                         <li class="has-children">
                             <a href="/service-provider/all" ><b> Services </b> </a>
@@ -55,6 +64,7 @@
                         <li><a href="#benefits"><b>Benefits</b></a></li>
                         <li class="d-md-none"><a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
                             <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" href="/login"> Login</a></li>
+
                     </ul>
                 </nav>
                 <div class="right-cta-menu text-right d-flex align-items-right col-3">

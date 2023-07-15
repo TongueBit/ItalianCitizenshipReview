@@ -142,13 +142,13 @@ function createRegisterSection() {
 	registerPasswordGroup.classList.add('form-group');
 
 	var registerPasswordLabel = document.createElement('label');
-	registerPasswordLabel.htmlFor = 'register-password';
+	registerPasswordLabel.htmlFor = 'password';
 	registerPasswordLabel.textContent = 'Password';
 
 	var registerPasswordInput = document.createElement('input');
 	registerPasswordInput.name = 'password';
 	registerPasswordInput.classList.add('form-control');
-	registerPasswordInput.id = 'register-password';
+	registerPasswordInput.id = 'password';
 	registerPasswordInput.type = 'password';
 
 	var showPasswordCheckbox = document.createElement('input');
@@ -211,7 +211,7 @@ function checkIfUsernameExists(event) {
 
 	const inputUsername = document.getElementById('register-username');
 	const inputEmail = document.getElementById('register-email');
-	const inputPassword = document.getElementById('register-password');
+	const inputPassword = document.getElementById('password');
 
 	const username = inputUsername.value;
 	const password = inputPassword.value;
@@ -306,7 +306,7 @@ function checkIfUsernameExists(event) {
 	}
 }
 
-function showPassword() {
+function showPassword(event) {
 	var x = document.getElementById("password");
 	if (x.type === "password") {
 		x.type = "text";
@@ -356,10 +356,13 @@ function submitForm(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				addReviewToDOM(reviewRequest, index);
-				var ratingElement = document.querySelectorAll('#new_rating')
-				startStarConversion(ratingElement)
-			} else {
+				window.location.href = "/service-provider/" + serviceProviderId;
+			} else if(response.status === 409) {
+				Swal.fire('You have already reviewed this service provider.', 'Please edit your review in the user dashboard.', 'error');
+			}
+			else {
+                // Handle error
+                console.error('Error creating review');
 				throw new Error('Error creating review');
 			}
 		})

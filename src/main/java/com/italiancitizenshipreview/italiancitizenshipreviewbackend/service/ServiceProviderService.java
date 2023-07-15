@@ -14,13 +14,14 @@ public class ServiceProviderService {
     @Autowired
     private ServiceProviderRepository serviceProviderRepository;
 
+
     public ServiceProvider createServiceProvider(String name, String description) {
         ServiceProvider serviceProvider = new ServiceProvider(name, description);
          return serviceProviderRepository.save(serviceProvider);
     }
 
     public ServiceProvider getServiceProvider(Long serviceProviderId) {
-        return serviceProviderRepository.findById(serviceProviderId).orElseThrow();
+        return serviceProviderRepository.findByServiceProviderId(serviceProviderId);
     }
 
     public ServiceProvider getOneServiceProviderWithReviews(Long serviceProviderId) {
@@ -54,4 +55,6 @@ public class ServiceProviderService {
         serviceProvider.setApproved();
         serviceProviderRepository.save(serviceProvider);
     }
+
+
 }

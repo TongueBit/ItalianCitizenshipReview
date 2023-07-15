@@ -12,4 +12,7 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
     List<Review> findAllByApproved(boolean approved);
 
     Review findByReviewId(Long reviewId);
+
+
+
 }
