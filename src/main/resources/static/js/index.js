@@ -82,18 +82,30 @@ function showNextServiceProviders() {
 }
 // function to show a service provider
 function showServiceProvider(index, serviceProvidersContainer1) {
-
     if (index < serviceProviders.length) {
         var serviceProvider = serviceProviders[index];
-        var serviceProviderDiv, containerDiv, cardDiv;
-        serviceProviderDiv = serviceProvidersContainer1.children[div_index++];
+        var serviceProviderDiv = serviceProvidersContainer1.children[div_index++];
+        var containerDiv = serviceProviderDiv.children[0];
+        var cardDiv = containerDiv.children[0];
 
-        containerDiv = serviceProviderDiv.children[0];
-        cardDiv = containerDiv.children[0];
-        cardDiv.children[0].innerHTML = serviceProvider.name;
-        cardDiv.children[1].innerHTML = serviceProvider.description;
-        if(serviceProvider.rating!= null)
-            cardDiv.children[2].innerHTML = serviceProvider.rating;
+        var paragraph = cardDiv.querySelector('p');
+        if (paragraph) {
+            paragraph.innerHTML = serviceProvider.description;
+        }
+        // Add the name of the service provider
+        cardDiv.children[1].innerHTML = '<h5 class="service-provider-name">' + serviceProvider.name + '</h5>';
+        // Add the rating of the service provider
+        if (serviceProvider.rating != null) {
+            cardDiv.children[2].innerHTML = '<h5 class="rating">' + serviceProvider.rating + '</h5>';
+        }
+
+        // Add the logo image
+        var logoImg = document.createElement("img");
+        logoImg.src = serviceProvider.logoUrl;
+        logoImg.alt = "Service Provider Logo";
+        logoImg.className = "logo-img";
+        containerDiv.prepend(logoImg);
+
         var cardBodyDiv = serviceProviderDiv.querySelector('.card-body');
         var readMoreLink = cardBodyDiv.querySelector('a.read-more');
         readMoreLink.href = "/service-provider/" + serviceProvider.serviceProviderId;
@@ -115,6 +127,7 @@ function showServiceProvider(index, serviceProvidersContainer1) {
         serviceProviderDiv.style.display = "block";
     }
 }
+
 
 
 // function to hide a service provider

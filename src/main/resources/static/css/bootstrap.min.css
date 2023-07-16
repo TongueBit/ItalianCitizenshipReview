@@ -581,6 +581,7 @@ pre code {
     max-width: 2000px;
 
   }
+
 }
 
 .container-fluid {
@@ -4635,6 +4636,7 @@ input[type="button"].btn-block {
   #hamburger {
     display: none;
   }
+
 }
 
 @media (max-width: 991.98px) {
@@ -10635,6 +10637,12 @@ a.text-dark:hover, a.text-dark:focus {
   }
   testimony {
     font-family: "Quicksand-bold", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  }
+  @media (max-width: 750px) {
+    #dashboard-button {
+      display: flex;
+    }
 
   }
 

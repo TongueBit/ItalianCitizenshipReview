@@ -41,20 +41,29 @@
                 </div>
                 <nav class="site-navigation flex-md-row">
                     <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                        <li><a class="" href="about.html"><b>About</b></a></li>
+                        <li id="dashboard-button" class="d-md-none">
+                            <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" href="/user/dashboard/admin/" class="btn btn-primary border-width-2 ">Admin Dashboard
+
+                            </a>
+                            <a th:if="${#vars.request.isUserInRole('ROLE_USER')}" href="/user/dashboard/" class="btn btn-primary border-width-2 ">Dashboard
+                                <i class="fas fa-user-circle"></i>
+                            </a>
+                        </li>
+
                         <li class="has-children">
                             <a href="/service-provider/all" ><b> Services </b> </a>
                             <ul class="dropdown">
-                                <li><a href="">Translation Service</a></li>
-                                <li><a href="">Application Assistance</a></li>
-                                <li><a href="">Genealogical Research</a></li>
-                                <li><a href="">Legal Guidance</a></li>
-                                <li><a href="">Full Service</a></li>
+                                <li><a href="/service-provider/filter/service/Translation Service">Translation Service</a></li>
+                                <li><a href="/service-provider/filter/service/Application Assistance">Application Assistance</a></li>
+                                <li><a href="/service-provider/filter/service/Genealogical Research">Genealogical Research</a></li>
+                                <li><a href="/service-provider/filter/service/Legal Guidance">Legal Guidance</a></li>
+                                <li><a href="/service-provider/filter/service/Full Service">Full Service</a></li>
                             </ul>
                         </li>
                         <li><a href="#benefits"><b>Benefits</b></a></li>
                         <li class="d-md-none"><a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
                             <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" href="/login"> Login</a></li>
+
                     </ul>
                 </nav>
                 <div class="right-cta-menu text-right d-flex align-items-right col-3">
@@ -101,7 +110,7 @@
                         </p>
                     </div>
                     <div>
-                        <a href="#" class="btn btn-primary btn-lg me-3">Register Now</a>
+                        <a href="/login"  class="btn btn-primary btn-lg me-3">Register Now</a>
                         <a href="#qualify" class="btn btn-outline-primary btn-lg">Learn More</a>
                     </div>
                 </div>
@@ -123,12 +132,10 @@
                     <div class="card" id="card-1">
                         <div class="card-body py-4 mt-2">
                             <h2 class="d-flex justify-content-center mb-4 font-weight-bold" style="font-family: Italiana">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" class="rounded-circle shadow-1-strong" width="100" height="100" />
                             </h2>
-                            <h5 >Teresa May</h5>
-                            <h5 class=" rating">Founder at ET Company</h5>
-                            <ul class="list-unstyled d-flex justify-content-center ">
-                            </ul>
+                            <h5 class="service-provider-name"></h5>
+                            <h5 class=" rating"></h5>
+
                             <p class="mb-2"><i class="fas fa-quote-left pe-2"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab hic tenetur.</p>
                             <a class="read-more"></a>
                         </div>
@@ -138,7 +145,6 @@
                     <div class="card" id="card-2">
                         <div class="card-body py-4 mt-2">
                             <h2 class="d-flex justify-content-center mb-4 font-weight-bold" style="font-family: Italiana">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" class="rounded-circle shadow-1-strong" width="100" height="100" />
                             </h2>
                             <h5 >Teresa May</h5>
                             <h5 class="font-weight-bold my-3 rating">Founder at ET Company</h5>
@@ -154,7 +160,6 @@
                     <div class="card " id="card-3">
                         <div class="card-body py-4 mt-2">
                             <h2 class="d-flex justify-content-center mb-4 font-weight-bold" style="font-family: Italiana">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" class="rounded-circle shadow-1-strong" width="100" height="100" />
                             </h2>
                             <h5 >Teresa May</h5>
                             <h5 class="font-weight-bold my-3 rating">Founder at ET Company</h5>
@@ -181,20 +186,19 @@
                 <div class="row text-center">
                     <div class="col-sm-12 col-md-12 col-md-12">
                         <h2 style="font-size: 60px;line-height: 60px;margin-bottom: 20px;font-weight: 900; font-family: Italiana">Services</h2>
-                        <p>Our <span class="highlight">experienced</span> and <span class="highlight">dedicated</span> staff provide these services with a smile.</p>
+                        <p><span class="highlight">Select</span> the <span class="highlight">services</span> you need.</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-offset-1 col-sm-12 col-md-12 col-md-10">
-                        <div class="services-list" >
+                        <div class="services-list">
                             <div class="row">
                                 <div class="col-sm-6 col-md-4 col-md-4">
-                                    <div class="service-block" style="visibility: visible;">
+                                    <div href="/service-provider/filter/service/Legal Guidance"  class="service-block" style="visibility: visible;">
                                         <div class="ico fa fa-magic highlight"></div>
                                         <div class="text-block">
-                                            <div class="name">Legal Guidance</div>
-                                            <div class="info">Blah blah</div>
-                                            <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
+                                            <div class="name"><a style="color: #dd2b34" href="/service-provider/filter/service/Legal Guidance">Legal Guidance</a></div>
+                                            <div class="info">Receive expert legal advice</div>
                                         </div>
                                     </div>
                                 </div>
@@ -202,9 +206,8 @@
                                     <div class="service-block" style="visibility: visible;">
                                         <div class="ico fa fa-code highlight"></div>
                                         <div class="text-block">
-                                            <div class="name">Translation</div>
-                                            <div class="info">Quality code that lasts</div>
-                                            <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
+                                            <div class="name"><a style="color: #dd2b34" href="/service-provider/filter/service/Translation Service">Translation Service</a></div>
+                                            <div class="info">Accurate and reliable translations</div>
                                         </div>
                                     </div>
                                 </div>
@@ -212,9 +215,8 @@
                                     <div class="service-block" style="visibility: visible;">
                                         <div class="ico fa fa-pencil highlight"></div>
                                         <div class="text-block">
-                                            <div class="name">Document Authorization</div>
-                                            <div class="info">Words that tell your story</div>
-                                            <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
+                                            <div class="name"><a style="color: #dd2b34" href="/service-provider/filter/service/Application Assistance">Application Assistance</a></div>
+                                            <div class="info">Ensure your documents are properly authorized</div>
                                         </div>
                                     </div>
                                 </div>
@@ -222,9 +224,8 @@
                                     <div class="service-block" style="visibility: visible;">
                                         <div class="ico fa fa-bullhorn highlight"></div>
                                         <div class="text-block">
-                                            <div class="name">Full-service</div>
-                                            <div class="info">Start to finish</div>
-                                            <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
+                                            <div class="name"><a style="color: #dd2b34" href="/service-provider/filter/service/Full Service">Full Service</a></div>
+                                            <div class="info">Comprehensive assistance from start to finish</div>
                                         </div>
                                     </div>
                                 </div>
@@ -232,9 +233,9 @@
                                     <div class="service-block" style="visibility: visible;">
                                         <div class="ico fa fa-eye highlight"></div>
                                         <div class="text-block">
-                                            <div class="name">Genealogical Research</div>
-                                            <div class="info">blaaaaah</div>
-                                            <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
+                                            <div class="name"><a style="color: #dd2b34" href="/service-provider/filter/service/Genealogical Research">Genealogical Research</a>
+                                            </div>
+                                            <div class="info">Discover your family heritage</div>
                                         </div>
                                     </div>
                                 </div>
@@ -242,13 +243,17 @@
                                     <div class="service-block" style="visibility: visible;">
                                         <div class="ico fa fa-umbrella highlight"></div>
                                         <div class="text-block">
-                                            <div class="name">Application Assistance</div>
-                                            <div class="info">Get your own work checked by the professionals</div>
-                                            <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
+                                            <div class="name"><a style="color: #dd2b34"> Document Authorization</a></div>
+                                            <div class="info">Ensure your documents are correct</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
                         </div>
                     </div>
                 </div>
@@ -918,112 +923,115 @@
 </main>
 
 
-    <footer class="text-center text-white" style="background-color: #1e7e34">
-        <!-- Grid container -->
-        <div class="container">
-            <!-- Section: Links -->
-            <section class="mt-5">
-                <!-- Grid row-->
-                <div class="row text-center d-flex justify-content-center pt-5">
-                    <!-- Grid column -->
-                    <div class="col-md-2">
-                        <h6 class="text-uppercase font-weight-bold">
-                            <a href="#!" class="text-white">About us</a>
-                        </h6>
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-2">
-                        <h6 class="text-uppercase font-weight-bold">
-                            <a href="#!" class="text-white">Products</a>
-                        </h6>
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-2">
-                        <h6 class="text-uppercase font-weight-bold">
-                            <a href="#!" class="text-white">Awards</a>
-                        </h6>
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-2">
-                        <h6 class="text-uppercase font-weight-bold">
-                            <a href="#!" class="text-white">Help</a>
-                        </h6>
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-2">
-                        <h6 class="text-uppercase font-weight-bold">
-                            <a href="#!" class="text-white">Contact</a>
-                        </h6>
-                    </div>
-                    <!-- Grid column -->
+<footer class="text-center text-white" style="background-color: #1e7e34">
+    <!-- Grid container -->
+    <div class="container">
+        <!-- Section: Links -->
+        <section class="mt-5">
+            <!-- Grid row-->
+            <div class="row text-center d-flex justify-content-center pt-5">
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="/" class="text-white">Home</a>
+                    </h6>
                 </div>
-                <!-- Grid row-->
-            </section>
-            <!-- Section: Links -->
+                <!-- Grid column -->
 
-            <hr class="my-5"/>
-
-            <!-- Section: Text -->
-            <section class="mb-5">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-lg-8">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-                            distinctio earum repellat quaerat voluptatibus placeat nam,
-                            commodi optio pariatur est quia magnam eum harum corrupti
-                            dicta, aliquam sequi voluptate quas.
-                        </p>
-                    </div>
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="/login" class="text-white">Login</a>
+                    </h6>
                 </div>
-            </section>
-            <!-- Section: Text -->
+                <!-- Grid column -->
 
-            <!-- Section: Social -->
-            <section class="text-center mb-5">
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-google"></i>
-                </a>
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-github"></i>
-                </a>
-            </section>
-            <!-- Section: Social -->
-        </div>
-        <!-- Grid container -->
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="/service-provider/all" class="text-white">Services</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
 
-        <!-- Copyright -->
-        <div
-                class="text-center p-3"
-                style="background-color: rgba(0, 0, 0, 0.2)"
-        >
-            © 2023 Copyright:
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#https://conslondra.esteri.it/en/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/cittadinanza/cittadinanza-per-discendenza/" class="text-white">Help</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
 
-        </div>
-    </footer>
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="mailto:tony@tonguebit.com" class="text-white">Contact</a></h6>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row-->
+        </section>
+        <!-- Section: Links -->
+
+        <hr class="my-5"/>
+
+        <!-- Section: Text -->
+        <section class="mb-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <p>
+                        Italian Citizenship Reviews is a platform dedicated to assisting individuals in their pursuit of
+                        Italian citizenship. It provides a collection of user-generated reviews and ratings for various
+                        service providers involved in the citizenship application process. Users can find valuable
+                        insights and feedback from others who have gone through the process. With a range of filters and
+                        attributes, users can easily find relevant reviews. The platform aims to empower users with the
+                        necessary information to make informed decisions when choosing service providers for their
+                        Italian citizenship journey.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Section: Text -->
+
+        <!-- Section: Social -->
+        <section class="text-center mb-5">
+            <a href="" class="text-white me-4">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-github"></i>
+            </a>
+        </section>
+        <!-- Section: Social -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div
+            class="text-center p-3"
+            style="background-color: rgba(0, 0, 0, 0.2)"
+    >
+        © 2023 Copyright:
+        <p>For inquiries, please contact us at <a href="mailto:tony@tonguebit.com">tony@tonguebit.com</a>.</p>
+
+    </div>
+</footer>
 
     </body>
         <script src="/js/directory.js"></script>
-        <script src="/js/landing-page.js"></script>
+        <script src="/js/index.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
         <script src="/js/popper.min.js"></script>

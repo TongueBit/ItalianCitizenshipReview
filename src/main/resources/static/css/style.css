@@ -920,6 +920,15 @@ select {
   font-weight:bold;
 }
 
+.logo-img {
+  width: 100%; /* Adjust the width as desired */
+  height: auto; /* Adjust the height as desired */
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 
 

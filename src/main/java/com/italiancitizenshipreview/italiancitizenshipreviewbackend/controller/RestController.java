@@ -11,6 +11,8 @@ import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.Serv
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.JsonParserFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +40,10 @@ public class RestController {
     }
     @PostMapping("/review")
     public ResponseEntity<Review> createReview(@RequestBody ReviewRequest reviewRequest) {
-
+        Long serviceProviderId = reviewRequest.getServiceProviderId();
+        Long userId = reviewRequest.getUserId();
+        if(reviewService.hasUserMadeReview(serviceProviderId, userId))
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         // Create a new Review object
         Review review = new Review();
         review.setServiceProvider(serviceProviderService.getServiceProvider(reviewRequest.getServiceProviderId()));
@@ -65,7 +70,7 @@ public class RestController {
         List<ServiceProviderResponse> serviceProviderRequests = new ArrayList<ServiceProviderResponse>();
         List<ServiceProvider> serviceProviders = serviceProviderService.getAllServiceProviderswithoutReviews();
         for (ServiceProvider sp : serviceProviders) {
-            serviceProviderRequests.add(new ServiceProviderResponse(sp.getName(), sp.getDescription(), sp.getAvgRating(), sp.getServiceProviderId()));
+            serviceProviderRequests.add(new ServiceProviderResponse(sp.getName(), sp.getDescription(), sp.getAvgRating(), sp.getServiceProviderId(), sp.getLogoUrl()));
         }
         return serviceProviderRequests;
     }
@@ -91,6 +96,15 @@ public class RestController {
         String email = request.getEmail();
         userService.createUser(username, password, email, "ROLE_USER");
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/update/{userId}")
+    public ResponseEntity<String> updateUser(@PathVariable Long userId, @RequestBody String username) {
+
+        userService.updateUsername(userId, username);
+        return ResponseEntity.ok().build();
+
+
     }
 }
 

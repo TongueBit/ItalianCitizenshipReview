@@ -1,7 +1,6 @@
 package com.italiancitizenshipreview.italiancitizenshipreviewbackend.controller;
 
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.Review;
-import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.SecurityUser;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.User;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.ReviewService;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.UserService;
@@ -32,7 +31,7 @@ public class UserController {
         model.addAttribute("reviews", reviews);
         model.addAttribute("user", user);
         model.addAttribute("request", request);
-        return "user-new";
+        return "user";
     }
 
     @PostMapping("/user/delete/{userId}")
@@ -51,6 +50,6 @@ public class UserController {
         model.addAttribute("reviews", reviews);
         model.addAttribute("user", user);
         model.addAttribute("request", request);
-        return "user-new";
+        return "user";
     }
 }

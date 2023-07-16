@@ -35,4 +35,10 @@ public class UserService {
     public void deleteUserById(Long userId) {
         userRepository.deleteById(userId);
     }
+
+    public void updateUsername(Long userId, String username) {
+        User user = findUserById(userId);
+        user.setUsername(username);
+        userRepository.save(user);
+    }
 }

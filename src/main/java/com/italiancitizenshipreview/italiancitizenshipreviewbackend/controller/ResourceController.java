@@ -11,7 +11,7 @@ public class ResourceController {
     @GetMapping("/js/landing-page.js")
     public ResponseEntity<Resource> getlandingPageJs() {
         // Load and return the "directory.js" file as a resource
-        Resource resource = new ClassPathResource("static/js/landing-page.js");
+        Resource resource = new ClassPathResource("static/js/index.js");
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType("application/javascript"))
                 .body(resource);

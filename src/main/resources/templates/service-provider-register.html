@@ -21,6 +21,7 @@
 
     <title>Italian Citizenship Reviews</title>
 </head>
+
 <!-- NAVBAR -->
 <header class="site-navbar mt-3">
     <div class="container-fluid">
@@ -81,72 +82,72 @@
         </div>
     </div>
 </header>
-<main>
-    <span class="photo-div" ></span>
-    <section id="login" class="login-section m-3" >
-        <div id="main-wrapper" class="container" style="margin-top: 150px">
-            <div class="row justify-content-center">
-                <div class="col-l-10">
-                    <div class="card border-0">
-                        <div class="card-body p-0">
-                            <div class="row no-gutters">
-                                <div id="login-form" class="col-lg-6">
-                                    <div class="p-5">
-                                        <div class="mb-2">
-                                            <h3 class="h4 font-weight-bold text-theme">Login</h3>
-                                        </div>
+<body >
+<div class="bg-light p-2 form-group" style="margin-top: 100px;">
 
-                                        <h6 class="h5 mb-0">Welcome back!</h6>
-                                        <p class="text-muted mt-2 mb-3">Enter your email address and password leave a review!</p>
+    <form action="/service-provider/register" method="post">
+        <br>
+        <label>Service Provider Name:</label>
+        <input class="form-control" type="text" name="name" value="Ex: ItalyMondo!" required><br>
 
-                                        <form action="/login" method="post">
-                                            <div class="form-group">
-                                                <label for="username">Username</label>
-                                                <input name="username" class="form-control" id="username">
-                                                <label for="password">Password</label>
-                                                <input type="password" name="password" class="form-control"  id="password">
+        <label>Email:</label>
+        <input class="form-control" type="email" name="email" required><br>
 
+        <label>Description:</label>
+        <textarea class="form-control" name="description" required></textarea><br>
 
-                                            </div>
-                                            <!-- An element to toggle between password visibility -->
-                                            <input type="checkbox" onclick="showPassword()">Show Password
-                                            <div></div>
-                                            <button type="submit" class="btn btn-theme" >Login</button>
+        <label>Company Logo URL:</label>
+        <input class="form-control" type="url" name="logoUrl" placeholder="Enter the URL of the company logo" required>
 
-                                        </form>
-                                        <div class="mt-1">
-                                            <p id="alert"></p>
-                                        </div>
-                                        <div class="d-flex mt-3">
-                                            <a class="forgot-link float-left text-primary" onclick="createRegisterSection()">Register</a>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="account-block rounded-right" style="background-image: url('/images/julia-solonina.jpg');">
-                                        <div class=" rounded-right"></div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <label>Price Range (Estimate):</label>
+        <div>
+            <label for="lowestEstimate">Lowest Estimate:</label>
+            <input class="form-control" id="lowestEstimate" type="number" name="lowestEstimate" placeholder="Enter the lowest estimate" required>
         </div>
-    </section>
+        <div>
+            <label for="highestEstimate">Highest Estimate:</label>
+            <input class="form-control" id="highestEstimate" type="number" name="highestEstimate" placeholder="Enter the highest estimate" required>
+        </div>
+
+        <label>Services:</label>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="services" id="translationService" value="Translation Service">
+            <label class="form-check-label" for="translationService">Translation Service</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="services" id="applicationAssistance" value="Application Assistance">
+            <label class="form-check-label" for="applicationAssistance">Application Assistance</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="services" id="genealogicalResearch" value="Genealogical Research">
+            <label class="form-check-label" for="genealogicalResearch">Genealogical Research</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="services" id="legalGuidance" value="Legal Guidance">
+            <label class="form-check-label" for="legalGuidance">Legal Guidance</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="services" id="documentAuthorization" value="Document Authorization">
+            <label class="form-check-label" for="legalGuidance">Document Authorization
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="services" id="fullService" value="Full Service">
+            <label class="form-check-label" for="fullService">Full Service</label>
+        </div>
+        <!-- Add more fields as needed -->
+
+        <button style="margin-top: 10px" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+</div>
 
 
+<script>
+    AOS.init();
+</script>
+</body>
 
-
-
-
-</main>
 <footer class="text-center text-white" style="background-color: #1e7e34">
     <!-- Grid container -->
     <div class="container">
@@ -253,23 +254,14 @@
     </div>
 </footer>
 
-<script>
 
-    // Check if the URL contains the "?error" parameter
-    var urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('error')) {
-    // Display an error message to the user
-        var errorMessage = 'Invalid username or password.';
-        var alertDiv = document.querySelector('#alert')
-        alertDiv.innerHTML = '<p style="color: red">' + errorMessage + '</p>';
-    }
-</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
 <script src="/js/popper.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.sticky.js"></script>
 <script src="/js/main.js"></script>
+<script src="/js/directory.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </html>

@@ -142,7 +142,7 @@ function createRegisterSection() {
 	registerPasswordGroup.classList.add('form-group');
 
 	var registerPasswordLabel = document.createElement('label');
-	registerPasswordLabel.htmlFor = 'register-password';
+	registerPasswordLabel.htmlFor = 'password';
 	registerPasswordLabel.textContent = 'Password';
 
 	var registerPasswordInput = document.createElement('input');
@@ -211,7 +211,7 @@ function checkIfUsernameExists(event) {
 
 	const inputUsername = document.getElementById('register-username');
 	const inputEmail = document.getElementById('register-email');
-	const inputPassword = document.getElementById('register-password');
+	const inputPassword = document.getElementById('password');
 
 	const username = inputUsername.value;
 	const password = inputPassword.value;
@@ -306,7 +306,7 @@ function checkIfUsernameExists(event) {
 	}
 }
 
-function showPassword() {
+function showPassword(event) {
 	var x = document.getElementById("password");
 	if (x.type === "password") {
 		x.type = "text";
@@ -314,3 +314,131 @@ function showPassword() {
 		x.type = "password";
 	}
 }
+
+function submitForm(event) {
+	var cookies = document.cookie.split(';');
+
+	var userId = null;
+
+	for (var j = 0; j < cookies.length; j++) {
+		var cookie = cookies[j].trim();
+		if (cookie.startsWith('userId=')) {
+			userId = cookie.substring('userId='.length, cookie.length);
+			break;
+		}
+	}
+	event.preventDefault(); // Prevent the default form submission behavior
+
+	// Retrieve the form data
+	const form = document.getElementById('reviewForm');
+	const formData = new FormData(form);
+
+	// Access individual form fields by name
+	const title = formData.get('title');
+	const content = formData.get('content');
+	const rating = formData.get('rating');
+	const serviceProviderId = formData.get('serviceProviderId');
+
+	var reviewRequest = {
+		serviceProviderId: serviceProviderId,
+		title: title,
+		content: content,
+		rating: rating,
+		userId: userId
+	};
+
+	fetch('/rest/review', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(reviewRequest)
+	})
+		.then(response => {
+			if (response.ok) {
+				window.location.href = "/service-provider/" + serviceProviderId;
+			} else if(response.status === 409) {
+				Swal.fire('You have already reviewed this service provider.', 'Please edit your review in the user dashboard.', 'error');
+			}
+			else {
+                // Handle error
+                console.error('Error creating review');
+				throw new Error('Error creating review');
+			}
+		})
+		.catch(error => {
+			// Handle error
+			console.error(error);
+		});
+}
+
+function editUsername(event) {
+	var cookies = document.cookie.split(';');
+
+	var userId = null;
+
+	for (var j = 0; j < cookies.length; j++) {
+		var cookie = cookies[j].trim();
+		if (cookie.startsWith('userId=')) {
+			userId = cookie.substring('userId='.length, cookie.length);
+			break;
+		}
+	}
+
+
+	const inputUsername = document.getElementById('username');
+
+
+	const username = inputUsername.value;
+
+
+	if (username !== '') {
+		// Make a request to the server to check if the username exists
+		fetch('/rest/user/exists/' + username)
+			.then(response => response.json())
+			.then(data => {
+
+					if (data) {
+						// Username exists
+						Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: 'Username already exists',
+						});
+					} else {
+						fetch("/rest/update/" + userId, {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'text/plain'
+							},
+							body: username
+
+
+
+						})
+							.then(response => {
+
+								if (!response.ok) {
+									throw new Error('Error');
+								}
+								Swal.fire('Username Updated!', 'Your username has been updated.', 'success')
+									.then(() => {
+										window.location.href = '/user/dashboard/';
+
+									});
+
+							})
+							.catch(error => {
+									console.error('Error updating username:', error);
+								}
+							);
+					}
+				}
+			)
+			.catch(error => {
+					console.error('Error checking username:', error);
+				}
+			);
+	}
+}
+

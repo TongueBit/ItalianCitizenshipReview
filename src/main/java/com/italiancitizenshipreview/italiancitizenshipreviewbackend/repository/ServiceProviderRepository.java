@@ -25,4 +25,6 @@ public interface ServiceProviderRepository extends CrudRepository<ServiceProvide
     List<ServiceProvider> findAllServiceProviders();
 
      ServiceProvider findByServiceProviderId(Long serviceProviderId);
+
+    boolean existsByName(String name);
 }
