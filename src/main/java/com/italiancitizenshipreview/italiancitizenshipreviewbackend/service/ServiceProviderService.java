@@ -6,6 +6,7 @@ import com.italiancitizenshipreview.italiancitizenshipreviewbackend.repository.S
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -18,6 +19,12 @@ public class ServiceProviderService {
     public ServiceProvider createServiceProvider(String name, String description) {
         ServiceProvider serviceProvider = new ServiceProvider(name, description);
          return serviceProviderRepository.save(serviceProvider);
+    }
+
+    public void registerServiceProvider(String name, String description, String email, String logoUrl, int lowestEstimate, int highestEstimate, String services) {
+
+    	ServiceProvider serviceProvider = new ServiceProvider(name, description, email, logoUrl, lowestEstimate, highestEstimate, services);
+        serviceProviderRepository.save(serviceProvider);
     }
 
     public ServiceProvider getServiceProvider(Long serviceProviderId) {

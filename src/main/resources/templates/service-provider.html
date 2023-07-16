@@ -103,9 +103,9 @@
   <div id="content" style="margin-top: 125px; background-color: #1e7e34 ">
 
     <div class="d-sm-flex">
-      <div class="me-sm-2 pr-2">
+      <div class="me-sm-2 ">
         <div id="filter" class="p-2 m-2 bg-light ms-md-4 ms-sm-2 border">
-          <div class="border-bottom h5 text-uppercase">Filter By</div>
+          <div class="border-bottom h5 text-uppercase">Filter Reviews By</div>
           <div class="box border-bottom">
             <div class="box-label text-uppercase d-flex align-items-center">Rating
               <button class="btn ms-auto" type="button" data-bs-toggle="collapse"
@@ -113,11 +113,11 @@
                       class="fas fa-plus"></span></button>
             </div>
             <div id="inner-box" class="collapse show">
-              <div class="my-1"><a value="5" href="/" class="rating">5</a></div>
-              <div class="my-1"><a value="4" href="/" class="rating">4</a></div>
-              <div class="my-1"><a value="3" href="/" class="rating">3</a></div>
-              <div class="my-1"><a value="2" href="/" class="rating">2</a></div>
-              <div class="my-1"><a value="1" href="/" class="rating">1</a></div>
+              <div class="my-1"><a value="5" th:href="@{/service-provider/{serviceProviderId}/filter/stars/{rating}(serviceProviderId=${serviceProvider.serviceProviderId}, rating=5)}" class="rating">5</a></div>
+              <div class="my-1"><a value="4" th:href="@{/service-provider/{serviceProviderId}/filter/stars/{rating}(serviceProviderId=${serviceProvider.serviceProviderId}, rating=4)}" class="rating">4</a></div>
+              <div class="my-1"><a value="3" th:href="@{/service-provider/{serviceProviderId}/filter/stars/{rating}(serviceProviderId=${serviceProvider.serviceProviderId}, rating=3)}" class="rating">3</a></div>
+              <div class="my-1"><a value="2" th:href="@{/service-provider/{serviceProviderId}/filter/stars/{rating}(serviceProviderId=${serviceProvider.serviceProviderId}, rating=2)}" class="rating">2</a></div>
+              <div class="my-1"><a value="1" th:href="@{/service-provider/{serviceProviderId}/filter/stars/{rating}(serviceProviderId=${serviceProvider.serviceProviderId}, rating=1)}" class="rating">1</a></div>
             </div>
           </div>
 

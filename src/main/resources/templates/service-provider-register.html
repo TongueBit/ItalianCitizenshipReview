@@ -1,6 +1,3 @@
-
-
-
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -21,11 +18,12 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+
     <title>Italian Citizenship Reviews</title>
 </head>
 
 <!-- NAVBAR -->
-<header class="site-navbar m-3">
+<header class="site-navbar m-3" >
     <div class="site-mobile-menu site-navbar-target">
         <div class="site-mobile-menu-header">
             <div class="site-mobile-menu-close" id="mobile-close">
@@ -35,30 +33,36 @@
         <div class="site-mobile-menu-body"></div>
     </div> <!-- .site-mobile-menu -->
 
-    <div class="container-fluid">
+    <div class="container-fluid " >
         <div class="row align-items-center">
-            <div class="site-logo col-3 pt-3 "><a id="title-anchor" href="/" style="color: #1e7e34">Italian Citizenship
-                Reviews</a>
+            <div class="site-logo col-3 pt-3 "><a id="title-anchor" href="/" style="color: #1e7e34">Italian Citizenship Reviews</a>
 
             </div>
             <nav class="site-navigation flex-md-row">
                 <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+                    <li id="dashboard-button" class="d-md-none">
+                        <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" href="/user/dashboard/admin/" class="btn btn-primary border-width-2 ">Admin Dashboard
+
+                        </a>
+                        <a th:if="${#vars.request.isUserInRole('ROLE_USER')}" href="/user/dashboard/" class="btn btn-primary border-width-2 ">Dashboard
+                            <i class="fas fa-user-circle"></i>
+                        </a>
+                    </li>
                     <li><a class="" href="about.html"><b>About</b></a></li>
                     <li class="has-children">
-                        <a href="/service-provider/all"><b> Services </b> </a>
-                        <ul class="dropdown" style="color: white">
+                        <a href="/service-provider/all" ><b> Services </b> </a>
+                        <ul class="dropdown">
                             <li><a href="">Translation Service</a></li>
                             <li><a href="">Application Assistance</a></li>
                             <li><a href="">Genealogical Research</a></li>
                             <li><a href="">Legal Guidance</a></li>
                             <li><a href="">Full Service</a></li>
+                            <li><a href="">Document Authorization</a></li>
                         </ul>
                     </li>
-                    <li><a href="#add-provider"><b>Add Service Provider</b></a></li>
-                    <li class="d-md-none"><a href="/logout"
-                                             th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
-                        <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}"
-                           href="/login"> Login</a></li>
+                    <li class="d-md-none"><a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
+                        <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" href="/login"> Login</a></li>
+
                 </ul>
             </nav>
             <div class="right-cta-menu text-right d-flex align-items-right col-3">
@@ -85,105 +89,74 @@
             </div>
         </div>
     </div>
+    <style>
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+    </style>
 </header>
+<body >
+<div class="bg-light p-2 form-group" style="margin-top: 100px;">
 
-<body>
-<div class="container">
-    <div id="content" style="margin-top: 125px;">
-        <div style="margin-top: 100px">
+    <form action="/service-provider/register" method="post">
+        <br>
+        <label>Service Provider Name:</label>
+        <input class="form-control" type="text" name="name" value="Ex: ItalyMondo!" required><br>
 
-            <div>
-                <div class="review-container bg-white border">
+        <label>Email:</label>
+        <input class="form-control" type="email" name="email" required><br>
 
-                    <div th:unless="${#vars.request.isUserInRole('ROLE_USER')}">
-                        <!-- Rest of the code -->
-                    </div>
+        <label>Description:</label>
+        <textarea class="form-control" name="description" required></textarea><br>
 
-                    <h3 style="font-family: Italiana" class="m-3 ">Reviews</h3>
-                    <ul th:each="review, stat: ${reviews}" th:id="${stat.index}">
-                        <div class="form-container pb-3">
-                            <form th:action="@{/review/edit/{serviceProviderId}(serviceProviderId=${review.serviceProvider.serviceProviderId})}"
-                                  method="post" class="service-provider-card m-3 p-3">
-                                <h4 th:text="'For: ' + ${review.serviceProvider.name}"></h4>
-                                <p th:text="${review.date}"></p>
-                                <div class="form-group">
-                                    <label for="'title-' + ${stat.index}">Title:</label>
-                                    <input type="text" th:id="'title-' + ${stat.index}" name="title"
-                                           th:value="${review.title}" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="'content-' + ${stat.index}">Review:</label>
-                                    <textarea rows="5" cols="25" th:id="'content-' + ${stat.index}" name="content"
-                                              class="form-control">[[${review.content}]]</textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label  for="'rating-' + ${stat.index}">Rating: <b class="rating">[[${review.rating}]]</b></label>
-                                    <select th:id="'rating-' + ${stat.index}" name="rating" class="form-control">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                </div>
-                                <input type="hidden" name="reviewId" th:value="${review.reviewId}">
-                                <input type="hidden" name="userId" th:value="${review.userId}">
-                                <button type="submit" class="btn btn-primary">Update Review</button>
-                                <button th:action="@{'/review/' + ${review.reviewId}}" method="post" class="btn btn-primary">Delete review</button>
-                            </form>
-                        </div>
-                    </ul>
-                </div>
+        <label>Company Logo URL:</label>
+        <input class="form-control" type="url" name="logoUrl" placeholder="Enter the URL of the company logo" required>
 
-                <div class="bg-white pb-3 form-container">
-                    <h1 class="m-3 p-3" id="add-provider" style="font-family: Italiana">Add a Service Provider</h1>
-                    <form th:action="@{/service-provider}" method="post" class="service-provider-card m-3 p-3">
-                        <div class="form-group">
-                            <label for="name">Name:</label>
-                            <input type="text" id="name" name="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Description:</label>
-                            <input type="text" id="description" name="description" class="form-control" required>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Add Service Provider</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="bg-white pb-3 form-container">
-                    <h3 class="m-3 p-3">Update User Details</h3>
-                    <form th:action="@{/user/update}" method="post" class="service-provider-card m-3 p-3">
-                        <div class="form-group">
-                            <label for="username">Username:</label>
-                            <div class="input-group">
-                                <input type="text" id="username" name="username" class="form-control" th:value="${user.username}" required>
-                                <div class="input-group-append">
-                                    <button type="button" class="btn btn-primary" onclick="editUsername()">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </form>
-                </div>
-                <div class="bg-white pb-3 form-container">
-                    <h3  class="m-3 p-3">Want to delete your account?</h3>
-                    <form class="service-provider-card m-3 p-3" method="post" th:action="@{/user/delete/{userId}(userId=${user.userId})}">
-                        <button type="submit" style="text-align: end" class="btn btn-primary">Delete Account</button>
-                    </form>
-                </div>
-                <!-- Inside the "div" where user details are displayed -->
-
-
-
-
-
-            </div>
+        <label>Price Range (Estimate):</label>
+        <div>
+            <label for="lowestEstimate">Lowest Estimate:</label>
+            <input class="form-control" id="lowestEstimate" type="number" name="lowestEstimate" placeholder="Enter the lowest estimate" required>
         </div>
-    </div>
+        <div>
+            <label for="highestEstimate">Highest Estimate:</label>
+            <input class="form-control" id="highestEstimate" type="number" name="highestEstimate" placeholder="Enter the highest estimate" required>
+        </div>
+
+        <label>Services:</label>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="services" id="translationService" value="Translation Service">
+            <label class="form-check-label" for="translationService">Translation Service</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="services" id="applicationAssistance" value="Application Assistance">
+            <label class="form-check-label" for="applicationAssistance">Application Assistance</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="services" id="genealogicalResearch" value="Genealogical Research">
+            <label class="form-check-label" for="genealogicalResearch">Genealogical Research</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="services" id="legalGuidance" value="Legal Guidance">
+            <label class="form-check-label" for="legalGuidance">Legal Guidance</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="services" id="documentAuthorization" value="Document Authorization">
+            <label class="form-check-label" for="legalGuidance">Document Authorization
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="services" id="fullService" value="Full Service">
+            <label class="form-check-label" for="fullService">Full Service</label>
+        </div>
+        <!-- Add more fields as needed -->
+
+        <button style="margin-top: 10px" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
 </div>
+
 
 <script>
     AOS.init();
@@ -244,7 +217,7 @@
         <hr class="my-5"/>
 
         <!-- Section: Text -->
-        <section class="mb-5">
+        <section class="mb-3">
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-8">
                     <p>
@@ -259,7 +232,7 @@
         <!-- Section: Text -->
 
         <!-- Section: Social -->
-        <section class="text-center mb-5">
+        <section class="text-center mb-3">
             <a href="" class="text-white me-4">
                 <i class="fab fa-facebook-f"></i>
             </a>
@@ -296,13 +269,11 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
-
 <script src="/js/popper.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.sticky.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.all.min.js"></script>
-
 <script src="/js/main.js"></script>
 <script src="/js/directory.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </html>

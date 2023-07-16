@@ -1,108 +1,308 @@
-<!DOCTYPE html>
-<html>
+
+
+
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title >Italian Citizenship Reviews</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link rel="stylesheet" href="/css/style3.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Italiana:400,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- Style -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/service-provider.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <title>Italian Citizenship Reviews</title>
 </head>
-<body>
-<!-- Sidebar (hidden by default) -->
-<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-large w3-animate-left" style="display: none; z-index: 2; width: 40%; min-width: 300px" id="mySidebar">
-    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
-    <a href="/user/dashboard/" onclick="w3_close()" class="w3-bar-item w3-button">User Dashboard</a>
-    <a href="/service-provider/all" onclick="w3_close()" class="w3-bar-item w3-button">All Service Providers</a>
-    <a href="/" onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
 
-</nav>
-
-
-<div class="w3-top" style="background-color: #008C45">
-    <div class="w3-xlarge" style="max-width:1200px;margin:auto;">
-        <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()" id="mobileMenuIcon">☰</div>
-        <style>
-            @media (min-width: 500px) {
-                #mobileMenuIcon {
-                    display: none;
-                }
-            }
-            @media (max-width: 500px) {
-                #go-home {
-                    display: none;
-                }
-                #menu {
-                    display: none;
-                }
-            }
-        </style>
-        <div id="menu" class="w3-bar-item w3-button w3-right" style="font-size: medium;background-color: #008C45">
-            <a href="/user/dashboard/" >Dashboard</a>
-            <a href="/service-provider/all">All providers</a>
-            <a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
-            <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" href="/login"> Login</a>
+<!-- NAVBAR -->
+<header class="site-navbar m-3">
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close" id="mobile-close">
+                <span class="fa fa-arrow-right js-menu-toggle"></span>
+            </div>
         </div>
-        <div class="w3-bar-item w3-button w3-center" id="go-home"><a href="/">Italian Citizenship Review</a></div>
+        <div class="site-mobile-menu-body"></div>
+    </div> <!-- .site-mobile-menu -->
+
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="site-logo col-3 pt-3 "><a id="title-anchor" href="/" style="color: #1e7e34">Italian Citizenship
+                Reviews</a>
+
+            </div>
+            <nav class="site-navigation flex-md-row">
+                <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+                    <li><a class="" href="about.html"><b>About</b></a></li>
+                    <li class="has-children">
+                        <a href="/service-provider/all"><b> Services </b> </a>
+                        <ul class="dropdown" style="color: white">
+                            <li><a href="">Translation Service</a></li>
+                            <li><a href="">Application Assistance</a></li>
+                            <li><a href="">Genealogical Research</a></li>
+                            <li><a href="">Legal Guidance</a></li>
+                            <li><a href="">Full Service</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#add-provider"><b>Add Service Provider</b></a></li>
+                    <li class="d-md-none"><a href="/logout"
+                                             th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
+                        <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}"
+                           href="/login"> Login</a></li>
+                </ul>
+            </nav>
+            <div class="right-cta-menu text-right d-flex align-items-right col-3">
+                <div class="ml-auto">
+                    <a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block">
+                        <span class="mr-2 icon-lock_outline" style="align:right"></span>
+                        Log Out
+                    </a>
+                    <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" href="/user/dashboard/admin/" class="btn btn-primary border-width-2 d-none d-md-inline-block">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+                    <a th:if="${#vars.request.isUserInRole('ROLE_USER')}" href="/user/dashboard/" class="btn btn-primary border-width-2 d-none d-md-inline-block">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+
+
+                    <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="btn btn-primary border-width-2 d-none d-md-inline-block" href="/login">
+                        Login
+                    </a>
+                </div>
+
+                <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block mt-lg-2 ml-3"><span
+                        class="fa fa-bars h3 m-0 p-0 mt-2" id="hamburger"></span></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<body>
+<div class="container">
+    <div id="content" style="margin-top: 125px;">
+        <div style="margin-top: 100px">
+
+            <div>
+                <div class="review-container bg-white border">
+
+                    <div th:unless="${#vars.request.isUserInRole('ROLE_USER')}">
+                        <!-- Rest of the code -->
+                    </div>
+
+                    <h3 style="font-family: Italiana" class="m-3 ">Reviews</h3>
+                    <ul th:each="review, stat: ${reviews}" th:id="${stat.index}">
+                        <div class="form-container pb-3">
+                            <form th:action="@{/review/edit/{serviceProviderId}(serviceProviderId=${review.serviceProvider.serviceProviderId})}"
+                                  method="post" class="service-provider-card m-3 p-3">
+                                <h4 th:text="'For: ' + ${review.serviceProvider.name}"></h4>
+                                <p th:text="${review.date}"></p>
+                                <div class="form-group">
+                                    <label for="'title-' + ${stat.index}">Title:</label>
+                                    <input type="text" th:id="'title-' + ${stat.index}" name="title"
+                                           th:value="${review.title}" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="'content-' + ${stat.index}">Review:</label>
+                                    <textarea rows="5" cols="25" th:id="'content-' + ${stat.index}" name="content"
+                                              class="form-control">[[${review.content}]]</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label  for="'rating-' + ${stat.index}">Rating: <b class="rating">[[${review.rating}]]</b></label>
+                                    <select th:id="'rating-' + ${stat.index}" name="rating" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <input type="hidden" name="reviewId" th:value="${review.reviewId}">
+                                <input type="hidden" name="userId" th:value="${review.userId}">
+                                <button type="submit" class="btn btn-primary">Update Review</button>
+                                <button th:action="@{'/review/' + ${review.reviewId}}" method="post" class="btn btn-primary">Delete review</button>
+                            </form>
+                        </div>
+                    </ul>
+                </div>
+
+                <div class="bg-white pb-3 form-container">
+                    <h1 class="m-3 p-3" id="add-provider" style="font-family: Italiana">Add a Service Provider</h1>
+                    <form th:action="@{/service-provider}" method="post" class="service-provider-card m-3 p-3">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <input type="text" id="description" name="description" class="form-control" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Add Service Provider</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="bg-white pb-3 form-container">
+                    <h3 class="m-3 p-3">Update User Details</h3>
+                    <form th:action="@{/user/update}" method="post" class="service-provider-card m-3 p-3">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <div class="input-group">
+                                <input type="text" id="username" name="username" class="form-control" th:value="${user.username}" required>
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-primary" onclick="editUsername()">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </form>
+                </div>
+                <div class="bg-white pb-3 form-container">
+                    <h3  class="m-3 p-3">Want to delete your account?</h3>
+                    <form class="service-provider-card m-3 p-3" method="post" th:action="@{/user/delete/{userId}(userId=${user.userId})}">
+                        <button type="submit" style="text-align: end" class="btn btn-primary">Delete Account</button>
+                    </form>
+                </div>
+                <!-- Inside the "div" where user details are displayed -->
+
+
+
+
+
+            </div>
+        </div>
     </div>
 </div>
-    <div th:if="${serviceProvider == null}">
-        <h4>Add a Service Provider</h4>
-        <form th:action="@{/service-provider}" method="post">
-            <label for="name">Name:</label><br><br>
-            <input type="text" id="name" name="name" required/><br>
-            <label for="description">Description:</label><br><br>
-            <input type="text" id="description" name="description" required/><br>
-            <button type="submit">Add Service Provider</button>
-        </form>
-    </div>
-    <div>
-        <h3>Want to delete your account?</h3>
-        <form method="post" th:action="@{/user/delete/{userId}(userId=${user.userId})}">
-            <button type="submit" style="text-align: end">Delete Account</button>
-        </form>
-    </div>
-<!-- Footer -->
-<footer class="w3-row-padding w3-padding-32">
-    <div class="w3-third">
-        <h3>FOOTER</h3>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-    </div>
 
-    <div class="w3-third">
-        <h3>BLOG POSTS</h3>
-        <ul class="w3-ul w3-hoverable">
-            <li class="w3-padding-16">
-
-                <span class="w3-large">Lorem</span><br>
-                <span>Sed mattis nunc</span>
-            </li>
-            <li class="w3-padding-16">
-                <span class="w3-large">Ipsum</span><br>
-                <span>Praes tinci sed</span>
-            </li>
-        </ul>
-    </div>
-
-    <div class="w3-third w3-serif">
-        <h3>POPULAR TAGS</h3>
-        <p>
-            <span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Italian Citizenship</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Italian Genealogy</span>
-            <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Become Italian</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dual Citizenship</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Italian Heritage</span>
-            <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Jure Sanguinis</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">EU Passport</span>
-            <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Citizenship by blood</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">EU Citizenship</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Italian Citizenship Service Providers</span>
-        </p>
-    </div>
-</footer>
 <script>
-    // Script to open and close sidebar
-    function w3_open() {
-        document.getElementById("mySidebar").style.display = "block";
-    }
-
-    function w3_close() {
-        document.getElementById("mySidebar").style.display = "none";
-    }
+    AOS.init();
 </script>
 </body>
+
+<footer class="text-center text-white" style="background-color: #1e7e34">
+    <!-- Grid container -->
+    <div class="container">
+        <!-- Section: Links -->
+        <section class="mt-5">
+            <!-- Grid row-->
+            <div class="row text-center d-flex justify-content-center pt-5">
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">About us</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Products</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Awards</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Help</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Contact</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row-->
+        </section>
+        <!-- Section: Links -->
+
+        <hr class="my-5"/>
+
+        <!-- Section: Text -->
+        <section class="mb-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+                        distinctio earum repellat quaerat voluptatibus placeat nam,
+                        commodi optio pariatur est quia magnam eum harum corrupti
+                        dicta, aliquam sequi voluptate quas.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Section: Text -->
+
+        <!-- Section: Social -->
+        <section class="text-center mb-5">
+            <a href="" class="text-white me-4">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="text-white me-4">
+                <i class="fab fa-github"></i>
+            </a>
+        </section>
+        <!-- Section: Social -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div
+            class="text-center p-3"
+            style="background-color: rgba(0, 0, 0, 0.2)"
+    >
+        © 2023 Copyright:
+
+    </div>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.sticky.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.all.min.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/directory.js"></script>
+
+</html>
