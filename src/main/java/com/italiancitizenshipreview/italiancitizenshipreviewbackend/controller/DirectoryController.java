@@ -50,4 +50,13 @@ public class DirectoryController {
         return "directory";
 
     }
+
+    @GetMapping("/service-provider/filter/service/{service}")
+    public String filterByService(@PathVariable String service, Model model, HttpServletRequest request) {
+        List<ServiceProvider> serviceProviders = serviceProviderService.getAllServiceProviders();
+        serviceProviders.removeIf(provider -> !provider.getServices().contains(service));
+        model.addAttribute("serviceProviders", serviceProviders);
+        model.addAttribute("request", request);
+        return "directory";
+    }
 }

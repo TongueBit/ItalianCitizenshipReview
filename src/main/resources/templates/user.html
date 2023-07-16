@@ -1,6 +1,3 @@
-
-
-
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -25,40 +22,38 @@
 </head>
 
 <!-- NAVBAR -->
-<header class="site-navbar m-3">
-    <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-            <div class="site-mobile-menu-close" id="mobile-close">
-                <span class="fa fa-arrow-right js-menu-toggle"></span>
-            </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-    </div> <!-- .site-mobile-menu -->
-
+<header class="site-navbar mt-3">
     <div class="container-fluid">
+
         <div class="row align-items-center">
-            <div class="site-logo col-3 pt-3 "><a id="title-anchor" href="/" style="color: #1e7e34">Italian Citizenship
-                Reviews</a>
+            <div class="site-logo col-3 pt-3 "><a id="title-anchor" style="color: #1c7430" href="/">Italian Citizenship Reviews</a>
 
             </div>
             <nav class="site-navigation flex-md-row">
                 <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                    <li><a class="" href="about.html"><b>About</b></a></li>
+                    <li id="dashboard-button" class="d-md-none">
+                        <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" href="/user/dashboard/admin/" class="btn btn-primary border-width-2 ">Admin Dashboard
+
+                        </a>
+                        <a th:if="${#vars.request.isUserInRole('ROLE_USER')}" href="/user/dashboard/" class="btn btn-primary border-width-2 ">Dashboard
+                            <i class="fas fa-user-circle"></i>
+                        </a>
+                    </li>
+
                     <li class="has-children">
-                        <a href="/service-provider/all"><b> Services </b> </a>
-                        <ul class="dropdown" style="color: white">
-                            <li><a href="">Translation Service</a></li>
-                            <li><a href="">Application Assistance</a></li>
-                            <li><a href="">Genealogical Research</a></li>
-                            <li><a href="">Legal Guidance</a></li>
-                            <li><a href="">Full Service</a></li>
+                        <a href="/service-provider/all" ><b> Services </b> </a>
+                        <ul class="dropdown">
+                            <li><a href="/service-provider/filter/service/Translation Service">Translation Service</a></li>
+                            <li><a href="/service-provider/filter/service/Application Assistance">Application Assistance</a></li>
+                            <li><a href="/service-provider/filter/service/Genealogical Research">Genealogical Research</a></li>
+                            <li><a href="/service-provider/filter/service/Legal Guidance">Legal Guidance</a></li>
+                            <li><a href="/service-provider/filter/service/Full Service">Full Service</a></li>
                         </ul>
                     </li>
-                    <li><a href="#add-provider"><b>Add Service Provider</b></a></li>
-                    <li class="d-md-none"><a href="/logout"
-                                             th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
-                        <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}"
-                           href="/login"> Login</a></li>
+                    <li><a href="#benefits"><b>Benefits</b></a></li>
+                    <li class="d-md-none"><a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
+                        <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" href="/login"> Login</a></li>
+
                 </ul>
             </nav>
             <div class="right-cta-menu text-right d-flex align-items-right col-3">
@@ -81,7 +76,7 @@
                 </div>
 
                 <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block mt-lg-2 ml-3"><span
-                        class="fa fa-bars h3 m-0 p-0 mt-2" id="hamburger"></span></a>
+                        class="fa fa-bars h3 m-0 p-0 mt-2" id="hamburger" style="color: white"></span></a>
             </div>
         </div>
     </div>
@@ -117,7 +112,7 @@
                                               class="form-control">[[${review.content}]]</textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label  for="'rating-' + ${stat.index}">Rating: <b class="rating">[[${review.rating}]]</b></label>
+                                    <label for="'rating-' + ${stat.index}">Rating: <b class="rating">[[${review.rating}]]</b></label>
                                     <select th:id="'rating-' + ${stat.index}" name="rating" class="form-control">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -129,7 +124,9 @@
                                 <input type="hidden" name="reviewId" th:value="${review.reviewId}">
                                 <input type="hidden" name="userId" th:value="${review.userId}">
                                 <button type="submit" class="btn btn-primary">Update Review</button>
-                                <button th:action="@{'/review/' + ${review.reviewId}}" method="post" class="btn btn-primary">Delete review</button>
+                                <button th:action="@{'/review/' + ${review.reviewId}}" method="post"
+                                        class="btn btn-primary">Delete review
+                                </button>
                             </form>
                         </div>
                     </ul>
@@ -157,7 +154,8 @@
                         <div class="form-group">
                             <label for="username">Username:</label>
                             <div class="input-group">
-                                <input type="text" id="username" name="username" class="form-control" th:value="${user.username}" required>
+                                <input type="text" id="username" name="username" class="form-control"
+                                       th:value="${user.username}" required>
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-primary" onclick="editUsername()">Edit</button>
                                 </div>
@@ -165,19 +163,16 @@
                         </div>
 
 
-
                     </form>
                 </div>
                 <div class="bg-white pb-3 form-container">
-                    <h3  class="m-3 p-3">Want to delete your account?</h3>
-                    <form class="service-provider-card m-3 p-3" method="post" th:action="@{/user/delete/{userId}(userId=${user.userId})}">
+                    <h3 class="m-3 p-3">Want to delete your account?</h3>
+                    <form class="service-provider-card m-3 p-3" method="post"
+                          th:action="@{/user/delete/{userId}(userId=${user.userId})}">
                         <button type="submit" style="text-align: end" class="btn btn-primary">Delete Account</button>
                     </form>
                 </div>
                 <!-- Inside the "div" where user details are displayed -->
-
-
-
 
 
             </div>
@@ -200,7 +195,7 @@
                 <!-- Grid column -->
                 <div class="col-md-2">
                     <h6 class="text-uppercase font-weight-bold">
-                        <a href="#!" class="text-white">About us</a>
+                        <a href="/" class="text-white">Home</a>
                     </h6>
                 </div>
                 <!-- Grid column -->
@@ -208,7 +203,7 @@
                 <!-- Grid column -->
                 <div class="col-md-2">
                     <h6 class="text-uppercase font-weight-bold">
-                        <a href="#!" class="text-white">Products</a>
+                        <a href="/login" class="text-white">Login</a>
                     </h6>
                 </div>
                 <!-- Grid column -->
@@ -216,7 +211,7 @@
                 <!-- Grid column -->
                 <div class="col-md-2">
                     <h6 class="text-uppercase font-weight-bold">
-                        <a href="#!" class="text-white">Awards</a>
+                        <a href="/service-provider/all" class="text-white">Services</a>
                     </h6>
                 </div>
                 <!-- Grid column -->
@@ -224,7 +219,7 @@
                 <!-- Grid column -->
                 <div class="col-md-2">
                     <h6 class="text-uppercase font-weight-bold">
-                        <a href="#!" class="text-white">Help</a>
+                        <a href="#https://conslondra.esteri.it/en/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/cittadinanza/cittadinanza-per-discendenza/" class="text-white">Help</a>
                     </h6>
                 </div>
                 <!-- Grid column -->
@@ -232,8 +227,7 @@
                 <!-- Grid column -->
                 <div class="col-md-2">
                     <h6 class="text-uppercase font-weight-bold">
-                        <a href="#!" class="text-white">Contact</a>
-                    </h6>
+                        <a href="mailto:tony@tonguebit.com" class="text-white">Contact</a></h6>
                 </div>
                 <!-- Grid column -->
             </div>
@@ -248,10 +242,13 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-8">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-                        distinctio earum repellat quaerat voluptatibus placeat nam,
-                        commodi optio pariatur est quia magnam eum harum corrupti
-                        dicta, aliquam sequi voluptate quas.
+                        Italian Citizenship Reviews is a platform dedicated to assisting individuals in their pursuit of
+                        Italian citizenship. It provides a collection of user-generated reviews and ratings for various
+                        service providers involved in the citizenship application process. Users can find valuable
+                        insights and feedback from others who have gone through the process. With a range of filters and
+                        attributes, users can easily find relevant reviews. The platform aims to empower users with the
+                        necessary information to make informed decisions when choosing service providers for their
+                        Italian citizenship journey.
                     </p>
                 </div>
             </div>
@@ -289,6 +286,7 @@
             style="background-color: rgba(0, 0, 0, 0.2)"
     >
         © 2023 Copyright:
+        <p>For inquiries, please contact us at <a href="mailto:tony@tonguebit.com">tony@tonguebit.com</a>.</p>
 
     </div>
 </footer>

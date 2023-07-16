@@ -10,13 +10,22 @@ public class ServiceProviderResponse {
 
     private Long serviceProviderId;
 
+    private String logoUrl;
 
-
-    public ServiceProviderResponse(String name, String description, BigDecimal rating, Long serviceProviderId) {
+    public ServiceProviderResponse(String name, String description, BigDecimal rating, Long serviceProviderId, String  logoUrl) {
         this.name = name;
         this.description = description;
         this.rating = rating;
         this.serviceProviderId = serviceProviderId;
+        this.logoUrl = logoUrl;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 
     public Long getServiceProviderId() {

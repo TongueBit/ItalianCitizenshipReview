@@ -70,7 +70,7 @@ public class RestController {
         List<ServiceProviderResponse> serviceProviderRequests = new ArrayList<ServiceProviderResponse>();
         List<ServiceProvider> serviceProviders = serviceProviderService.getAllServiceProviderswithoutReviews();
         for (ServiceProvider sp : serviceProviders) {
-            serviceProviderRequests.add(new ServiceProviderResponse(sp.getName(), sp.getDescription(), sp.getAvgRating(), sp.getServiceProviderId()));
+            serviceProviderRequests.add(new ServiceProviderResponse(sp.getName(), sp.getDescription(), sp.getAvgRating(), sp.getServiceProviderId(), sp.getLogoUrl()));
         }
         return serviceProviderRequests;
     }
