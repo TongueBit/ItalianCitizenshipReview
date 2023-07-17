@@ -60,7 +60,6 @@
               <li><a href="/service-provider/filter/service/Full Service">Full Service</a></li>
             </ul>
           </li>
-          <li><a href="#benefits"><b>Benefits</b></a></li>
           <li class="d-md-none"><a href="/logout" th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">Logout</a>
             <a th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" href="/login"> Login</a></li>
 
