@@ -936,7 +936,7 @@ select {
 @media (max-width: 767px) {
   .hero {
     height: 100vh;
-    background-size: cover;
+    background-size: 100% auto;
     background-repeat: no-repeat;
   }
 }
