@@ -933,6 +933,17 @@ select {
   color: #1c7430;
 }
 
+@media (max-width: 767px) {
+  .hero {
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+}
+
 
 
 
