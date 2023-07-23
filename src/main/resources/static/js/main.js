@@ -1,4 +1,4 @@
-let flag = false;
+let flag1 = false;
 
 $(function() {
 
@@ -89,7 +89,7 @@ $(function() {
 });
 
 function createRegisterSection() {
-	if(flag === false) {
+	if(flag1 === false) {
 		var registerSection = document.createElement('section');
 		registerSection.id = 'register';
 		registerSection.classList.add('register-section');
@@ -205,7 +205,7 @@ function createRegisterSection() {
 		photoDiv.insertAdjacentElement('afterend', registerSection);
 
 		const elements = document.querySelectorAll('[name="password"]');
-		flag = true;
+		flag1 = true;
 	}else {
 		return;
 	}
