@@ -134,9 +134,7 @@
                                 <input type="hidden" name="reviewId" th:value="${review.reviewId}">
                                 <input type="hidden" name="userId" th:value="${review.userId}">
                                 <button type="submit" class="btn btn-primary">Update Review</button>
-                                <button th:action="@{'/review/' + ${review.reviewId}}" method="post"
-                                        class="btn btn-primary">Delete review
-                                </button>
+                                <a th:href="@{'/review/' + ${review.reviewId}}" class="btn btn-primary">Delete</a>
                             </form>
                         </div>
                     </ul>

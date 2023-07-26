@@ -7,6 +7,7 @@ import com.italiancitizenshipreview.italiancitizenshipreviewbackend.repository.S
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Comparator;
@@ -42,7 +43,17 @@ public class ReviewService {
     }
 
     public Review createReview(Review review) {
-        return reviewRepository.save(review);
+        reviewRepository.save(review);
+        ServiceProvider sp = review.getServiceProvider();
+        List<Review> reviews = sp.getReviews();
+        double averageRating = reviews.stream()
+                .mapToDouble(Review::getRating)
+                .average()
+                .orElse(0);
+        sp.setAvgRating(BigDecimal.valueOf(averageRating));
+        serviceProviderRepository.save(sp); //
+
+        return review;
     }
 
     public void deleteById(Long reviewId) {
@@ -53,6 +64,15 @@ public class ReviewService {
     }
     public void updateReview(Review review) {
         reviewRepository.save(review);
+
+        ServiceProvider sp = review.getServiceProvider();
+        List<Review> reviews = sp.getReviews();
+        double averageRating = reviews.stream()
+                .mapToDouble(Review::getRating)
+                .average()
+                .orElse(0);
+        sp.setAvgRating(BigDecimal.valueOf(averageRating));
+        serviceProviderRepository.save(sp); //
     }
 
     public List<Review> findAllByApproved(boolean approved) {

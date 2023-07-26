@@ -8,9 +8,13 @@ import com.italiancitizenshipreview.italiancitizenshipreviewbackend.service.Serv
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.net.HttpCookie;
+import java.net.http.HttpRequest;
 
 @Controller
 @RequestMapping("/review")
@@ -22,11 +26,12 @@ public class ReviewController {
     @Autowired
     private ServiceProviderService serviceProviderService;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/{reviewId}")
+    @PreAuthorize("hasRole('ROLE_USER') || hasRole('ROLE_ADMIN')")
+    @GetMapping("/{reviewId}")
     public String deleteReview(@PathVariable("reviewId") Long reviewId) {
+
         reviewService.deleteById(reviewId);
-        return "redirect:/service-provider/all";
+        return "redirect:/user/dashboard/";
     }
 
     @PostMapping("/edit/{serviceProviderId}")
