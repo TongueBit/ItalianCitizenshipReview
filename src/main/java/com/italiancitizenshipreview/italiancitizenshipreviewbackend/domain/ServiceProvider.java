@@ -103,6 +103,7 @@ public class ServiceProvider {
         this.name = name;
         this.description = description;
         this.approved = false;
+        this.avgRating = BigDecimal.ZERO;
 
     }
     public ServiceProvider() {
