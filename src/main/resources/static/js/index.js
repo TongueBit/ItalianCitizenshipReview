@@ -88,7 +88,8 @@ function showServiceProvider(index, serviceProvidersContainer1) {
         var containerDiv = serviceProviderDiv.children[0];
         var cardDiv = containerDiv.children[0];
         var cardBodyDiv = serviceProviderDiv.querySelector('.card-body');
-        var title = cardBodyDiv.children[0];
+        var image = cardBodyDiv.querySelector('img');
+        var title = cardBodyDiv.querySelector('h2');
 
         var paragraph = cardBodyDiv.querySelector('p');
 
@@ -100,15 +101,12 @@ function showServiceProvider(index, serviceProvidersContainer1) {
         title.textContent = serviceProvider.name;
         // Add the rating of the service provider
         if (serviceProvider.rating != null) {
-            cardBodyDiv.children[1].innerHTML = '<h5 class="rating">' + serviceProvider.rating + '</h5>';
+            cardBodyDiv.children[2].innerHTML = '<h5 class="rating">' + serviceProvider.rating + '</h5>';
         }
 
         // Add the logo image
-        var logoImg = document.createElement("img");
-        logoImg.src = serviceProvider.logoUrl;
-        logoImg.alt = "Service Provider Logo";
-        logoImg.className = "logo-img";
-        containerDiv.prepend(logoImg);
+        image.src = serviceProvider.logoUrl;
+
 
         var cardBodyDiv = serviceProviderDiv.querySelector('.card-body');
         var readMoreLink = cardBodyDiv.querySelector('a.read-more');
