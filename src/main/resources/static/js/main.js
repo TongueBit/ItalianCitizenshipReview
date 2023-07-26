@@ -249,6 +249,7 @@ function checkIfUsernameExists(event) {
 						.then(() => {
 							Swal.fire({
 								title: 'Enter Verification Code',
+								text: 'A verification code has been sent to your email address.',
 								input: 'text',
 								showCancelButton: true,
 								confirmButtonText: 'Submit',
