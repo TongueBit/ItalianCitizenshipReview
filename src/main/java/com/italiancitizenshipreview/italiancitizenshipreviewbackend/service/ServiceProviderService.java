@@ -18,6 +18,7 @@ public class ServiceProviderService {
 
     public ServiceProvider createServiceProvider(String name, String description) {
         ServiceProvider serviceProvider = new ServiceProvider(name, description);
+        serviceProvider.setServices("");
          return serviceProviderRepository.save(serviceProvider);
     }
 
