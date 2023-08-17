@@ -32,6 +32,24 @@ public class ServiceProvider {
     private int lowestEstimate;
     private int highestEstimate;
     private String services;
+    private String googleId;
+    private String facebookId;
+
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
+    }
+
+    public String getFacebookId() {
+        return facebookId;
+    }
+
+    public void setFacebookId(String facebookId) {
+        this.facebookId = facebookId;
+    }
 
     public void setAvgRating(BigDecimal avgRating) {
         this.avgRating = avgRating;
@@ -110,7 +128,7 @@ public class ServiceProvider {
     }
 
     public ServiceProvider(String name, String description, String email, String logoUrl,
-                           int lowestEstimate, int highestEstimate, String services) {
+                           int lowestEstimate, int highestEstimate, String services, String googleId, String facebookId) {
         this.name = name;
         this.description = description;
         this.email = email;
@@ -119,6 +137,8 @@ public class ServiceProvider {
         this.highestEstimate = highestEstimate;
         this.services = services;
         avgRating = BigDecimal.ZERO;
+        this.googleId = googleId;
+        this.facebookId = facebookId;
     }
 
     public Long getServiceProviderId() {
@@ -151,6 +171,18 @@ public class ServiceProvider {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public Boolean hasAPI() {
+        return googleId != null || facebookId != null;
+    }
+
+    public void callAPI() {
+        if (googleId != null) {
+            System.out.println("Calling Google API");
+        } else if (facebookId != null) {
+            System.out.println("Calling Facebook API");
+        }
     }
 
     @Override

@@ -99,53 +99,57 @@
     <form action="/service-provider/register" method="post">
         <br>
         <label>Service Provider Name:</label>
-        <input class="form-control" type="text" name="name" value="Ex: ItalyMondo!" required><br>
+        <input class="form-control" type="text" name="name" th:value="${serviceProvider.name}"  required><br>
 
         <label>Email:</label>
-        <input class="form-control" type="email" name="email" required><br>
+        <input class="form-control" type="email" name="email" th:value="${serviceProvider.email}" required><br>
 
         <label>Description:</label>
-        <textarea class="form-control" name="description" required></textarea><br>
+        <textarea class="form-control" name="description"  required>[[${serviceProvider.description}]]</textarea><br>
 
         <label>Company Logo URL:</label>
-        <input class="form-control" type="url" name="logoUrl" placeholder="Enter the URL of the company logo" required>
+        <input class="form-control" type="url" name="logoUrl" placeholder="Enter the URL of the company logo" th:value="${serviceProvider.logoUrl}" required>
 
         <label>Price Range (Estimate):</label>
         <div>
             <label for="lowestEstimate">Lowest Estimate:</label>
-            <input class="form-control" id="lowestEstimate" type="number" name="lowestEstimate" placeholder="Enter the lowest estimate" required>
+            <input class="form-control" id="lowestEstimate" type="number" name="lowestEstimate" placeholder="Enter the lowest estimate" th:value="${serviceProvider.lowestEstimate}" required>
         </div>
         <div>
             <label for="highestEstimate">Highest Estimate:</label>
-            <input class="form-control" id="highestEstimate" type="number" name="highestEstimate" placeholder="Enter the highest estimate" required>
+            <input class="form-control" id="highestEstimate" type="number" name="highestEstimate" placeholder="Enter the highest estimate" th:value="${serviceProvider.highestEstimate}" required>
         </div>
 
         <label>Services:</label>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="services" id="translationService" value="Translation Service">
-            <label class="form-check-label" for="translationService">Translation Service</label>
+            <input class="form-check-input" type="checkbox" name="services" id="translationService" value="Translation Service" th:checked="${serviceProvider.getServices() != null and #strings.contains(serviceProvider.getServices(), 'Translation Service')}">
+            <label class="form-check-label" for="translationService" >Translation Service</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="services" id="applicationAssistance" value="Application Assistance">
+            <input class="form-check-input" type="checkbox" name="services" id="applicationAssistance" value="Application Assistance" th:checked="${serviceProvider.getServices() != null and #strings.contains(serviceProvider.getServices(), 'Application Assistance')} ">
             <label class="form-check-label" for="applicationAssistance">Application Assistance</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="services" id="genealogicalResearch" value="Genealogical Research">
+            <input class="form-check-input" type="checkbox" name="services" id="genealogicalResearch" value="Genealogical Research" th:checked="${serviceProvider.getServices() != null and #strings.contains(serviceProvider.getServices(), 'Genealogical Research')} ">
             <label class="form-check-label" for="genealogicalResearch">Genealogical Research</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="services" id="legalGuidance" value="Legal Guidance">
+            <input class="form-check-input" type="checkbox" name="services" id="legalGuidance" value="Legal Guidance" th:checked="${serviceProvider.getServices() != null and #strings.contains(serviceProvider.getServices(), 'Legal Guidance')} ">
             <label class="form-check-label" for="legalGuidance">Legal Guidance</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="services" id="documentAuthorization" value="Document Authorization">
+            <input class="form-check-input" type="checkbox" name="services" id="documentAuthorization" value="Document Authorization" th:checked="${serviceProvider.getServices() != null and #strings.contains(serviceProvider.getServices(), 'Document Authorization')} ">
             <label class="form-check-label" for="legalGuidance">Document Authorization
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="services" id="fullService" value="Full Service">
+            <input class="form-check-input" type="checkbox" name="services" id="fullService" value="Full Service" th:checked="${serviceProvider.getServices() != null and #strings.contains(serviceProvider.getServices(), 'Full Service')} ">
             <label class="form-check-label" for="fullService">Full Service</label>
         </div>
+        <label>Google Place Id:</label>
+        <textarea class="form-control" name="googleId" id="googleId">[[${serviceProvider.googleId}]]</textarea><br>
+        <label>Facebook Id:</label>
+        <textarea class="form-control" name="facebookId" id="facebookId">[[${serviceProvider.facebookId}]]</textarea><br>
         <!-- Add more fields as needed -->
 
         <button style="margin-top: 10px" type="submit" class="btn btn-primary">Submit</button>
