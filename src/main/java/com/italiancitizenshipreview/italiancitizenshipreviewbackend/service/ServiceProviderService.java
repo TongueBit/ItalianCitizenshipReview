@@ -76,4 +76,8 @@ public class ServiceProviderService {
         int i = 0;
         return serviceProviderRepository.findServiceProviderByName(name);
     }
+
+    public List<ServiceProvider> findAllwithAPI() {
+        return serviceProviderRepository.findServiceProvidersWithNonNullIds();
+    }
 }

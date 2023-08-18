@@ -173,6 +173,13 @@ public class ServiceProvider {
         this.reviews = reviews;
     }
 
+    public void addReviews(List<Review> reviews) {
+        if (this.reviews == null) {
+            this.reviews = new ArrayList<>();
+        }
+        this.reviews.addAll(reviews);
+    }
+
     public Boolean hasAPI() {
         return googleId != null || facebookId != null;
     }

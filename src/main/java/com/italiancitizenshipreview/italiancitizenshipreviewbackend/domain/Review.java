@@ -18,6 +18,24 @@ public class Review {
     private String content;
     private Long userId;
 
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+
+    private String authorName;
+
     @ManyToOne
     @JoinColumn(name = "serviceProviderId")
     private ServiceProvider serviceProvider;
@@ -29,6 +47,13 @@ public class Review {
     private boolean approved;
 
     public Review() {
+    }
+
+    public Review(String content, ServiceProvider serviceProvider, int rating, String authorName) {
+        this.content = content;
+        this.serviceProvider = serviceProvider;
+        this.rating = rating;
+        this.authorName = authorName;
     }
 
     public boolean getApproved() {
