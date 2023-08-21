@@ -55,10 +55,5 @@ public class ReviewController {
         return "redirect:/user/dashboard/admin/";
     }
 
-    @GetMapping("/test")
-    public String test(Model model) throws JsonProcessingException {
-        reviewService.updateReviews();
-        model.addAttribute("user", new User());
-        return "service-provider-register";
-    }
+
 }
