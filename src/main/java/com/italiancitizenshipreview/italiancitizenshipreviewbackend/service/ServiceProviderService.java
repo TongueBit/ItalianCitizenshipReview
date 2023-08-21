@@ -22,10 +22,27 @@ public class ServiceProviderService {
          return serviceProviderRepository.save(serviceProvider);
     }
 
-    public void registerServiceProvider(String name, String description, String email, String logoUrl, int lowestEstimate, int highestEstimate, String services) {
+    public void registerServiceProvider(String name, String description, String email, String logoUrl, int lowestEstimate, int highestEstimate, String services, String googleId, String facebookId, String website) {
 
-    	ServiceProvider serviceProvider = new ServiceProvider(name, description, email, logoUrl, lowestEstimate, highestEstimate, services);
-        serviceProviderRepository.save(serviceProvider);
+        if(  getServiceProviderByName(name) != null){
+            ServiceProvider sp = getServiceProviderByName(name);
+            sp.setName(name);
+            sp.setDescription(description);
+            sp.setEmail(email);
+            sp.setLogoUrl(logoUrl);
+            sp.setLowestEstimate(lowestEstimate);
+            sp.setHighestEstimate(highestEstimate);
+            sp.setServices(services);
+            sp.setWebsite(website);
+
+            sp.setGoogleId(googleId);
+            sp.setFacebookId(facebookId);
+            serviceProviderRepository.save(sp);
+        }
+        else {
+            ServiceProvider serviceProvider = new ServiceProvider(name, description, email, logoUrl, lowestEstimate, highestEstimate, services, googleId, facebookId, website);
+            serviceProviderRepository.save(serviceProvider);
+        }
     }
 
     public ServiceProvider getServiceProvider(Long serviceProviderId) {
@@ -64,5 +81,12 @@ public class ServiceProviderService {
         serviceProviderRepository.save(serviceProvider);
     }
 
+    public ServiceProvider getServiceProviderByName(String name) {
+        int i = 0;
+        return serviceProviderRepository.findServiceProviderByName(name);
+    }
 
+    public List<ServiceProvider> findAllwithAPI() {
+        return serviceProviderRepository.findServiceProvidersWithNonNullIds();
+    }
 }

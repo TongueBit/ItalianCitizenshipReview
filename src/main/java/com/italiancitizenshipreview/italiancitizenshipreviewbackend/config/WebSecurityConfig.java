@@ -47,6 +47,7 @@ public class WebSecurityConfig {
                                 , "/rest/service-provider"
                                 ,"/rest/**"
                                 ,"/index"
+                                ,"/review/test"
                                 , "/resources/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin()

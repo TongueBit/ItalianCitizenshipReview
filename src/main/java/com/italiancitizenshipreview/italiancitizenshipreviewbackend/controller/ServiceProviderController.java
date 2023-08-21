@@ -99,7 +99,11 @@ public class ServiceProviderController {
                                       @RequestParam("lowestEstimate") int lowestEstimate,
                                       @RequestParam("highestEstimate") int highestEstimate,
                                       @RequestParam(value = "services", required = false) List<String> services,
+                                      @RequestParam(value = "googleId", required = false) String googleId,
+                                      @RequestParam(value = "facebookId", required = false) String facebookId,
+                                      @RequestParam(value = "website", required = false) String website,
                                       Model map, HttpServletRequest request) {
+
         StringBuilder sb = new StringBuilder();
         for (String s : services) {
             sb.append(s).append(", ");
@@ -110,14 +114,28 @@ public class ServiceProviderController {
             concatenatedServices = concatenatedServices.substring(0, concatenatedServices.length() - 2);
         }
 
-// Use the concatenatedServices string as needed (e.g., store it in the database)
-        if(!serviceProviderRepository.existsByName(name)) {
-            serviceProviderService.registerServiceProvider(name, description, email, logoUrl, lowestEstimate, highestEstimate, concatenatedServices);
-            map.addAttribute("user", new User());
-            map.addAttribute("request", request);
-            return "service-provider-register"; // Replace "success" with the appropriate view name
-        }
-        return "error";
+        serviceProviderService.registerServiceProvider(name, description, email, logoUrl, lowestEstimate, highestEstimate, concatenatedServices, googleId, facebookId, website);
+        map.addAttribute("user", new User());
+        map.addAttribute("request", request);
+        map.addAttribute("serviceProvider", new ServiceProvider());
+        return "service-provider-register"; // Replace "success" with the appropriate view name
+
+
+
+    }
+
+    @GetMapping("/service-provider/register/edit/{serviceProviderId}")
+    public String editServiceProvider(
+                                      @PathVariable  Long serviceProviderId,
+                                      Model map, HttpServletRequest request) {
+
+        ServiceProvider sp = serviceProviderService.getServiceProvider(serviceProviderId);
+        map.addAttribute("serviceProvider", sp);
+        map.addAttribute("user", new User());
+        map.addAttribute("request", request);
+        return "service-provider-register"; // Replace "success" with the appropriate view name
+
+
     }
 
 

@@ -17,6 +17,7 @@ public class Review {
     @Column(columnDefinition = "TEXT")
     private String content;
     private Long userId;
+    private String authorName;
 
     @ManyToOne
     @JoinColumn(name = "serviceProviderId")
@@ -28,7 +29,40 @@ public class Review {
     @Column(name = "approved")
     private boolean approved;
 
+    private String googlePhoto;
+
     public Review() {
+    }
+
+    public Review(String content, ServiceProvider serviceProvider, int rating, String authorName) {
+        this.content = content;
+        this.serviceProvider = serviceProvider;
+        this.rating = rating;
+        this.authorName = authorName;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+
+    public String getGooglePhoto() {
+        return googlePhoto;
+    }
+
+    public void setGooglePhoto(String googlePhoto) {
+        this.googlePhoto = googlePhoto;
     }
 
     public boolean getApproved() {

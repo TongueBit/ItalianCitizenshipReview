@@ -132,9 +132,13 @@
             </div>
             <div class="col-lg-9">
               <div class="d-md-flex align-items-md-center">
-                <div class="name">
+                <div class="name d-inline-block">
                   <h3><a th:href="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}" th:text="${serviceProvider.name}"></a></h3>
+                  <a th:href="${serviceProvider.website}" style="color: #005cbf" class="justify-content-end">Website</a>
                 </div>
+              </div>
+              <div>
+
               </div>
               <div>
                 <div>
@@ -142,6 +146,7 @@
                 </div>
                 <p th:text="${serviceProvider.description}"></p>
               </div>
+
               <div class="d-flex flex-column tags pt-1"></div>
               <div>
                 <div th:if="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}" class="bg-light p-2 form-group">
@@ -185,11 +190,18 @@
                       <ul style="list-style: none" id="reviewList">
                         <li th:each="review : ${serviceProvider.reviews}">
                           <div class="m-2 p-4" style="border-style: solid; border-radius: 5px;">
-                            <input type="hidden" name="userId" th:value="${review.userId}" />
+                            <div>
+                              <input type="hidden" name="userId" th:value="${review.userId}" />
+                              <div th:if="${review.getGooglePhoto() != null}" class="d-flex justify-content-between">
+                                <img th:src="${review.googlePhoto}" alt="Profile Photo" class="rounded-circle w-25">
+                                <img  src="/images/google_g_icon_download.png" alt="Profile Photo"style="height: 25px" class="rounded-circle align-content-end">
+                              </div>
                             <h6><b><span th:text="${review.title}"></span></b></h6>
                             <p class="rating" th:text="${review.rating}"></p>
+
                             <p th:text="${review.date}"></p>
                             <p><span th:text="${review.content}"></span></p>
+
                             <form  >
                               <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" th:href="@{'/review/' + ${review.reviewId}}" class="btn btn-primary">Delete review</a>
                               <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" th:href="@{/user/dashboard/{userId}(userId=${review.userId})}" class="btn btn-primary">Go to User</a>

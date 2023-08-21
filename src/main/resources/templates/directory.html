@@ -140,6 +140,12 @@
                                         </div>
                                         <div>
                                             <div>
+                                                <a th:href="${serviceProvider.website}" style="color: #005cbf" class="justify-content-end">Website</a>
+
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div>
                                                 <h4 class="rating" th:text="${serviceProvider.avgRating}"></h4>
                                             </div>
                                             <div class="services">
@@ -173,6 +179,10 @@
                                                                 <li th:each="review : ${serviceProvider.reviews}">
                                                                     <div class="m-2 p-4" style="border-style: solid; border-radius: 5px;">
                                                                         <input type="hidden" name="userId" th:value="${review.userId}" />
+                                                                        <div th:if="${review.getGooglePhoto() != null}" class="d-flex justify-content-between">
+                                                                            <img th:src="${review.googlePhoto}" alt="Profile Photo" class="rounded-circle w-25">
+                                                                            <img  src="/images/google_g_icon_download.png" alt="Profile Photo"style="height: 25px" class="rounded-circle align-content-end">
+                                                                        </div>
                                                                         <h6><b><span th:text="${review.title}"></span></b></h6>
                                                                         <p class="rating" th:text="${review.rating}"><b></b></p>
                                                                         <p th:text="${review.date}"></p>
