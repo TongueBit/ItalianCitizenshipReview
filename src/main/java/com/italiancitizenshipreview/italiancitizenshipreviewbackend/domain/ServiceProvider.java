@@ -28,12 +28,59 @@ public class ServiceProvider {
 
     private boolean approved;
     private String email;
+
+    private String website;
+
+    private String phone;
+
     private String logoUrl;
     private int lowestEstimate;
     private int highestEstimate;
     private String services;
     private String googleId;
+
     private String facebookId;
+
+
+    public ServiceProvider() {
+    }
+    public ServiceProvider(String name, String description ) {
+        this.name = name;
+        this.description = description;
+        this.approved = false;
+        this.avgRating = BigDecimal.ZERO;
+
+    }
+
+    public ServiceProvider(String name, String description, String email, String logoUrl,
+                           int lowestEstimate, int highestEstimate, String services, String googleId, String facebookId, String website) {
+        this.name = name;
+        this.description = description;
+        this.email = email;
+        this.logoUrl = logoUrl;
+        this.lowestEstimate = lowestEstimate;
+        this.highestEstimate = highestEstimate;
+        this.services = services;
+        avgRating = BigDecimal.ZERO;
+        this.googleId = googleId;
+        this.facebookId = facebookId;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getGoogleId() {
         return googleId;
@@ -117,29 +164,7 @@ public class ServiceProvider {
         return avgRating;
     }
 
-    public ServiceProvider(String name, String description ) {
-        this.name = name;
-        this.description = description;
-        this.approved = false;
-        this.avgRating = BigDecimal.ZERO;
 
-    }
-    public ServiceProvider() {
-    }
-
-    public ServiceProvider(String name, String description, String email, String logoUrl,
-                           int lowestEstimate, int highestEstimate, String services, String googleId, String facebookId) {
-        this.name = name;
-        this.description = description;
-        this.email = email;
-        this.logoUrl = logoUrl;
-        this.lowestEstimate = lowestEstimate;
-        this.highestEstimate = highestEstimate;
-        this.services = services;
-        avgRating = BigDecimal.ZERO;
-        this.googleId = googleId;
-        this.facebookId = facebookId;
-    }
 
     public Long getServiceProviderId() {
         return serviceProviderId;

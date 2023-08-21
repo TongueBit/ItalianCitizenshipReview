@@ -101,6 +101,7 @@ public class ServiceProviderController {
                                       @RequestParam(value = "services", required = false) List<String> services,
                                       @RequestParam(value = "googleId", required = false) String googleId,
                                       @RequestParam(value = "facebookId", required = false) String facebookId,
+                                      @RequestParam(value = "website", required = false) String website,
                                       Model map, HttpServletRequest request) {
 
         StringBuilder sb = new StringBuilder();
@@ -113,7 +114,7 @@ public class ServiceProviderController {
             concatenatedServices = concatenatedServices.substring(0, concatenatedServices.length() - 2);
         }
 
-        serviceProviderService.registerServiceProvider(name, description, email, logoUrl, lowestEstimate, highestEstimate, concatenatedServices, googleId, facebookId);
+        serviceProviderService.registerServiceProvider(name, description, email, logoUrl, lowestEstimate, highestEstimate, concatenatedServices, googleId, facebookId, website);
         map.addAttribute("user", new User());
         map.addAttribute("request", request);
         map.addAttribute("serviceProvider", new ServiceProvider());

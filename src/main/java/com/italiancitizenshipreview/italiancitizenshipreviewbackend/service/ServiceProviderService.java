@@ -22,16 +22,25 @@ public class ServiceProviderService {
          return serviceProviderRepository.save(serviceProvider);
     }
 
-    public void registerServiceProvider(String name, String description, String email, String logoUrl, int lowestEstimate, int highestEstimate, String services, String googleId, String facebookId) {
+    public void registerServiceProvider(String name, String description, String email, String logoUrl, int lowestEstimate, int highestEstimate, String services, String googleId, String facebookId, String website) {
 
         if(  getServiceProviderByName(name) != null){
             ServiceProvider sp = getServiceProviderByName(name);
+            sp.setName(name);
+            sp.setDescription(description);
+            sp.setEmail(email);
+            sp.setLogoUrl(logoUrl);
+            sp.setLowestEstimate(lowestEstimate);
+            sp.setHighestEstimate(highestEstimate);
+            sp.setServices(services);
+            sp.setWebsite(website);
+
             sp.setGoogleId(googleId);
             sp.setFacebookId(facebookId);
             serviceProviderRepository.save(sp);
         }
         else {
-            ServiceProvider serviceProvider = new ServiceProvider(name, description, email, logoUrl, lowestEstimate, highestEstimate, services, googleId, facebookId);
+            ServiceProvider serviceProvider = new ServiceProvider(name, description, email, logoUrl, lowestEstimate, highestEstimate, services, googleId, facebookId, website);
             serviceProviderRepository.save(serviceProvider);
         }
     }

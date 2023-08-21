@@ -17,6 +17,29 @@ public class Review {
     @Column(columnDefinition = "TEXT")
     private String content;
     private Long userId;
+    private String authorName;
+
+    @ManyToOne
+    @JoinColumn(name = "serviceProviderId")
+    private ServiceProvider serviceProvider;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
+    private int rating;
+
+    @Column(name = "approved")
+    private boolean approved;
+
+    private String googlePhoto;
+
+    public Review() {
+    }
+
+    public Review(String content, ServiceProvider serviceProvider, int rating, String authorName) {
+        this.content = content;
+        this.serviceProvider = serviceProvider;
+        this.rating = rating;
+        this.authorName = authorName;
+    }
 
     public String getAuthorName() {
         return authorName;
@@ -34,26 +57,12 @@ public class Review {
         this.approved = approved;
     }
 
-    private String authorName;
-
-    @ManyToOne
-    @JoinColumn(name = "serviceProviderId")
-    private ServiceProvider serviceProvider;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
-    private int rating;
-
-    @Column(name = "approved")
-    private boolean approved;
-
-    public Review() {
+    public String getGooglePhoto() {
+        return googlePhoto;
     }
 
-    public Review(String content, ServiceProvider serviceProvider, int rating, String authorName) {
-        this.content = content;
-        this.serviceProvider = serviceProvider;
-        this.rating = rating;
-        this.authorName = authorName;
+    public void setGooglePhoto(String googlePhoto) {
+        this.googlePhoto = googlePhoto;
     }
 
     public boolean getApproved() {

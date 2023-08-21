@@ -101,6 +101,9 @@
         <label>Service Provider Name:</label>
         <input class="form-control" type="text" name="name" th:value="${serviceProvider.name}"  required><br>
 
+        <label>Website</label>
+        <textarea class="form-control" name="website" id="website">[[${serviceProvider.website}]]</textarea><br>
+
         <label>Email:</label>
         <input class="form-control" type="email" name="email" th:value="${serviceProvider.email}" required><br>
 

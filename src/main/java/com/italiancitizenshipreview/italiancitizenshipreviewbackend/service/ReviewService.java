@@ -106,7 +106,7 @@ public class ReviewService {
         List<Review> reviews = serviceProvider.getReviews();
 
         for (Review review : reviews) {
-            if (review.getUserId().equals(userId)) {
+            if (review.getUserId() != null && review.getUserId().equals(userId)) {
                 return true; // User has made a review for the service provider
             }
         }
@@ -148,6 +148,7 @@ public class ReviewService {
     }
 
     private void updateGoogleReviews(ServiceProvider serviceProvider) throws JsonProcessingException {
+        List<Review> existingReviews = serviceProvider.getReviews();
         String apiKey = System.getenv("GOOGLE_PLACES_API_KEY");
         String locationId = serviceProvider.getGoogleId();
         String url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=" + locationId + "&fields=review&key=" + apiKey;
@@ -162,13 +163,19 @@ public class ReviewService {
 
         List<Review> reviewList = new ArrayList<>();
         for (JsonNode review : reviews) {
-            Review reviewObj = new Review(review.get("text").asText(), serviceProvider, review.get("rating").asInt(), review.get("author_name").asText());
-            reviewRepository.save(reviewObj);
+            boolean reviewExists = existingReviews.stream().anyMatch(existingReviewObj ->
+                    existingReviewObj.getAuthorName().equals(review.get("author_name").asText()) &&
+                            existingReviewObj.getContent().equals(review.get("text").asText())
+            );
+            if (!reviewExists) {
+                Review reviewObj = new Review(review.get("text").asText(), serviceProvider, review.get("rating").asInt(), review.get("author_name").asText());
+                reviewObj.setGooglePhoto(review.get("profile_photo_url").asText());
+                reviewRepository.save(reviewObj);
+                reviewList.add(reviewObj);
+            }
         }
         serviceProvider.setReviews(reviewList);
         serviceProviderRepository.save(serviceProvider);
-
-        // TODO: Save the reviews to persistent memory using the data from the DTOs
     }
 
 

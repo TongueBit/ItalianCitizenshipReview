@@ -24,8 +24,57 @@ public class User {
     private String name;
     private String email;
 
+    private String story;
+
+    private String locationOfRecognition;
+
+    private boolean recognized;
+
+    private int waitTime;
+    private String city;
+
     public User() {
 
+    }
+
+    public String getStory() {
+        return story;
+    }
+
+    public void setStory(String story) {
+        this.story = story;
+    }
+
+    public String getLocationOfRecognition() {
+        return locationOfRecognition;
+    }
+
+    public void setLocationOfRecognition(String locationOfRecognition) {
+        this.locationOfRecognition = locationOfRecognition;
+    }
+
+    public boolean isRecognized() {
+        return recognized;
+    }
+
+    public void setRecognized(boolean recognized) {
+        this.recognized = recognized;
+    }
+
+    public int getWaitTime() {
+        return waitTime;
+    }
+
+    public void setWaitTime(int waitTime) {
+        this.waitTime = waitTime;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public Long getUserId() {
@@ -88,17 +137,6 @@ public class User {
                 '}';
     }
 
-    @Test
-    public void testToString() {
-        User user = new User();
-        user.setUserId(1L);
-        user.setUsername("XXXXXXXX");
-        user.setPassword("XXXXXXXX");
-        user.setRoles("USER");
-        user.setName("name");
-        user.setEmail("email");
-        assertEquals("User{userId=1, username='XXXXXXXX', password='XXXXXXXX', roles=USER, name='name', email='email'}", user.toString());
-    }
 
     @Override
     public boolean equals(Object o) {
