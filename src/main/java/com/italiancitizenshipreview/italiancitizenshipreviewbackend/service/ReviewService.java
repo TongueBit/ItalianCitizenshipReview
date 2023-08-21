@@ -114,7 +114,10 @@ public class ReviewService {
     }
 
     public void updateReviews() throws JsonProcessingException {
-        updateServiceProviderReviews(serviceProviderRepository.findByServiceProviderId(33L));
+        List<ServiceProvider> serviceProviders = serviceProviderRepository.findAllServiceProviders();
+        for (ServiceProvider serviceProvider : serviceProviders) {
+            updateServiceProviderReviews(serviceProvider);
+        }
 
         /**
         List<ServiceProvider> serviceProviders = getServiceProviderWithNonNullIds();
