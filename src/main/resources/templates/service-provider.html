@@ -206,6 +206,7 @@
                               <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" th:href="@{'/review/' + ${review.reviewId}}" class="btn btn-primary">Delete review</a>
                               <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" th:href="@{/user/dashboard/{userId}(userId=${review.userId})}" class="btn btn-primary">Go to User</a>
                             </form>
+
                           </div>
                         </li>
                       </ul>
