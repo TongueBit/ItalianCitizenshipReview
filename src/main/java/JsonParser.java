@@ -39,8 +39,7 @@ public class JsonParser {
                 System.out.println("Is Recommended: " + isRecommended);
                 System.out.println();
                 System.out.println(i);
-                ReviewService reviewService = new ReviewService();
-                reviewService.saveReview(userName, userProfilePic, userDate, userText, pageName, isRecommended);
+
             }
 
         } catch (IOException e) {
