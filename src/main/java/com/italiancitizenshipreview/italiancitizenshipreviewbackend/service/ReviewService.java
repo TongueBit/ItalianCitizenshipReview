@@ -142,9 +142,9 @@ public class ReviewService {
     private ServiceProvider updateServiceProviderReviews(ServiceProvider serviceProvider) throws JsonProcessingException {
         String googleId = serviceProvider.getGoogleId();
         String facebookId = serviceProvider.getFacebookId();
-        if (!googleId.isEmpty() || googleId != null) {
+        if (!googleId.isEmpty()) {
             updateGoogleReviews(serviceProvider);
-        } else if (!facebookId.isEmpty() || facebookId != null) {
+        } else if (!facebookId.isEmpty()) {
 
 
             //add facebook call
