@@ -52,7 +52,7 @@ public class ServiceProvider {
     }
 
     public ServiceProvider(String name, String description, String email, String logoUrl,
-                           int lowestEstimate, int highestEstimate, String services, String googleId, String facebookId, String website) {
+                           int lowestEstimate, int highestEstimate, String services, String googleId, String website) {
         this.name = name;
         this.description = description;
         this.email = email;
