@@ -41,6 +41,6 @@ public class AdminController {
     public String test(Model model) throws JsonProcessingException {
         reviewService.updateReviews();
         model.addAttribute("user", new User());
-        return "admin";
+        return "index";
     }
 }
