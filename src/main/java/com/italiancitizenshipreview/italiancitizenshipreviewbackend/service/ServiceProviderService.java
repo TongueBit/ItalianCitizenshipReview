@@ -36,7 +36,7 @@ public class ServiceProviderService {
             sp.setWebsite(website);
 
             sp.setGoogleId(googleId);
-            sp.setFacebookId(facebookId);
+
             serviceProviderRepository.save(sp);
         }
         else {

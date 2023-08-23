@@ -39,7 +39,6 @@ public class ServiceProvider {
     private String services;
     private String googleId;
 
-    private String facebookId;
 
 
     public ServiceProvider() {
@@ -63,7 +62,7 @@ public class ServiceProvider {
         this.services = services;
         avgRating = BigDecimal.ZERO;
         this.googleId = googleId;
-        this.facebookId = facebookId;
+        this.website = website;
     }
 
     public String getWebsite() {
@@ -90,13 +89,6 @@ public class ServiceProvider {
         this.googleId = googleId;
     }
 
-    public String getFacebookId() {
-        return facebookId;
-    }
-
-    public void setFacebookId(String facebookId) {
-        this.facebookId = facebookId;
-    }
 
     public void setAvgRating(BigDecimal avgRating) {
         this.avgRating = avgRating;
@@ -206,14 +198,12 @@ public class ServiceProvider {
     }
 
     public Boolean hasAPI() {
-        return googleId != null || facebookId != null;
+        return googleId != null ;
     }
 
     public void callAPI() {
         if (googleId != null) {
             System.out.println("Calling Google API");
-        } else if (facebookId != null) {
-            System.out.println("Calling Facebook API");
         }
     }
 

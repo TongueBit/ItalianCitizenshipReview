@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -141,15 +143,9 @@ public class ReviewService {
 
     private ServiceProvider updateServiceProviderReviews(ServiceProvider serviceProvider) throws JsonProcessingException {
         String googleId = serviceProvider.getGoogleId();
-        String facebookId = serviceProvider.getFacebookId();
+
         if (!googleId.isEmpty()) {
             updateGoogleReviews(serviceProvider);
-        } else if (!facebookId.isEmpty()) {
-
-
-            //add facebook call
-            //
-            //
         }
         return serviceProvider;
     }
@@ -184,6 +180,8 @@ public class ReviewService {
         serviceProvider.setReviews(reviewList);
         serviceProviderRepository.save(serviceProvider);
     }
+
+
 
 
 

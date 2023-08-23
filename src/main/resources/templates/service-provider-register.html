@@ -111,7 +111,7 @@
         <textarea class="form-control" name="description"  required>[[${serviceProvider.description}]]</textarea><br>
 
         <label>Company Logo URL:</label>
-        <input class="form-control" type="url" name="logoUrl" placeholder="Enter the URL of the company logo" th:value="${serviceProvider.logoUrl}" required>
+        <input class="form-control" type="url" name="logoUrl" placeholder="Enter the URL of the company logo" th:value="${serviceProvider.logoUrl}">
 
         <label>Price Range (Estimate):</label>
         <div>
@@ -151,8 +151,7 @@
         </div>
         <label>Google Place Id:</label>
         <textarea class="form-control" name="googleId" id="googleId">[[${serviceProvider.googleId}]]</textarea><br>
-        <label>Facebook Id:</label>
-        <textarea class="form-control" name="facebookId" id="facebookId">[[${serviceProvider.facebookId}]]</textarea><br>
+
         <!-- Add more fields as needed -->
 
         <button style="margin-top: 10px" type="submit" class="btn btn-primary">Submit</button>
