@@ -31,6 +31,8 @@ public class Review {
 
     private String googlePhoto;
 
+    private String facebookPhoto;
+
     public Review() {
     }
 
