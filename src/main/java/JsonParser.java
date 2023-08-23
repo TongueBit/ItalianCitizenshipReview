@@ -11,7 +11,7 @@ public class JsonParser {
 
         try {
             // Read the JSON data from a file
-            JsonNode jsonNode = objectMapper.readTree(new File("src/main/resources/dataset_facebook-reviews-scraper_2023-08-23_15-00-01-955.json"));
+            JsonNode jsonNode = objectMapper.readTree(new File(""));
             int i = 0;
             // Iterate through each JSON object in the array
             for (JsonNode jsonObject : jsonNode) {

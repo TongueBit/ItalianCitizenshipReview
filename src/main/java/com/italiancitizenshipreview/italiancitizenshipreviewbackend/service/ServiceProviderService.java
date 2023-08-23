@@ -40,7 +40,7 @@ public class ServiceProviderService {
             serviceProviderRepository.save(sp);
         }
         else {
-            ServiceProvider serviceProvider = new ServiceProvider(name, description, email, logoUrl, lowestEstimate, highestEstimate, services, googleId, facebookId, website);
+            ServiceProvider serviceProvider = new ServiceProvider(name, description, email, logoUrl, lowestEstimate, highestEstimate, services, googleId,  website);
             serviceProviderRepository.save(serviceProvider);
         }
     }

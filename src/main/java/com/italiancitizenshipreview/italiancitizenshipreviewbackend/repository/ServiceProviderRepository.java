@@ -30,6 +30,6 @@ public interface ServiceProviderRepository extends CrudRepository<ServiceProvide
 
     ServiceProvider findServiceProviderByName(String name);
 
-    @Query("SELECT sp FROM ServiceProvider sp WHERE sp.googleId IS NOT NULL OR sp.facebookId IS NOT NULL")
+    @Query("SELECT sp FROM ServiceProvider sp WHERE sp.googleId IS NOT NULL")
     List<ServiceProvider> findServiceProvidersWithNonNullIds();
 }
