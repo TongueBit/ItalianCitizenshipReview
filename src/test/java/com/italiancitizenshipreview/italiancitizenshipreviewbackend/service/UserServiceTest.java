@@ -46,6 +46,7 @@ public class UserServiceTest {
         user.setUsername(username);
         user.setPassword("encodedpassword"); // Assume the password encoder service returns this specific value for testing
         user.setRoles(role);
+        user.setEmail(email);
 
         when(passwordEncoderService.encode(password)).thenReturn("encodedpassword");
         when(userRepository.save(any(User.class))).thenReturn(user);
@@ -90,8 +91,5 @@ public class UserServiceTest {
         //Assert
         verify(userRepository, times(1)).deleteById(userId);
 
-    }
-    public void deleteUserById(Long userId) {
-        userRepository.deleteById(userId);
     }
 }
