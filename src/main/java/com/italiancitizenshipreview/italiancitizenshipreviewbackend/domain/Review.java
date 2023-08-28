@@ -33,6 +33,8 @@ public class Review {
 
     private String facebookPhoto;
 
+    private Boolean recommended;
+
     public Review() {
     }
 
@@ -41,6 +43,32 @@ public class Review {
         this.serviceProvider = serviceProvider;
         this.rating = rating;
         this.authorName = authorName;
+    }
+
+    public Review(String authorName, Date date, String content, Boolean recommended, int rating, ServiceProvider serviceProvider) {
+        this.authorName = authorName;
+
+        this.date = date;
+        this.content = content;
+        this.recommended = recommended;
+        this.rating = rating;
+        this.serviceProvider = serviceProvider;
+    }
+
+    public String getFacebookPhoto() {
+        return facebookPhoto;
+    }
+
+    public void setFacebookPhoto(String facebookPhoto) {
+        this.facebookPhoto = facebookPhoto;
+    }
+
+    public Boolean getRecommended() {
+        return recommended;
+    }
+
+    public void setRecommended(Boolean recommended) {
+        this.recommended = recommended;
     }
 
     public String getAuthorName() {
