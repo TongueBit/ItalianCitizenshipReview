@@ -26,6 +26,8 @@ public class DirectoryController {
     @GetMapping("/service-provider/all")
     public String directoryPage(Model model, HttpServletRequest request) {
         List<ServiceProvider> serviceProviders = serviceProviderService.getAllServiceProviders();
+
+
         serviceProviders.sort((o1, o2) -> o2.getAvgRating().compareTo(o1.getAvgRating()));
         model.addAttribute("serviceProviders", serviceProviders);
         model.addAttribute("request", request);

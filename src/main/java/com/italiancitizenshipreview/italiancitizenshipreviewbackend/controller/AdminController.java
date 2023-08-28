@@ -1,5 +1,6 @@
 package com.italiancitizenshipreview.italiancitizenshipreviewbackend.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.Review;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.ServiceProvider;
 import com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain.User;
@@ -34,5 +35,12 @@ public class AdminController {
         model.addAttribute("serviceProviders", serviceProviders);
         model.addAttribute("request", request);
         return "admin";
+    }
+
+    @GetMapping("/load")
+    public String test(Model model) throws JsonProcessingException {
+        reviewService.updateReviews();
+        model.addAttribute("user", new User());
+        return "index";
     }
 }

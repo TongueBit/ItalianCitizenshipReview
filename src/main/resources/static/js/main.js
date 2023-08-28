@@ -1,3 +1,5 @@
+let flag1 = false;
+
 $(function() {
 
   var siteSticky = function() {
@@ -87,121 +89,126 @@ $(function() {
 });
 
 function createRegisterSection() {
-	var registerSection = document.createElement('section');
-	registerSection.id = 'register';
-	registerSection.classList.add('register-section');
-	registerSection.style.height = '100%';
-	registerSection.style.paddingTop = '150px';
+	if(flag1 === false) {
+		var registerSection = document.createElement('section');
+		registerSection.id = 'register';
+		registerSection.classList.add('register-section');
+		registerSection.style.height = '100%';
+		registerSection.style.paddingTop = '150px';
 
-	var registerDiv = document.createElement('div');
-	registerDiv.classList.add('container');
+		var registerDiv = document.createElement('div');
+		registerDiv.classList.add('container');
 
-	var registerRow = document.createElement('div');
-	registerRow.classList.add('row', 'justify-content-center');
+		var registerRow = document.createElement('div');
+		registerRow.classList.add('row', 'justify-content-center');
 
-	var registerCol = document.createElement('div');
-	registerCol.classList.add('col-lg-6');
+		var registerCol = document.createElement('div');
+		registerCol.classList.add('col-lg-6');
 
-	var registerContent = document.createElement('div');
-	registerContent.classList.add('p-5');
+		var registerContent = document.createElement('div');
+		registerContent.classList.add('p-5');
 
-	var registerTitle = document.createElement('div');
-	registerTitle.classList.add('mb-5');
-	registerTitle.innerHTML = '<h3 class="h4 font-weight-bold text-theme">Register</h3>';
+		var registerTitle = document.createElement('div');
+		registerTitle.classList.add('mb-5');
+		registerTitle.innerHTML = '<h3 class="h4 font-weight-bold text-theme">Register</h3>';
 
-	var registerForm = document.createElement('form');
-	registerForm.action = '/register'; // Set the appropriate action for the register form
-	registerForm.setAttribute('onsubmit', 'checkIfUsernameExists(event)');
-	registerForm.method = 'POST';
+		var registerForm = document.createElement('form');
+		registerForm.action = '/register'; // Set the appropriate action for the register form
+		registerForm.setAttribute('onsubmit', 'checkIfUsernameExists(event)');
+		registerForm.method = 'POST';
 
-	var registerUsernameGroup = document.createElement('div');
-	registerUsernameGroup.classList.add('form-group');
+		var registerUsernameGroup = document.createElement('div');
+		registerUsernameGroup.classList.add('form-group');
 
-	var registerUsernameLabel = document.createElement('label');
-	registerUsernameLabel.htmlFor = 'register-username';
-	registerUsernameLabel.textContent = 'Username';
+		var registerUsernameLabel = document.createElement('label');
+		registerUsernameLabel.htmlFor = 'register-username';
+		registerUsernameLabel.textContent = 'Username';
 
-	var registerUsernameInput = document.createElement('input');
-	registerUsernameInput.name = 'username';
-	registerUsernameInput.classList.add('form-control');
-	registerUsernameInput.id = 'register-username';
+		var registerUsernameInput = document.createElement('input');
+		registerUsernameInput.name = 'username';
+		registerUsernameInput.classList.add('form-control');
+		registerUsernameInput.id = 'register-username';
 
-	var registerEmailGroup = document.createElement('div');
-	registerEmailGroup.classList.add('form-group');
+		var registerEmailGroup = document.createElement('div');
+		registerEmailGroup.classList.add('form-group');
 
-	var registerEmailLabel = document.createElement('label');
-	registerEmailLabel.htmlFor = 'register-email';
-	registerEmailLabel.textContent = 'Email';
+		var registerEmailLabel = document.createElement('label');
+		registerEmailLabel.htmlFor = 'register-email';
+		registerEmailLabel.textContent = 'Email';
 
-	var registerEmailInput = document.createElement('input');
-	registerEmailInput.name = 'email';
-	registerEmailInput.classList.add('form-control');
-	registerEmailInput.id = 'register-email';
+		var registerEmailInput = document.createElement('input');
+		registerEmailInput.name = 'email';
+		registerEmailInput.classList.add('form-control');
+		registerEmailInput.id = 'register-email';
 
-	var registerPasswordGroup = document.createElement('div');
-	registerPasswordGroup.classList.add('form-group');
+		var registerPasswordGroup = document.createElement('div');
+		registerPasswordGroup.classList.add('form-group');
 
-	var registerPasswordLabel = document.createElement('label');
-	registerPasswordLabel.htmlFor = 'password';
-	registerPasswordLabel.textContent = 'Password';
+		var registerPasswordLabel = document.createElement('label');
+		registerPasswordLabel.htmlFor = 'password';
+		registerPasswordLabel.textContent = 'Password';
 
-	var registerPasswordInput = document.createElement('input');
-	registerPasswordInput.name = 'password';
-	registerPasswordInput.classList.add('form-control');
-	registerPasswordInput.id = 'password';
-	registerPasswordInput.type = 'password';
+		var registerPasswordInput = document.createElement('input');
+		registerPasswordInput.name = 'password';
+		registerPasswordInput.classList.add('form-control');
+		registerPasswordInput.id = 'password';
+		registerPasswordInput.type = 'password';
 
-	var showPasswordCheckbox = document.createElement('input');
-	showPasswordCheckbox.type = 'checkbox';
-	showPasswordCheckbox.onclick = showPassword;
-
-
-	var showPasswordLabel = document.createElement('label');
-	showPasswordLabel.textContent = 'Show Password';
-
-// Append the checkbox and label to a container element
-	var checkboxContainer = document.createElement('div');
-	checkboxContainer.appendChild(showPasswordCheckbox);
-	checkboxContainer.appendChild(showPasswordLabel);
+		var showPasswordCheckbox = document.createElement('input');
+		showPasswordCheckbox.type = 'checkbox';
+		showPasswordCheckbox.onclick = showPassword;
 
 
-	var registerButton = document.createElement('button');
-	registerButton.type = 'submit';
-	registerButton.name = 'register-button';
-	registerButton.classList.add('btn', 'btn-theme');
-	registerButton.textContent = 'Register';
+		var showPasswordLabel = document.createElement('label');
+		showPasswordLabel.textContent = 'Show Password';
 
-	registerEmailGroup.appendChild(registerUsernameLabel);
-	registerEmailGroup.appendChild(registerUsernameInput);
-
-	registerEmailGroup.appendChild(registerEmailLabel);
-	registerEmailGroup.appendChild(registerEmailInput);
-
-	registerPasswordGroup.appendChild(registerPasswordLabel);
-	registerPasswordGroup.appendChild(registerPasswordInput);
-	registerPasswordGroup.appendChild(checkboxContainer);
+		// Append the checkbox and label to a container element
+		var checkboxContainer = document.createElement('div');
+		checkboxContainer.appendChild(showPasswordCheckbox);
+		checkboxContainer.appendChild(showPasswordLabel);
 
 
-	registerForm.appendChild(registerUsernameGroup);
-	registerForm.appendChild(registerEmailGroup);
-	registerForm.appendChild(registerPasswordGroup);
-	registerForm.appendChild(registerButton);
+		var registerButton = document.createElement('button');
+		registerButton.type = 'submit';
+		registerButton.name = 'register-button';
+		registerButton.classList.add('btn', 'btn-theme');
+		registerButton.textContent = 'Register';
 
-	registerContent.appendChild(registerTitle);
-	registerContent.appendChild(registerForm);
+		registerEmailGroup.appendChild(registerUsernameLabel);
+		registerEmailGroup.appendChild(registerUsernameInput);
 
-	registerCol.appendChild(registerContent);
+		registerEmailGroup.appendChild(registerEmailLabel);
+		registerEmailGroup.appendChild(registerEmailInput);
 
-	registerRow.appendChild(registerCol);
+		registerPasswordGroup.appendChild(registerPasswordLabel);
+		registerPasswordGroup.appendChild(registerPasswordInput);
+		registerPasswordGroup.appendChild(checkboxContainer);
 
-	registerDiv.appendChild(registerRow);
 
-	registerSection.appendChild(registerDiv);
+		registerForm.appendChild(registerUsernameGroup);
+		registerForm.appendChild(registerEmailGroup);
+		registerForm.appendChild(registerPasswordGroup);
+		registerForm.appendChild(registerButton);
 
-	var photoDiv = document.querySelector('.photo-div');
-	photoDiv.insertAdjacentElement('afterend', registerSection);
+		registerContent.appendChild(registerTitle);
+		registerContent.appendChild(registerForm);
 
-	const elements = document.querySelectorAll('[name="password"]');
+		registerCol.appendChild(registerContent);
+
+		registerRow.appendChild(registerCol);
+
+		registerDiv.appendChild(registerRow);
+
+		registerSection.appendChild(registerDiv);
+
+		var photoDiv = document.querySelector('.photo-div');
+		photoDiv.insertAdjacentElement('afterend', registerSection);
+
+		const elements = document.querySelectorAll('[name="password"]');
+		flag1 = true;
+	}else {
+		return;
+	}
 }
 
 
@@ -242,6 +249,7 @@ function checkIfUsernameExists(event) {
 						.then(() => {
 							Swal.fire({
 								title: 'Enter Verification Code',
+								text: 'A verification code has been sent to your email address. Please check your spam folder if you do not see it.',
 								input: 'text',
 								showCancelButton: true,
 								confirmButtonText: 'Submit',
