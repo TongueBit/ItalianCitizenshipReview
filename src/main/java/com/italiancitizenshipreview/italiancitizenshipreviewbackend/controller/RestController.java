@@ -100,7 +100,6 @@ public class RestController {
 
     @PostMapping("/update/{userId}")
     public ResponseEntity<String> updateUser(@PathVariable Long userId, @RequestBody String username) {
-
         userService.updateUsername(userId, username);
         return ResponseEntity.ok().build();
 

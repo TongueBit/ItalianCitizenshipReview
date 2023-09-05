@@ -133,8 +133,7 @@
             <div class="col-lg-9">
               <div class="d-md-flex align-items-md-center">
                 <div class="name d-inline-block">
-                  <h3><a th:href="@{/service-provider/{serviceProviderId}(serviceProviderId=${serviceProvider.serviceProviderId})}" th:text="${serviceProvider.name}"></a></h3>
-                  <a th:href="${serviceProvider.website}" style="color: #005cbf" class="justify-content-end">Website</a>
+                  <h3 th:text="${serviceProvider.name}"></h3>
                 </div>
               </div>
               <div>
@@ -198,6 +197,9 @@
                               </div>
                             <h6><b><span th:text="${review.title}"></span></b></h6>
                             <p class="rating" th:text="${review.rating}"></p>
+                              <i src="static/images/tumbs-up.svg">
+                              <p class="recommended" style ="color: #1c7430" th:if="${review.getRecommended() == true}">Recommended </p>
+                              <p class="not-recommended" style ="color: red" th:if="${review.getRecommended() == false}">Not Recommended</p>
 
                             <p th:text="${review.date}"></p>
                             <p><span th:text="${review.content}"></span></p>
