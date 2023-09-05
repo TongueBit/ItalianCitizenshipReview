@@ -140,7 +140,6 @@
                                         </div>
                                         <div>
                                             <div>
-                                                <a th:href="${serviceProvider.website}" style="color: #005cbf" class="justify-content-end">Website</a>
 
                                             </div>
                                         </div>
@@ -170,6 +169,10 @@
                                                     <button class="btn btn-link caret-button" type="button" data-toggle="collapse" th:data-target="'#reviewsCollapse-' + ${serviceProvider.serviceProviderId}" aria-expanded="false" th:aria-controls="'reviewsCollapse-' + ${serviceProvider.serviceProviderId}">
                                                         <i class="fa fa-caret-down "></i>
                                                     </button>
+                                                    <div class="ml-auto">
+                                                        <p style="color: black" class="review-count"></p>
+                                                        <p class="recommended-count"></p>
+                                                    </div>
 
                                                 </div>
                                                 <div th:id="'reviewsCollapse-' + ${serviceProvider.serviceProviderId}" class="collapse">
@@ -179,14 +182,15 @@
                                                                 <li th:each="review : ${serviceProvider.reviews}">
                                                                     <div class="m-2 p-4" style="border-style: solid; border-radius: 5px;">
                                                                         <input type="hidden" name="userId" th:value="${review.userId}" />
+                                                                        <h6 th:text="${review.authorName}"></h6>
                                                                         <div th:if="${review.getGooglePhoto() != null}" class="d-flex justify-content-between">
                                                                             <img th:src="${review.googlePhoto}" alt="Profile Photo" class="rounded-circle w-25">
                                                                             <img  src="/images/google_g_icon_download.png" alt="Profile Photo"style="height: 25px" class="rounded-circle align-content-end">
                                                                         </div>
                                                                         <h6><b><span th:text="${review.title}"></span></b></h6>
                                                                         <p class="rating" th:text="${review.rating}"><b></b></p>
-                                                                        <p th:text="${review.date}"></p>
-                                                                        <p><span th:text="${review.content}"></span></p>
+                                                                        <p style="color: black"th:text="${review.date}"></p>
+                                                                        <p style="color: black" ><span th:text="${review.content}"></span></p>
                                                                         <form th:action="@{'/review/' + ${review.reviewId}}" method="post">
                                                                             <button th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" type="submit" class="btn btn-primary">Delete review</button>
                                                                             <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" th:href="@{/user/dashboard/{userId}(userId=${review.userId})}" class="btn btn-primary">Go to User</a>

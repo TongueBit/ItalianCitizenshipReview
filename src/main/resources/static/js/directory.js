@@ -72,7 +72,7 @@ function startStarConversion(ratingElements) {
 
 function convertToStarRating(rating) {
 
-    if (rating === null || rating === 0) {
+    if (rating === null || rating < 1) {
         return '';
     }
 
@@ -157,4 +157,26 @@ function addReviewToDOM(review, index) {
     liElement.appendChild(ratingElement);
     reviewList.appendChild(liElement);
 }
+
+function countReviewsAndRecommendations() {
+    const serviceProviders = document.querySelectorAll('.service-provider');
+
+    serviceProviders.forEach(provider => {
+        const reviewCountElement = provider.querySelector('.review-count');
+        // const recommendedCountElement = provider.querySelector('.recommended-count');
+
+        if (reviewCountElement) {
+            const reviewList = provider.querySelector('#reviewList'); // Assuming each review has an ID "reviewList"
+
+            if (reviewList) {
+                const reviewItems = reviewList.getElementsByTagName('li'); // Get all <li> elements within the reviewList
+                const numberOfReviews = reviewItems.length;
+
+                reviewCountElement.textContent = `Reviews: ${numberOfReviews}`;
+            }
+        }
+    });
+}
+
 startStarConversion(ratingElements);
+countReviewsAndRecommendations();

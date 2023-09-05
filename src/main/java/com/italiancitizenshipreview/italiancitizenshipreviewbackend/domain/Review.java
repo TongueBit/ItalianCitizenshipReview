@@ -135,11 +135,15 @@ public class Review {
     }
 
     public String getDate() {
+        if(date == null) {
+            return "";
+        }
         if(date.toString().contains("00:00:00.0")) {
            String dateString = date.toString();
            dateString = dateString.replace("00:00:00.0", "");
             return dateString;
         }
+
 
         return date.toString();
     }
