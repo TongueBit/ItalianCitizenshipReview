@@ -198,6 +198,9 @@
                               </div>
                             <h6><b><span th:text="${review.title}"></span></b></h6>
                             <p class="rating" th:text="${review.rating}"></p>
+                              <i src="static/images/tumbs-up.svg">
+                              <p style ="color: #1c7430" th:if="${review.getRecommended() == true}">Recommended </p>
+                              <p style ="color: red" th:if="${review.getRecommended() == false}">Not Recommended</p>
 
                             <p th:text="${review.date}"></p>
                             <p><span th:text="${review.content}"></span></p>

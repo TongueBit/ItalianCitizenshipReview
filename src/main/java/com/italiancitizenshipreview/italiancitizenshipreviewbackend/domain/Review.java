@@ -134,8 +134,14 @@ public class Review {
         this.serviceProvider = serviceProvider;
     }
 
-    public Date getDate() {
-        return date;
+    public String getDate() {
+        if(date.toString().contains("00:00:00.0")) {
+           String dateString = date.toString();
+           dateString = dateString.replace("00:00:00.0", "");
+            return dateString;
+        }
+
+        return date.toString();
     }
 
     public void setDate(Date date) {

@@ -71,12 +71,9 @@ function startStarConversion(ratingElements) {
 
 
 function convertToStarRating(rating) {
-    var nullRating = '';
-    if (rating === null) {
-        for(i=0; i<5; i++) {
-            nullRating += '<i class="far fa-star star-grey"></i>';
-        }
-        return nullRating;
+
+    if (rating === null || rating === 0) {
+        return '';
     }
 
 
