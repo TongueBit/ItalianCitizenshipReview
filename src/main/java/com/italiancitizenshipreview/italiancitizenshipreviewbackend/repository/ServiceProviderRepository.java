@@ -24,6 +24,9 @@ public interface ServiceProviderRepository extends CrudRepository<ServiceProvide
     @Query("SELECT sp FROM ServiceProvider sp")
     List<ServiceProvider> findAllServiceProviders();
 
+    @Query("SELECT sp FROM ServiceProvider sp LEFT JOIN FETCH sp.reviews")
+    List<ServiceProvider> findAllServiceProvidersWithoutReviews();
+
      ServiceProvider findByServiceProviderId(Long serviceProviderId);
 
     boolean existsByName(String name);

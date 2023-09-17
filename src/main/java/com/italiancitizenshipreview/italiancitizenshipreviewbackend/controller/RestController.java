@@ -66,13 +66,10 @@ public class RestController {
     }
 
     @GetMapping("/service-provider")
-    public List<ServiceProviderResponse> getServiceProviders() {
-        List<ServiceProviderResponse> serviceProviderRequests = new ArrayList<ServiceProviderResponse>();
+    public List<ServiceProvider> getServiceProviders() {
         List<ServiceProvider> serviceProviders = serviceProviderService.getAllServiceProviderswithoutReviews();
-        for (ServiceProvider sp : serviceProviders) {
-            serviceProviderRequests.add(new ServiceProviderResponse(sp.getName(), sp.getDescription(), sp.getAvgRating(), sp.getServiceProviderId(), sp.getLogoUrl()));
-        }
-        return serviceProviderRequests;
+
+        return serviceProviders;
     }
 
     @GetMapping("/register/{email}")

@@ -1,5 +1,6 @@
 package com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Type;
@@ -21,6 +22,7 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "serviceProviderId")
+    @JsonBackReference
     private ServiceProvider serviceProvider;
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;

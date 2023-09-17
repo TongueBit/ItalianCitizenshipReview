@@ -188,28 +188,26 @@
                     <div class="p-4 service-provider-card">
                       <ul style="list-style: none" id="reviewList">
                         <li th:each="review : ${serviceProvider.reviews}">
-                          <div class="m-2 p-4" style="border-style: solid; border-radius: 5px;">
-                            <div>
-                              <input type="hidden" name="userId" th:value="${review.userId}" />
-                              <div th:if="${review.getGooglePhoto() != null}" class="d-flex justify-content-between">
-                                <img th:src="${review.googlePhoto}" alt="Profile Photo" class="rounded-circle w-25">
-                                <img  src="/images/google_g_icon_download.png" alt="Profile Photo"style="height: 25px" class="rounded-circle align-content-end">
-                              </div>
+                          <div class="m-2 p-4" style="border-style: solid; border-radius: 5px; ">
+                            <input type="hidden" name="userId" th:value="${review.userId}" />
+                            <h6 th:text="${review.authorName}"></h6>
+                            <div th:if="${review.getGooglePhoto() != null}" class="d-flex justify-content-between">
+                              <img th:src="${review.googlePhoto}" alt="Profile Photo" class="rounded-circle w-25">
+                              <img  src="/images/google_g_icon_download.png" alt="Profile Photo"style="height: 25px" class="rounded-circle align-content-end">
+                            </div>
                             <h6><b><span th:text="${review.title}"></span></b></h6>
-                            <p class="rating" th:text="${review.rating}"></p>
-                              <i src="static/images/tumbs-up.svg">
-                              <p class="recommended" style ="color: #1c7430" th:if="${review.getRecommended() == true}">Recommended </p>
-                              <p class="not-recommended" style ="color: red" th:if="${review.getRecommended() == false}">Not Recommended</p>
-
-                            <p th:text="${review.date}"></p>
-                            <p><span th:text="${review.content}"></span></p>
-
-                            <form  >
-                              <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" th:href="@{'/review/' + ${review.reviewId}}" class="btn btn-primary">Delete review</a>
+                            <p class="rating" th:text="${review.rating}"><b></b></p>
+                            <h6  class="recommended" style="color: green" th:if="${review.getRecommended() == true}">Recommended</h6>
+                            <h6 style="color: red" th:if="${review.getRecommended() == false}">Not Recommended</h6>
+                            <p style="color: black"th:text="${review.date}"></p>
+                            <p style="color: black" ><span th:text="${review.content}"></span></p>
+                            <form th:action="@{'/review/' + ${review.reviewId}}" method="post">
+                              <button th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" type="submit" class="btn btn-primary">Delete review</button>
                               <a th:if="${#vars.request.isUserInRole('ROLE_ADMIN')}" th:href="@{/user/dashboard/{userId}(userId=${review.userId})}" class="btn btn-primary">Go to User</a>
-                            </form>
 
+                            </form>
                           </div>
+
                         </li>
                       </ul>
                       <div th:unless="${serviceProvider.reviews.size() > 0}">

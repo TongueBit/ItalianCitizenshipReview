@@ -68,7 +68,7 @@ public class ServiceProviderService {
     }
 
     public List<ServiceProvider> getAllServiceProviderswithoutReviews() {
-        return serviceProviderRepository.findAllServiceProviders();
+        return serviceProviderRepository.findAllServiceProvidersWithoutReviews();
     }
 
     public List<ServiceProvider> findAllByApproved(boolean b) {
