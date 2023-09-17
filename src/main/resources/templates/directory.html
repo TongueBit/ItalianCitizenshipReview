@@ -180,7 +180,7 @@
                                                         <div th:if="${serviceProvider.reviews.size() != 0}" >
                                                             <ul style="list-style: none" id="reviewList">
                                                                 <li th:each="review : ${serviceProvider.reviews}">
-                                                                    <div class="m-2 p-4" style="border-style: solid; border-radius: 5px;">
+                                                                    <div class="m-2 p-4" style="border-style: solid; border-radius: 5px; ">
                                                                         <input type="hidden" name="userId" th:value="${review.userId}" />
                                                                         <h6 th:text="${review.authorName}"></h6>
                                                                         <div th:if="${review.getGooglePhoto() != null}" class="d-flex justify-content-between">
@@ -189,6 +189,8 @@
                                                                         </div>
                                                                         <h6><b><span th:text="${review.title}"></span></b></h6>
                                                                         <p class="rating" th:text="${review.rating}"><b></b></p>
+                                                                        <h6  class="recommended" style="color: green" th:if="${review.getRecommended() == true}">Recommended</h6>
+                                                                        <h6 style="color: red" th:if="${review.getRecommended() == false}">Not Recommended</h6>
                                                                         <p style="color: black"th:text="${review.date}"></p>
                                                                         <p style="color: black" ><span th:text="${review.content}"></span></p>
                                                                         <form th:action="@{'/review/' + ${review.reviewId}}" method="post">
@@ -231,7 +233,7 @@
                                             <div class="pt-2">
 
                                                 <div th:unless="${#vars.request.isUserInRole('ROLE_USER') || #vars.request.isUserInRole('ROLE_ADMIN')}">
-                                                    <b><a href="/login">Login</a> to leave a review!</b>
+                                                    <b><a style="color: #005cbf" href="/login">Login</a> to leave a review!</b>
                                                 </div>
                                             </div>
                                         </div>

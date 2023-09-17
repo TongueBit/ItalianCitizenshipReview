@@ -1,6 +1,7 @@
 package com.italiancitizenshipreview.italiancitizenshipreviewbackend.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -16,7 +17,8 @@ public class ServiceProvider {
     private String description;
 
 
-    @OneToMany(mappedBy = "serviceProvider" ,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "serviceProvider" ,fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Review> reviews;
 
     @Id

@@ -96,6 +96,7 @@ function showServiceProvider(index, serviceProvidersContainer1) {
 
         if (paragraph) {
             paragraph.innerHTML = serviceProvider.description;
+            paragraph.style = "color: black";
         }
         // Add the name of the service provider
         title.textContent = serviceProvider.name;
